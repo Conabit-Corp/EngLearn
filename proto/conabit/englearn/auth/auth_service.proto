@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+import "google/protobuf/empty.proto";
+
+package conabit.englearn.auth;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/auth";
+
+
+message SignInRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message SignUpRequest {
+  string login = 1;
+  string password = 2;
+  string re_password = 3;
+}
+
+message AuthResponse { conabit.englearn.common.Session session = 1; }
+
+service AuthService {
+  rpc SignIn(SignInRequest) returns (AuthResponse) {}
+
+  rpc SignUp(SignUpRequest) returns (AuthResponse) {}
+
+  rpc Logout(conabit.englearn.common.Session) returns (google.protobuf.Empty) {}
+
+  rpc Refrersh(conabit.englearn.common.Session) returns (AuthResponse) {}
+}

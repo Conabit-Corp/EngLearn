@@ -1,0 +1,73 @@
+services:
+  mongo:
+    image: mongo:5.0.6
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
+    ports:
+      - '${MONGO_PORT}:27017'
+    networks:
+      - backend
+  redis:
+    image: redis:alpine
+    command: redis-server --bind 0.0.0.0 --requirepass ${REDIS_PASS}
+    environment:
+      - REDIS_REPLICATION_NODE=master
+    ports:
+      - '${REDIS_PORT}:6379'
+    networks:
+      - backend
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    environment:
+      - REDIS_URL=redis:${REDIS_PORT}
+      - REDIS_PASS=${REDIS_PASS}
+      - MONGO_URL=mongo:${MONGO_PORT}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    ports:
+      - '${AUTH_PORT}:4000'
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    environment:
+      - REDIS_URL=redis:${REDIS_PORT}
+      - REDIS_PASS=${REDIS_PASS}
+      - MONGO_URL=mongo:${MONGO_PORT}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    ports:
+      - '${DASHBOARD_PORT}:4001'
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+  exercise:
+    build:
+      context: .
+      dockerfile: Dockerfile.exercise
+    environment:
+      - REDIS_URL=redis:${REDIS_PORT}
+      - REDIS_PASS=${REDIS_PASS}
+      - MONGO_URL=mongo:${MONGO_PORT}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    ports:
+      - '${EXCERCISE_PORT}:4002'
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+networks:
+  backend:

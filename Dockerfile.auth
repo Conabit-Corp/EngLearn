@@ -1,0 +1,13 @@
+FROM alpine:latest
+
+RUN apk add --no-cache libc6-compat 
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+COPY auth-service .
+
+EXPOSE 4000
+
+CMD [ "/app/auth-service" ]

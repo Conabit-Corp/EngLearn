@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+
+package conabit.englearn.exercise;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
+
+service WordService{
+    rpc RegisterWord(RegisterWordRequest) returns (RegisterWordResponse) {}
+
+    rpc RegisterWordPair(RegisterWordPairRequest) returns (RegisterWordPairResponse) {}
+
+    rpc FindWord(FindWordRequest) returns (FindWordResponse) {}
+
+    rpc FindWordPair(FindWordPairRequest) returns (FindWordPairResponse) {}
+}
+
+message RegisterWordRequest{
+    conabit.englearn.common.Session session = 1;
+    string value = 2;
+    string country_code = 3;
+}
+
+message RegisterWordPairRequest{
+    conabit.englearn.common.Session session = 1;
+    string word_1_id = 2;
+    string word_2_id = 3;
+}
+
+message FindWordRequest{
+    conabit.englearn.common.Session session = 1;
+    string word_id = 2;
+}
+
+message FindWordPairRequest{
+    conabit.englearn.common.Session session = 1;
+    string word_pair_id = 2;
+}
+
+message RegisterWordResponse{
+    string id = 1;
+}
+
+message RegisterWordPairResponse{
+    string id = 1;
+}
+
+message FindWordResponse{
+    string id = 1;
+    string value = 2;
+    string country_code = 3;
+}
+
+message FindWordPairResponse{
+    string id = 1;
+    string word_1_id = 2;//????
+    string word_2_id = 3;//????
+}
