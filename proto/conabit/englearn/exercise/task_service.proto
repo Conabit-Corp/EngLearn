@@ -1,0 +1,20 @@
+
+syntax = "proto3";
+
+import "proto/conabit/englearn/exercise/word_service.proto";
+
+package conabit.englearn.exercise;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
+
+message Task{
+    string id = 1;
+    string incorrect_answer = 2;//optional
+    conabit.englearn.exercise.WordPair word_pair = 3;
+    enum TaskType{
+        JUST_INPUT = 0;
+        ONE_OF_N = 1;
+    }
+    TaskType task_type = 4;
+}
+

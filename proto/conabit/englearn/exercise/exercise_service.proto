@@ -1,0 +1,44 @@
+
+syntax = "proto3";
+
+import "proto/conabit/englearn/exercise/word_service.proto";
+import "proto/conabit/englearn/exercise/task_service.proto";
+import "proto/conabit/englearn/common/session.proto";
+import "google/protobuf/timestamp.proto";
+
+package conabit.englearn.exercise;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
+
+service ExerciseService{
+    rpc StartNewExercise(StartNewExerciseRequest) returns (StartNewExerciseResponse) {}
+
+    rpc FinishExercise(FinishExerciseRequest) returns (Exercise) {}
+}
+
+message Exercise{
+    string id = 1;
+    google.protobuf.Timestamp started_at = 2;
+    google.protobuf.Timestamp finished_at = 3;
+    repeated conabit.englearn.exercise.Task solved_tasks = 4;
+    repeated conabit.englearn.exercise.Task failed_tasks = 5;
+}
+
+message StartNewExerciseRequest{
+    conabit.englearn.common.Session session = 1;
+    enum GenerationType {
+        RANDOM = 0;
+        MY_CHOISE = 1;
+    }
+    GenerationType gen_type = 2;
+    repeated conabit.englearn.exercise.WordPair words = 3;
+}
+
+message StartNewExerciseResponse{
+    //HELP HELP HELP HELP HELP HELP HELP HELP
+    repeated conabit.englearn.exercise.Task tasks = 1;
+}
+
+message FinishExerciseRequest{
+    conabit.englearn.common.Session session = 1;
+}

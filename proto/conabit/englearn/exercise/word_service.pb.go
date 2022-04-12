@@ -25,18 +25,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type RegisterWordRequest struct {
+type WordPair struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Session     *common.Session `protobuf:"bytes,1,opt,name=session,proto3" json:"session,omitempty"`
-	Value       string          `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
-	CountryCode string          `protobuf:"bytes,3,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
+	Id          string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Word_1Value string `protobuf:"bytes,2,opt,name=word_1_value,json=word1Value,proto3" json:"word_1_value,omitempty"`
+	Word_1Code  string `protobuf:"bytes,3,opt,name=word_1_code,json=word1Code,proto3" json:"word_1_code,omitempty"`
+	Word_2Value string `protobuf:"bytes,4,opt,name=word_2_value,json=word2Value,proto3" json:"word_2_value,omitempty"`
+	Word_2Code  string `protobuf:"bytes,5,opt,name=word_2_code,json=word2Code,proto3" json:"word_2_code,omitempty"`
 }
 
-func (x *RegisterWordRequest) Reset() {
-	*x = RegisterWordRequest{}
+func (x *WordPair) Reset() {
+	*x = WordPair{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -44,13 +46,13 @@ func (x *RegisterWordRequest) Reset() {
 	}
 }
 
-func (x *RegisterWordRequest) String() string {
+func (x *WordPair) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterWordRequest) ProtoMessage() {}
+func (*WordPair) ProtoMessage() {}
 
-func (x *RegisterWordRequest) ProtoReflect() protoreflect.Message {
+func (x *WordPair) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -62,28 +64,42 @@ func (x *RegisterWordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterWordRequest.ProtoReflect.Descriptor instead.
-func (*RegisterWordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use WordPair.ProtoReflect.Descriptor instead.
+func (*WordPair) Descriptor() ([]byte, []int) {
 	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *RegisterWordRequest) GetSession() *common.Session {
+func (x *WordPair) GetId() string {
 	if x != nil {
-		return x.Session
-	}
-	return nil
-}
-
-func (x *RegisterWordRequest) GetValue() string {
-	if x != nil {
-		return x.Value
+		return x.Id
 	}
 	return ""
 }
 
-func (x *RegisterWordRequest) GetCountryCode() string {
+func (x *WordPair) GetWord_1Value() string {
 	if x != nil {
-		return x.CountryCode
+		return x.Word_1Value
+	}
+	return ""
+}
+
+func (x *WordPair) GetWord_1Code() string {
+	if x != nil {
+		return x.Word_1Code
+	}
+	return ""
+}
+
+func (x *WordPair) GetWord_2Value() string {
+	if x != nil {
+		return x.Word_2Value
+	}
+	return ""
+}
+
+func (x *WordPair) GetWord_2Code() string {
+	if x != nil {
+		return x.Word_2Code
 	}
 	return ""
 }
@@ -94,8 +110,7 @@ type RegisterWordPairRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	Session  *common.Session `protobuf:"bytes,1,opt,name=session,proto3" json:"session,omitempty"`
-	Word_1Id string          `protobuf:"bytes,2,opt,name=word_1_id,json=word1Id,proto3" json:"word_1_id,omitempty"`
-	Word_2Id string          `protobuf:"bytes,3,opt,name=word_2_id,json=word2Id,proto3" json:"word_2_id,omitempty"`
+	WordPair *WordPair       `protobuf:"bytes,2,opt,name=word_pair,json=wordPair,proto3" json:"word_pair,omitempty"`
 }
 
 func (x *RegisterWordPairRequest) Reset() {
@@ -137,31 +152,24 @@ func (x *RegisterWordPairRequest) GetSession() *common.Session {
 	return nil
 }
 
-func (x *RegisterWordPairRequest) GetWord_1Id() string {
+func (x *RegisterWordPairRequest) GetWordPair() *WordPair {
 	if x != nil {
-		return x.Word_1Id
+		return x.WordPair
 	}
-	return ""
+	return nil
 }
 
-func (x *RegisterWordPairRequest) GetWord_2Id() string {
-	if x != nil {
-		return x.Word_2Id
-	}
-	return ""
-}
-
-type FindWordRequest struct {
+type CloneWordPairRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Session *common.Session `protobuf:"bytes,1,opt,name=session,proto3" json:"session,omitempty"`
-	WordId  string          `protobuf:"bytes,2,opt,name=word_id,json=wordId,proto3" json:"word_id,omitempty"`
+	Sesion   *common.Session `protobuf:"bytes,1,opt,name=sesion,proto3" json:"sesion,omitempty"`
+	WordPair *WordPair       `protobuf:"bytes,2,opt,name=word_pair,json=wordPair,proto3" json:"word_pair,omitempty"`
 }
 
-func (x *FindWordRequest) Reset() {
-	*x = FindWordRequest{}
+func (x *CloneWordPairRequest) Reset() {
+	*x = CloneWordPairRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -169,13 +177,13 @@ func (x *FindWordRequest) Reset() {
 	}
 }
 
-func (x *FindWordRequest) String() string {
+func (x *CloneWordPairRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindWordRequest) ProtoMessage() {}
+func (*CloneWordPairRequest) ProtoMessage() {}
 
-func (x *FindWordRequest) ProtoReflect() protoreflect.Message {
+func (x *CloneWordPairRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -187,298 +195,23 @@ func (x *FindWordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindWordRequest.ProtoReflect.Descriptor instead.
-func (*FindWordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CloneWordPairRequest.ProtoReflect.Descriptor instead.
+func (*CloneWordPairRequest) Descriptor() ([]byte, []int) {
 	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *FindWordRequest) GetSession() *common.Session {
+func (x *CloneWordPairRequest) GetSesion() *common.Session {
 	if x != nil {
-		return x.Session
+		return x.Sesion
 	}
 	return nil
 }
 
-func (x *FindWordRequest) GetWordId() string {
+func (x *CloneWordPairRequest) GetWordPair() *WordPair {
 	if x != nil {
-		return x.WordId
-	}
-	return ""
-}
-
-type FindWordPairRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Session    *common.Session `protobuf:"bytes,1,opt,name=session,proto3" json:"session,omitempty"`
-	WordPairId string          `protobuf:"bytes,2,opt,name=word_pair_id,json=wordPairId,proto3" json:"word_pair_id,omitempty"`
-}
-
-func (x *FindWordPairRequest) Reset() {
-	*x = FindWordPairRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindWordPairRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindWordPairRequest) ProtoMessage() {}
-
-func (x *FindWordPairRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindWordPairRequest.ProtoReflect.Descriptor instead.
-func (*FindWordPairRequest) Descriptor() ([]byte, []int) {
-	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *FindWordPairRequest) GetSession() *common.Session {
-	if x != nil {
-		return x.Session
+		return x.WordPair
 	}
 	return nil
-}
-
-func (x *FindWordPairRequest) GetWordPairId() string {
-	if x != nil {
-		return x.WordPairId
-	}
-	return ""
-}
-
-type RegisterWordResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *RegisterWordResponse) Reset() {
-	*x = RegisterWordResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RegisterWordResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterWordResponse) ProtoMessage() {}
-
-func (x *RegisterWordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterWordResponse.ProtoReflect.Descriptor instead.
-func (*RegisterWordResponse) Descriptor() ([]byte, []int) {
-	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *RegisterWordResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type RegisterWordPairResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *RegisterWordPairResponse) Reset() {
-	*x = RegisterWordPairResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RegisterWordPairResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterWordPairResponse) ProtoMessage() {}
-
-func (x *RegisterWordPairResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterWordPairResponse.ProtoReflect.Descriptor instead.
-func (*RegisterWordPairResponse) Descriptor() ([]byte, []int) {
-	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *RegisterWordPairResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type FindWordResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id          string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Value       string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
-	CountryCode string `protobuf:"bytes,3,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
-}
-
-func (x *FindWordResponse) Reset() {
-	*x = FindWordResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindWordResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindWordResponse) ProtoMessage() {}
-
-func (x *FindWordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindWordResponse.ProtoReflect.Descriptor instead.
-func (*FindWordResponse) Descriptor() ([]byte, []int) {
-	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *FindWordResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *FindWordResponse) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-func (x *FindWordResponse) GetCountryCode() string {
-	if x != nil {
-		return x.CountryCode
-	}
-	return ""
-}
-
-type FindWordPairResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id       string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Word_1Id string `protobuf:"bytes,2,opt,name=word_1_id,json=word1Id,proto3" json:"word_1_id,omitempty"` //????
-	Word_2Id string `protobuf:"bytes,3,opt,name=word_2_id,json=word2Id,proto3" json:"word_2_id,omitempty"` //????
-}
-
-func (x *FindWordPairResponse) Reset() {
-	*x = FindWordPairResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindWordPairResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindWordPairResponse) ProtoMessage() {}
-
-func (x *FindWordPairResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindWordPairResponse.ProtoReflect.Descriptor instead.
-func (*FindWordPairResponse) Descriptor() ([]byte, []int) {
-	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *FindWordPairResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *FindWordPairResponse) GetWord_1Id() string {
-	if x != nil {
-		return x.Word_1Id
-	}
-	return ""
-}
-
-func (x *FindWordPairResponse) GetWord_2Id() string {
-	if x != nil {
-		return x.Word_2Id
-	}
-	return ""
 }
 
 var File_proto_conabit_englearn_exercise_word_service_proto protoreflect.FileDescriptor
@@ -491,90 +224,61 @@ var file_proto_conabit_englearn_exercise_word_service_proto_rawDesc = []byte{
 	0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x1a,
 	0x2b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2f, 0x65,
 	0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x73,
-	0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8a, 0x01, 0x0a,
-	0x13, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x07, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e,
-	0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
-	0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72,
-	0x79, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x72, 0x79, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x8d, 0x01, 0x0a, 0x17, 0x52, 0x65,
-	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x07, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74,
-	0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
-	0x2e, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f,
-	0x6e, 0x12, 0x1a, 0x0a, 0x09, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x31, 0x5f, 0x69, 0x64, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x77, 0x6f, 0x72, 0x64, 0x31, 0x49, 0x64, 0x12, 0x1a, 0x0a,
-	0x09, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x32, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x77, 0x6f, 0x72, 0x64, 0x32, 0x49, 0x64, 0x22, 0x66, 0x0a, 0x0f, 0x46, 0x69, 0x6e,
-	0x64, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x07,
-	0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e,
+	0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x9e, 0x01, 0x0a,
+	0x08, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x20, 0x0a, 0x0c, 0x77, 0x6f, 0x72,
+	0x64, 0x5f, 0x31, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x77, 0x6f, 0x72, 0x64, 0x31, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x1e, 0x0a, 0x0b, 0x77,
+	0x6f, 0x72, 0x64, 0x5f, 0x31, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x77, 0x6f, 0x72, 0x64, 0x31, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x20, 0x0a, 0x0c, 0x77,
+	0x6f, 0x72, 0x64, 0x5f, 0x32, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x77, 0x6f, 0x72, 0x64, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x1e, 0x0a,
+	0x0b, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x32, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x77, 0x6f, 0x72, 0x64, 0x32, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x97, 0x01,
+	0x0a, 0x17, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61,
+	0x69, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x07, 0x73, 0x65, 0x73,
+	0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x63, 0x6f, 0x6e,
+	0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x73, 0x65,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x40, 0x0a, 0x09, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x70, 0x61,
+	0x69, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62,
+	0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72,
+	0x63, 0x69, 0x73, 0x65, 0x2e, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x08, 0x77,
+	0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x22, 0x92, 0x01, 0x0a, 0x14, 0x43, 0x6c, 0x6f, 0x6e,
+	0x65, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x38, 0x0a, 0x06, 0x73, 0x65, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x20, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65,
+	0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x53, 0x65, 0x73, 0x73, 0x69,
+	0x6f, 0x6e, 0x52, 0x06, 0x73, 0x65, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x40, 0x0a, 0x09, 0x77, 0x6f,
+	0x72, 0x64, 0x5f, 0x70, 0x61, 0x69, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e,
 	0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e,
-	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52,
-	0x07, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x07, 0x77, 0x6f, 0x72, 0x64,
-	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x77, 0x6f, 0x72, 0x64, 0x49,
-	0x64, 0x22, 0x73, 0x0a, 0x13, 0x46, 0x69, 0x6e, 0x64, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x07, 0x73, 0x65, 0x73, 0x73,
-	0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x63, 0x6f, 0x6e, 0x61,
-	0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f, 0x6d,
-	0x6d, 0x6f, 0x6e, 0x2e, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x73, 0x65, 0x73,
-	0x73, 0x69, 0x6f, 0x6e, 0x12, 0x20, 0x0a, 0x0c, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x70, 0x61, 0x69,
-	0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x77, 0x6f, 0x72, 0x64,
-	0x50, 0x61, 0x69, 0x72, 0x49, 0x64, 0x22, 0x26, 0x0a, 0x14, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
-	0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2a,
-	0x0a, 0x18, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61,
-	0x69, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x5b, 0x0a, 0x10, 0x46, 0x69,
-	0x6e, 0x64, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x5f,
-	0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x72, 0x79, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x5e, 0x0a, 0x14, 0x46, 0x69, 0x6e, 0x64, 0x57,
-	0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
-	0x1a, 0x0a, 0x09, 0x77, 0x6f, 0x72, 0x64, 0x5f, 0x31, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x77, 0x6f, 0x72, 0x64, 0x31, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x09, 0x77,
-	0x6f, 0x72, 0x64, 0x5f, 0x32, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
-	0x77, 0x6f, 0x72, 0x64, 0x32, 0x49, 0x64, 0x32, 0xd9, 0x03, 0x0a, 0x0b, 0x57, 0x6f, 0x72, 0x64,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x71, 0x0a, 0x0c, 0x52, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x12, 0x2e, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69,
+	0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61,
+	0x69, 0x72, 0x52, 0x08, 0x77, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x32, 0xc1, 0x02, 0x0a,
+	0x0b, 0x57, 0x6f, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x6d, 0x0a, 0x10,
+	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72,
+	0x12, 0x32, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65,
+	0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65,
+	0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65,
+	0x2e, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x22, 0x00, 0x12, 0x67, 0x0a, 0x0d, 0x43,
+	0x6c, 0x6f, 0x6e, 0x65, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x12, 0x2f, 0x2e, 0x63,
+	0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e,
+	0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x43, 0x6c, 0x6f, 0x6e, 0x65, 0x57, 0x6f,
+	0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e,
+	0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e,
+	0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61,
+	0x69, 0x72, 0x22, 0x00, 0x12, 0x5a, 0x0a, 0x0d, 0x46, 0x69, 0x6e, 0x64, 0x55, 0x73, 0x65, 0x72,
+	0x57, 0x6f, 0x72, 0x64, 0x73, 0x12, 0x20, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e,
+	0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
+	0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x23, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69,
 	0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63,
-	0x69, 0x73, 0x65, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69,
-	0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63,
-	0x69, 0x73, 0x65, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x7d, 0x0a, 0x10, 0x52, 0x65,
-	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x12, 0x32,
-	0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72,
-	0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x33, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67,
-	0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x52,
-	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x65, 0x0a, 0x08, 0x46, 0x69, 0x6e,
-	0x64, 0x57, 0x6f, 0x72, 0x64, 0x12, 0x2a, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e,
-	0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
-	0x65, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x2b, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c,
-	0x65, 0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x46, 0x69,
-	0x6e, 0x64, 0x57, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x12, 0x71, 0x0a, 0x0c, 0x46, 0x69, 0x6e, 0x64, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72,
-	0x12, 0x2e, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65,
-	0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x46, 0x69, 0x6e,
-	0x64, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2f, 0x2e, 0x63, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2e, 0x65, 0x6e, 0x67, 0x6c, 0x65,
-	0x61, 0x72, 0x6e, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x46, 0x69, 0x6e,
-	0x64, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x42, 0x42, 0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x43, 0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2d, 0x43, 0x6f, 0x72, 0x70, 0x2f, 0x45,
-	0x6e, 0x67, 0x4c, 0x65, 0x61, 0x72, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f,
-	0x6e, 0x61, 0x62, 0x69, 0x74, 0x2f, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2f, 0x65,
-	0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x73, 0x65, 0x2e, 0x57, 0x6f, 0x72, 0x64, 0x50, 0x61, 0x69, 0x72, 0x22, 0x00, 0x30, 0x01,
+	0x42, 0x42, 0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x43,
+	0x6f, 0x6e, 0x61, 0x62, 0x69, 0x74, 0x2d, 0x43, 0x6f, 0x72, 0x70, 0x2f, 0x45, 0x6e, 0x67, 0x4c,
+	0x65, 0x61, 0x72, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x61, 0x62,
+	0x69, 0x74, 0x2f, 0x65, 0x6e, 0x67, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x2f, 0x65, 0x78, 0x65, 0x72,
+	0x63, 0x69, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -589,33 +293,26 @@ func file_proto_conabit_englearn_exercise_word_service_proto_rawDescGZIP() []byt
 	return file_proto_conabit_englearn_exercise_word_service_proto_rawDescData
 }
 
-var file_proto_conabit_englearn_exercise_word_service_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_conabit_englearn_exercise_word_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_conabit_englearn_exercise_word_service_proto_goTypes = []interface{}{
-	(*RegisterWordRequest)(nil),      // 0: conabit.englearn.exercise.RegisterWordRequest
-	(*RegisterWordPairRequest)(nil),  // 1: conabit.englearn.exercise.RegisterWordPairRequest
-	(*FindWordRequest)(nil),          // 2: conabit.englearn.exercise.FindWordRequest
-	(*FindWordPairRequest)(nil),      // 3: conabit.englearn.exercise.FindWordPairRequest
-	(*RegisterWordResponse)(nil),     // 4: conabit.englearn.exercise.RegisterWordResponse
-	(*RegisterWordPairResponse)(nil), // 5: conabit.englearn.exercise.RegisterWordPairResponse
-	(*FindWordResponse)(nil),         // 6: conabit.englearn.exercise.FindWordResponse
-	(*FindWordPairResponse)(nil),     // 7: conabit.englearn.exercise.FindWordPairResponse
-	(*common.Session)(nil),           // 8: conabit.englearn.common.Session
+	(*WordPair)(nil),                // 0: conabit.englearn.exercise.WordPair
+	(*RegisterWordPairRequest)(nil), // 1: conabit.englearn.exercise.RegisterWordPairRequest
+	(*CloneWordPairRequest)(nil),    // 2: conabit.englearn.exercise.CloneWordPairRequest
+	(*common.Session)(nil),          // 3: conabit.englearn.common.Session
 }
 var file_proto_conabit_englearn_exercise_word_service_proto_depIdxs = []int32{
-	8, // 0: conabit.englearn.exercise.RegisterWordRequest.session:type_name -> conabit.englearn.common.Session
-	8, // 1: conabit.englearn.exercise.RegisterWordPairRequest.session:type_name -> conabit.englearn.common.Session
-	8, // 2: conabit.englearn.exercise.FindWordRequest.session:type_name -> conabit.englearn.common.Session
-	8, // 3: conabit.englearn.exercise.FindWordPairRequest.session:type_name -> conabit.englearn.common.Session
-	0, // 4: conabit.englearn.exercise.WordService.RegisterWord:input_type -> conabit.englearn.exercise.RegisterWordRequest
-	1, // 5: conabit.englearn.exercise.WordService.RegisterWordPair:input_type -> conabit.englearn.exercise.RegisterWordPairRequest
-	2, // 6: conabit.englearn.exercise.WordService.FindWord:input_type -> conabit.englearn.exercise.FindWordRequest
-	3, // 7: conabit.englearn.exercise.WordService.FindWordPair:input_type -> conabit.englearn.exercise.FindWordPairRequest
-	4, // 8: conabit.englearn.exercise.WordService.RegisterWord:output_type -> conabit.englearn.exercise.RegisterWordResponse
-	5, // 9: conabit.englearn.exercise.WordService.RegisterWordPair:output_type -> conabit.englearn.exercise.RegisterWordPairResponse
-	6, // 10: conabit.englearn.exercise.WordService.FindWord:output_type -> conabit.englearn.exercise.FindWordResponse
-	7, // 11: conabit.englearn.exercise.WordService.FindWordPair:output_type -> conabit.englearn.exercise.FindWordPairResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
+	3, // 0: conabit.englearn.exercise.RegisterWordPairRequest.session:type_name -> conabit.englearn.common.Session
+	0, // 1: conabit.englearn.exercise.RegisterWordPairRequest.word_pair:type_name -> conabit.englearn.exercise.WordPair
+	3, // 2: conabit.englearn.exercise.CloneWordPairRequest.sesion:type_name -> conabit.englearn.common.Session
+	0, // 3: conabit.englearn.exercise.CloneWordPairRequest.word_pair:type_name -> conabit.englearn.exercise.WordPair
+	1, // 4: conabit.englearn.exercise.WordService.RegisterWordPair:input_type -> conabit.englearn.exercise.RegisterWordPairRequest
+	2, // 5: conabit.englearn.exercise.WordService.CloneWordPair:input_type -> conabit.englearn.exercise.CloneWordPairRequest
+	3, // 6: conabit.englearn.exercise.WordService.FindUserWords:input_type -> conabit.englearn.common.Session
+	0, // 7: conabit.englearn.exercise.WordService.RegisterWordPair:output_type -> conabit.englearn.exercise.WordPair
+	0, // 8: conabit.englearn.exercise.WordService.CloneWordPair:output_type -> conabit.englearn.exercise.WordPair
+	0, // 9: conabit.englearn.exercise.WordService.FindUserWords:output_type -> conabit.englearn.exercise.WordPair
+	7, // [7:10] is the sub-list for method output_type
+	4, // [4:7] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
 	4, // [4:4] is the sub-list for extension extendee
 	0, // [0:4] is the sub-list for field type_name
@@ -628,7 +325,7 @@ func file_proto_conabit_englearn_exercise_word_service_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterWordRequest); i {
+			switch v := v.(*WordPair); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -652,67 +349,7 @@ func file_proto_conabit_englearn_exercise_word_service_proto_init() {
 			}
 		}
 		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindWordRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindWordPairRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterWordResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterWordPairResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindWordResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_conabit_englearn_exercise_word_service_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindWordPairResponse); i {
+			switch v := v.(*CloneWordPairRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -730,7 +367,7 @@ func file_proto_conabit_englearn_exercise_word_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_conabit_englearn_exercise_word_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -756,10 +393,9 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type WordServiceClient interface {
-	RegisterWord(ctx context.Context, in *RegisterWordRequest, opts ...grpc.CallOption) (*RegisterWordResponse, error)
-	RegisterWordPair(ctx context.Context, in *RegisterWordPairRequest, opts ...grpc.CallOption) (*RegisterWordPairResponse, error)
-	FindWord(ctx context.Context, in *FindWordRequest, opts ...grpc.CallOption) (*FindWordResponse, error)
-	FindWordPair(ctx context.Context, in *FindWordPairRequest, opts ...grpc.CallOption) (*FindWordPairResponse, error)
+	RegisterWordPair(ctx context.Context, in *RegisterWordPairRequest, opts ...grpc.CallOption) (*WordPair, error)
+	CloneWordPair(ctx context.Context, in *CloneWordPairRequest, opts ...grpc.CallOption) (*WordPair, error)
+	FindUserWords(ctx context.Context, in *common.Session, opts ...grpc.CallOption) (WordService_FindUserWordsClient, error)
 }
 
 type wordServiceClient struct {
@@ -770,17 +406,8 @@ func NewWordServiceClient(cc grpc.ClientConnInterface) WordServiceClient {
 	return &wordServiceClient{cc}
 }
 
-func (c *wordServiceClient) RegisterWord(ctx context.Context, in *RegisterWordRequest, opts ...grpc.CallOption) (*RegisterWordResponse, error) {
-	out := new(RegisterWordResponse)
-	err := c.cc.Invoke(ctx, "/conabit.englearn.exercise.WordService/RegisterWord", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *wordServiceClient) RegisterWordPair(ctx context.Context, in *RegisterWordPairRequest, opts ...grpc.CallOption) (*RegisterWordPairResponse, error) {
-	out := new(RegisterWordPairResponse)
+func (c *wordServiceClient) RegisterWordPair(ctx context.Context, in *RegisterWordPairRequest, opts ...grpc.CallOption) (*WordPair, error) {
+	out := new(WordPair)
 	err := c.cc.Invoke(ctx, "/conabit.englearn.exercise.WordService/RegisterWordPair", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -788,69 +415,70 @@ func (c *wordServiceClient) RegisterWordPair(ctx context.Context, in *RegisterWo
 	return out, nil
 }
 
-func (c *wordServiceClient) FindWord(ctx context.Context, in *FindWordRequest, opts ...grpc.CallOption) (*FindWordResponse, error) {
-	out := new(FindWordResponse)
-	err := c.cc.Invoke(ctx, "/conabit.englearn.exercise.WordService/FindWord", in, out, opts...)
+func (c *wordServiceClient) CloneWordPair(ctx context.Context, in *CloneWordPairRequest, opts ...grpc.CallOption) (*WordPair, error) {
+	out := new(WordPair)
+	err := c.cc.Invoke(ctx, "/conabit.englearn.exercise.WordService/CloneWordPair", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *wordServiceClient) FindWordPair(ctx context.Context, in *FindWordPairRequest, opts ...grpc.CallOption) (*FindWordPairResponse, error) {
-	out := new(FindWordPairResponse)
-	err := c.cc.Invoke(ctx, "/conabit.englearn.exercise.WordService/FindWordPair", in, out, opts...)
+func (c *wordServiceClient) FindUserWords(ctx context.Context, in *common.Session, opts ...grpc.CallOption) (WordService_FindUserWordsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_WordService_serviceDesc.Streams[0], "/conabit.englearn.exercise.WordService/FindUserWords", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &wordServiceFindUserWordsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type WordService_FindUserWordsClient interface {
+	Recv() (*WordPair, error)
+	grpc.ClientStream
+}
+
+type wordServiceFindUserWordsClient struct {
+	grpc.ClientStream
+}
+
+func (x *wordServiceFindUserWordsClient) Recv() (*WordPair, error) {
+	m := new(WordPair)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // WordServiceServer is the server API for WordService service.
 type WordServiceServer interface {
-	RegisterWord(context.Context, *RegisterWordRequest) (*RegisterWordResponse, error)
-	RegisterWordPair(context.Context, *RegisterWordPairRequest) (*RegisterWordPairResponse, error)
-	FindWord(context.Context, *FindWordRequest) (*FindWordResponse, error)
-	FindWordPair(context.Context, *FindWordPairRequest) (*FindWordPairResponse, error)
+	RegisterWordPair(context.Context, *RegisterWordPairRequest) (*WordPair, error)
+	CloneWordPair(context.Context, *CloneWordPairRequest) (*WordPair, error)
+	FindUserWords(*common.Session, WordService_FindUserWordsServer) error
 }
 
 // UnimplementedWordServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedWordServiceServer struct {
 }
 
-func (*UnimplementedWordServiceServer) RegisterWord(context.Context, *RegisterWordRequest) (*RegisterWordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterWord not implemented")
-}
-func (*UnimplementedWordServiceServer) RegisterWordPair(context.Context, *RegisterWordPairRequest) (*RegisterWordPairResponse, error) {
+func (*UnimplementedWordServiceServer) RegisterWordPair(context.Context, *RegisterWordPairRequest) (*WordPair, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterWordPair not implemented")
 }
-func (*UnimplementedWordServiceServer) FindWord(context.Context, *FindWordRequest) (*FindWordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindWord not implemented")
+func (*UnimplementedWordServiceServer) CloneWordPair(context.Context, *CloneWordPairRequest) (*WordPair, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloneWordPair not implemented")
 }
-func (*UnimplementedWordServiceServer) FindWordPair(context.Context, *FindWordPairRequest) (*FindWordPairResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindWordPair not implemented")
+func (*UnimplementedWordServiceServer) FindUserWords(*common.Session, WordService_FindUserWordsServer) error {
+	return status.Errorf(codes.Unimplemented, "method FindUserWords not implemented")
 }
 
 func RegisterWordServiceServer(s *grpc.Server, srv WordServiceServer) {
 	s.RegisterService(&_WordService_serviceDesc, srv)
-}
-
-func _WordService_RegisterWord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterWordRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WordServiceServer).RegisterWord(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/conabit.englearn.exercise.WordService/RegisterWord",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WordServiceServer).RegisterWord(ctx, req.(*RegisterWordRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _WordService_RegisterWordPair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -871,40 +499,43 @@ func _WordService_RegisterWordPair_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WordService_FindWord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindWordRequest)
+func _WordService_CloneWordPair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloneWordPairRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WordServiceServer).FindWord(ctx, in)
+		return srv.(WordServiceServer).CloneWordPair(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/conabit.englearn.exercise.WordService/FindWord",
+		FullMethod: "/conabit.englearn.exercise.WordService/CloneWordPair",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WordServiceServer).FindWord(ctx, req.(*FindWordRequest))
+		return srv.(WordServiceServer).CloneWordPair(ctx, req.(*CloneWordPairRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WordService_FindWordPair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindWordPairRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _WordService_FindUserWords_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(common.Session)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(WordServiceServer).FindWordPair(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/conabit.englearn.exercise.WordService/FindWordPair",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WordServiceServer).FindWordPair(ctx, req.(*FindWordPairRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(WordServiceServer).FindUserWords(m, &wordServiceFindUserWordsServer{stream})
+}
+
+type WordService_FindUserWordsServer interface {
+	Send(*WordPair) error
+	grpc.ServerStream
+}
+
+type wordServiceFindUserWordsServer struct {
+	grpc.ServerStream
+}
+
+func (x *wordServiceFindUserWordsServer) Send(m *WordPair) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 var _WordService_serviceDesc = grpc.ServiceDesc{
@@ -912,22 +543,20 @@ var _WordService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*WordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "RegisterWord",
-			Handler:    _WordService_RegisterWord_Handler,
-		},
-		{
 			MethodName: "RegisterWordPair",
 			Handler:    _WordService_RegisterWordPair_Handler,
 		},
 		{
-			MethodName: "FindWord",
-			Handler:    _WordService_FindWord_Handler,
-		},
-		{
-			MethodName: "FindWordPair",
-			Handler:    _WordService_FindWordPair_Handler,
+			MethodName: "CloneWordPair",
+			Handler:    _WordService_CloneWordPair_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "FindUserWords",
+			Handler:       _WordService_FindUserWords_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "proto/conabit/englearn/exercise/word_service.proto",
 }

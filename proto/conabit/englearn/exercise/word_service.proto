@@ -6,54 +6,29 @@ package conabit.englearn.exercise;
 
 option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
 
-service WordService{
-    rpc RegisterWord(RegisterWordRequest) returns (RegisterWordResponse) {}
+service WordService {
+  rpc RegisterWordPair(RegisterWordPairRequest) returns (WordPair) {}
 
-    rpc RegisterWordPair(RegisterWordPairRequest) returns (RegisterWordPairResponse) {}
+  rpc CloneWordPair(CloneWordPairRequest) returns (WordPair) {}
 
-    rpc FindWord(FindWordRequest) returns (FindWordResponse) {}
-
-    rpc FindWordPair(FindWordPairRequest) returns (FindWordPairResponse) {}
+  rpc FindUserWords(conabit.englearn.common.Session) returns (stream WordPair) {
+  }
 }
 
-message RegisterWordRequest{
-    conabit.englearn.common.Session session = 1;
-    string value = 2;
-    string country_code = 3;
+message WordPair {
+  string id = 1;
+  string word_1_value = 2;
+  string word_1_code = 3;
+  string word_2_value = 4;
+  string word_2_code = 5;
 }
 
-message RegisterWordPairRequest{
-    conabit.englearn.common.Session session = 1;
-    string word_1_id = 2;
-    string word_2_id = 3;
+message RegisterWordPairRequest {
+  conabit.englearn.common.Session session = 1;
+  WordPair word_pair = 2;
 }
 
-message FindWordRequest{
-    conabit.englearn.common.Session session = 1;
-    string word_id = 2;
-}
-
-message FindWordPairRequest{
-    conabit.englearn.common.Session session = 1;
-    string word_pair_id = 2;
-}
-
-message RegisterWordResponse{
-    string id = 1;
-}
-
-message RegisterWordPairResponse{
-    string id = 1;
-}
-
-message FindWordResponse{
-    string id = 1;
-    string value = 2;
-    string country_code = 3;
-}
-
-message FindWordPairResponse{
-    string id = 1;
-    string word_1_id = 2;//????
-    string word_2_id = 3;//????
+message CloneWordPairRequest {
+  conabit.englearn.common.Session sesion = 1;
+  WordPair word_pair = 2;
 }
