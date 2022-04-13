@@ -35,11 +35,13 @@ echo "Generate dashboard services"
 #     --go_out=plugins=grpc:. \
 #     ./proto/conabit/englearn/dashboard/*.proto
 
+echo "Generate frontend clients"
+echo "EGOR MAKE THIS"
 # protoc \
 #     --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
-#     --plugin=protoc-gen-go=${HOME}/go/bin/protoc-gen-go \
 #     -I ./proto \
-#     --go_out=plugins=grpc:./backend/_proto \
 #     --js_out=import_style=commonjs,binary:./frontend/_proto \
 #     --ts_out=service=grpc-web:./frontend/_proto \
-#     ./proto/conabit/hello_world.proto
+#     ./proto/conabit/englearn/common/*.proto \
+#     ./proto/conabit/englearn/exercise/*.proto \
+#     ./proto/conabit/englearn/auth/*.proto \

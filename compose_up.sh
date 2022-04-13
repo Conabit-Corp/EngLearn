@@ -10,4 +10,4 @@ go build -o dashboard-service ./backend/dashboard/cmd/main.go
 
 echo "run services detached"
 
-docker-compose up
+docker-compose up -d
