@@ -1,20 +1,35 @@
-
 syntax = "proto3";
 
 import "proto/conabit/englearn/exercise/word_service.proto";
+import "proto/conabit/englearn/common/session.proto";
 
 package conabit.englearn.exercise;
 
 option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
 
+service TaskService {
+    rpc SolveTask(SolveTaskRequest) returns (SolveTaskResponse) {}
+}
+
+message SolveTaskRequest{
+    conabit.englearn.common.Session session = 1;
+    Task task = 2;
+}
+
+message SolveTaskResponse{
+    bool solved = 1;
+}
+
 message Task{
     string id = 1;
-    string incorrect_answer = 2;//optional
-    conabit.englearn.exercise.WordPair word_pair = 3;
+    string answer = 2;
+    conabit.englearn.exercise.Word word = 3;
+    string pair_id = 4;
     enum TaskType{
         JUST_INPUT = 0;
         ONE_OF_N = 1;
+        N_OF_N = 2;
     }
-    TaskType task_type = 4;
+    TaskType task_type = 5;
 }
 

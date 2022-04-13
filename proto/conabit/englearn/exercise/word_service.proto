@@ -17,10 +17,14 @@ service WordService {
 
 message WordPair {
   string id = 1;
-  string word_1_value = 2;
-  string word_1_code = 3;
-  string word_2_value = 4;
-  string word_2_code = 5;
+  Word word1 = 2;
+  Word word2 = 3;
+}
+
+message Word {
+  string id = 1;
+  string word_value = 2;
+  string country_code = 3;
 }
 
 message RegisterWordPairRequest {
