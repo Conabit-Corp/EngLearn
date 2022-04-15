@@ -27,6 +27,4 @@ service AuthService {
   rpc SignUp(SignUpRequest) returns (AuthResponse) {}
 
   rpc Logout(conabit.englearn.common.Session) returns (google.protobuf.Empty) {}
-
-  rpc Refrersh(conabit.englearn.common.Session) returns (AuthResponse) {}
 }

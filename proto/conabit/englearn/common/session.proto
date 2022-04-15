@@ -6,5 +6,4 @@ option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/com
 
 message Session {
   string jwt = 1;
-  string refresh = 2;
 }
