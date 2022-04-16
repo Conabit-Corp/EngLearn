@@ -69,8 +69,7 @@ proto.conabit.englearn.common.Session.prototype.toObject = function(opt_includeI
  */
 proto.conabit.englearn.common.Session.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jwt: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    refresh: jspb.Message.getFieldWithDefault(msg, 2, "")
+    jwt: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -111,10 +110,6 @@ proto.conabit.englearn.common.Session.deserializeBinaryFromReader = function(msg
       var value = /** @type {string} */ (reader.readString());
       msg.setJwt(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setRefresh(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -151,13 +146,6 @@ proto.conabit.englearn.common.Session.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getRefresh();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -176,24 +164,6 @@ proto.conabit.englearn.common.Session.prototype.getJwt = function() {
  */
 proto.conabit.englearn.common.Session.prototype.setJwt = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string refresh = 2;
- * @return {string}
- */
-proto.conabit.englearn.common.Session.prototype.getRefresh = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.conabit.englearn.common.Session} returns this
- */
-proto.conabit.englearn.common.Session.prototype.setRefresh = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

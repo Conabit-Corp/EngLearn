@@ -2,7 +2,6 @@
 // file: proto/conabit/englearn/auth/auth_service.proto
 
 import * as proto_conabit_englearn_auth_auth_service_pb from "../../../../proto/conabit/englearn/auth/auth_service_pb";
-import * as proto_conabit_englearn_common_session_pb from "../../../../proto/conabit/englearn/common/session_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
@@ -29,17 +28,8 @@ type AuthServiceLogout = {
   readonly service: typeof AuthService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof proto_conabit_englearn_common_session_pb.Session;
+  readonly requestType: typeof proto_conabit_englearn_auth_auth_service_pb.LogoutRequest;
   readonly responseType: typeof google_protobuf_empty_pb.Empty;
-};
-
-type AuthServiceRefrersh = {
-  readonly methodName: string;
-  readonly service: typeof AuthService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof proto_conabit_englearn_common_session_pb.Session;
-  readonly responseType: typeof proto_conabit_englearn_auth_auth_service_pb.AuthResponse;
 };
 
 export class AuthService {
@@ -47,7 +37,6 @@ export class AuthService {
   static readonly SignIn: AuthServiceSignIn;
   static readonly SignUp: AuthServiceSignUp;
   static readonly Logout: AuthServiceLogout;
-  static readonly Refrersh: AuthServiceRefrersh;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -101,22 +90,13 @@ export class AuthServiceClient {
     callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_auth_auth_service_pb.AuthResponse|null) => void
   ): UnaryResponse;
   logout(
-    requestMessage: proto_conabit_englearn_common_session_pb.Session,
+    requestMessage: proto_conabit_englearn_auth_auth_service_pb.LogoutRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   logout(
-    requestMessage: proto_conabit_englearn_common_session_pb.Session,
+    requestMessage: proto_conabit_englearn_auth_auth_service_pb.LogoutRequest,
     callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
-  ): UnaryResponse;
-  refrersh(
-    requestMessage: proto_conabit_englearn_common_session_pb.Session,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_auth_auth_service_pb.AuthResponse|null) => void
-  ): UnaryResponse;
-  refrersh(
-    requestMessage: proto_conabit_englearn_common_session_pb.Session,
-    callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_auth_auth_service_pb.AuthResponse|null) => void
   ): UnaryResponse;
 }
 

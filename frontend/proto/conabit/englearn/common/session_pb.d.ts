@@ -7,9 +7,6 @@ export class Session extends jspb.Message {
   getJwt(): string;
   setJwt(value: string): void;
 
-  getRefresh(): string;
-  setRefresh(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Session.AsObject;
   static toObject(includeInstance: boolean, msg: Session): Session.AsObject;
@@ -23,7 +20,6 @@ export class Session extends jspb.Message {
 export namespace Session {
   export type AsObject = {
     jwt: string,
-    refresh: string,
   }
 }
 

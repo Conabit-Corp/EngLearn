@@ -19,6 +19,10 @@ message SignUpRequest {
   string re_password = 3;
 }
 
+message LogoutRequest{
+  conabit.englearn.common.Session session = 1;
+}
+
 message AuthResponse { conabit.englearn.common.Session session = 1; }
 
 service AuthService {
@@ -26,5 +30,5 @@ service AuthService {
 
   rpc SignUp(SignUpRequest) returns (AuthResponse) {}
 
-  rpc Logout(conabit.englearn.common.Session) returns (google.protobuf.Empty) {}
+  rpc Logout(LogoutRequest) returns (google.protobuf.Empty) {}
 }

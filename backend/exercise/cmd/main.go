@@ -6,8 +6,7 @@ import (
 	"net/http"
 
 	cnf "github.com/Conabit-Corp/EngLearn/backend/common/pkg/config"
-	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/mongo"
-	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/redis"
+	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/inits"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
@@ -19,10 +18,10 @@ func main() {
 	envCnf := cnf.LoadConfigFromEnv()
 	log.Println(envCnf)
 	
-	mongo := mongo.NewMongoConnection(envCnf)
+	mongo := inits.NewMongoConnection(envCnf)
 	mpErr := mongo.Ping(ctx, readpref.Primary())
 
-	redis := redis.NewRedisConnection(envCnf)
+	redis := inits.NewRedisConnection(envCnf)
 	_, rpErr := redis.Ping(ctx).Result()
 
 	if mpErr != nil {

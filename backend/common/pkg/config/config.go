@@ -12,6 +12,8 @@ type AppConfig struct {
 
 	RedisUrl      string
 	RedisPassword string
+
+	SecretKey string
 }
 
 func (cnf *AppConfig) ToString() string {
@@ -21,8 +23,9 @@ func (cnf *AppConfig) ToString() string {
 		MongoPassword:%s,
 		RedisUrl:%s,
 		RedisPasword:%s
+		SecretKey:%s
 	`, cnf.MongoUrl, cnf.MongoUser, cnf.MongoPassword,
-		cnf.RedisUrl, cnf.MongoPassword)
+		cnf.RedisUrl, cnf.MongoPassword, cnf.SecretKey)
 }
 
 func LoadConfigFromEnv() *AppConfig {
@@ -32,6 +35,7 @@ func LoadConfigFromEnv() *AppConfig {
 		MongoPassword: loadEnvByKey("MONGO_PASS"),
 		RedisUrl:      loadEnvByKey("REDIS_URL"),
 		RedisPassword: loadEnvByKey("REDIS_PASS"),
+		SecretKey:     loadEnvByKey("SECRET_KEY"),
 	}
 }
 

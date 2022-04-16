@@ -28,6 +28,7 @@ services:
       - MONGO_URL=mongo:${MONGO_PORT}
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASS=${MONGO_PASS}
+      - SECRET_KEY=${SECRET_KEY}
     ports:
       - '${AUTH_PORT}:4000'
     depends_on:
@@ -45,6 +46,7 @@ services:
       - MONGO_URL=mongo:${MONGO_PORT}
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASS=${MONGO_PASS}
+      - SECRET_KEY=${SECRET_KEY}
     ports:
       - '${DASHBOARD_PORT}:4001'
     depends_on:
@@ -62,6 +64,7 @@ services:
       - MONGO_URL=mongo:${MONGO_PORT}
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASS=${MONGO_PASS}
+      - SECRET_KEY=${SECRET_KEY}
     ports:
       - '${EXCERCISE_PORT}:4002'
     depends_on:

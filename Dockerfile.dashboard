@@ -6,8 +6,8 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
-COPY dashboard-service .
+COPY dashboard-service.bin .
 
 EXPOSE 4001
 
-CMD [ "/app/dashboard-service" ]
+CMD [ "/app/dashboard-service.bin" ]

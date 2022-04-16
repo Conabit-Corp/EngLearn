@@ -6,8 +6,8 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
-COPY exercise-service .
+COPY exercise-service.bin .
 
 EXPOSE 4002
 
-CMD [ "/app/exercise-service" ]
+CMD [ "/app/exercise-service.bin" ]
