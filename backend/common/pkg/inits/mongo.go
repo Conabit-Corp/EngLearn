@@ -3,6 +3,7 @@ package inits
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/config"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,8 +17,9 @@ func NewMongoConnection(cnf *config.AppConfig) *mongo.Client {
 			Username: cnf.MongoUser,
 			Password: cnf.MongoPassword,
 		})
-	client, err := mongo.Connect(context.TODO(),options)
-	if err!=nil {
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	client, err := mongo.Connect(ctx, options)
+	if err != nil {
 		panic("cannot open mongo connection")
 	}
 	return client

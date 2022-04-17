@@ -5,16 +5,15 @@ import (
 	"log"
 	"net/http"
 
+	authRepos "github.com/Conabit-Corp/EngLearn/backend/auth/internal/repos"
 	authServices "github.com/Conabit-Corp/EngLearn/backend/auth/internal/services"
 	cnf "github.com/Conabit-Corp/EngLearn/backend/common/pkg/config"
+	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/inits"
 	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/interceptors"
 	commonServices "github.com/Conabit-Corp/EngLearn/backend/common/pkg/services"
 	authProto "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/auth"
 
-	// "github.com/Conabit-Corp/EngLearn/backend/common/pkg/mongo"
-	// "github.com/Conabit-Corp/EngLearn/backend/common/pkg/redis"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	// "go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
 )
 
@@ -28,13 +27,15 @@ var accessProcedures = map[string]bool{
 }
 
 func main() {
+	log.Println("start bootstraping auth service")
 	envCnf := cnf.LoadConfigFromEnv()
-	log.Println(envCnf)
 
-	// mongo := mongo.NewMongoConnection(envCnf)
-	// redis := redis.NewRedisConnection(envCnf)
+	mongo := inits.NewMongoConnection(envCnf)
+	redis := inits.NewRedisConnection(envCnf)
 
-	jwtService := commonServices.NewJwtService(envCnf.SecretKey)
+	jwtService := commonServices.NewJwtService(envCnf)
+	authRepo := authRepos.NewMongoUserRepo(mongo)
+	authService := authServices.NewAuthService(jwtService, authRepo, redis, envCnf.Salt)
 	authInterceptor := interceptors.NewAuthInterceptor(jwtService, accessProcedures)
 
 	grpcServer := grpc.NewServer(
@@ -42,14 +43,14 @@ func main() {
 		grpc.ChainUnaryInterceptor(authInterceptor.Unary()),
 	)
 
-	authProto.RegisterAuthServiceServer(grpcServer, authServices.NewAuthService())
+	authProto.RegisterAuthServiceServer(grpcServer, authService)
 
 	grpcWrapped := grpcweb.WrapServer(grpcServer,
 		grpcweb.WithOriginFunc(func(origin string) bool {
 			return true
 		}),
-	)	
-	log.Println(*grpcWrapped)
+	)
+
 	handler := func(resp http.ResponseWriter, req *http.Request) {
 		grpcWrapped.ServeHTTP(resp, req)
 	}

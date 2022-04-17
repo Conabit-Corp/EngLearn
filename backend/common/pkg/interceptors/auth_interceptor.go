@@ -16,7 +16,10 @@ type AuthInterceptor struct {
 }
 
 func NewAuthInterceptor(jwtService *s.JwtService, accessProcedures map[string]bool) *AuthInterceptor {
-	return &AuthInterceptor{JwtService: jwtService, accessProcedures: accessProcedures}
+	return &AuthInterceptor{
+		JwtService:       jwtService,
+		accessProcedures: accessProcedures,
+	}
 }
 
 func (interceptor *AuthInterceptor) Unary() grpc.UnaryServerInterceptor {

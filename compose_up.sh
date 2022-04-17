@@ -7,5 +7,5 @@ go build -o exercise-service.bin ./backend/exercise/cmd/main.go
 go build -o dashboard-service.bin ./backend/dashboard/cmd/main.go
 
 echo "run services detached"
-
-docker-compose build --force-rm --no-cache && docker-compose up --detach
+docker-compose build --force-rm --no-cache
+docker-compose up --detach
