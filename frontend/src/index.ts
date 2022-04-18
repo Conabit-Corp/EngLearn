@@ -10,7 +10,7 @@ const signUp = document.getElementById('signUp')!
 function logOutTest() {
     const logoutreq = new LogoutRequest()
     const session = new Session()
-    session.setJwt('egor')
+    session.setJwt(localStorage.getItem('token') ?? '')
     logoutreq.setSession(session)
     grpc.unary(AuthService.Logout,
         {
@@ -32,7 +32,8 @@ function signInTest() {
             request: req,
             host: "http://localhost:4000",
             onEnd: (r) => {
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+                console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
+                localStorage.setItem('token', r.message + '');
             }
         }
     )
