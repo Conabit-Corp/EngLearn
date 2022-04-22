@@ -2,17 +2,16 @@ syntax = "proto3";
 
 import "proto/conabit/englearn/common/session.proto";
 
-package conabit.englearn.exercise;
+package conabit.englearn.collection;
 
-option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/exercise";
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection";
 
 service WordService {
   rpc RegisterWordPair(RegisterWordPairRequest) returns (WordPair) {}
 
   rpc CloneWordPair(CloneWordPairRequest) returns (WordPair) {}
 
-  rpc FindUserWords(conabit.englearn.common.Session) returns (stream WordPair) {
-  }
+  rpc FindUserWords(LogOutRequest) returns (stream WordPair) {}
 }
 
 message WordPair {
@@ -25,6 +24,10 @@ message Word {
   string id = 1;
   string word_value = 2;
   string country_code = 3;
+}
+
+message LogOutRequest{
+  conabit.englearn.common.Session session = 1;
 }
 
 message RegisterWordPairRequest {

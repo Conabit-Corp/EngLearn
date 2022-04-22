@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+
+package conabit.englearn.group;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/group";
+
+service GroupService{
+    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse){}
+
+    rpc AddToGroup(AddToGroupRequest) returns (AddToGroupResponse){}
+
+    rpc MyInvations(MyInvationsRequest) returns (stream GroudInvation){}
+
+    rpc JoinGroup(JoinGroupRequest) returns(JoinGroupResponse){}
+
+    rpc RejectInvation(RejectInvationRequest) returns(RejectInvationReponse){}
+
+    rpc MyGroups(MyGroupsRequest) returns (MyGroupsResponse){}
+}
+
+message CreateGroupRequest{
+    string name = 1;
+    repeated string user_ids = 2;
+}
+
+message CreateGroupResponse{
+    string group_id = 1;
+}
+
+message AddToGroupRequest{
+    string group_id = 1;
+    string user_id = 2;
+}
+
+message AddToGroupResponse{
+    string invation_id = 1;
+}
+
+message MyInvationsRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message JoinGroupRequest{
+    conabit.englearn.common.Session session = 1;
+    string group_id = 2;
+}
+
+message JoinGroupResponse{
+    bool success = 1;
+}
+
+message RejectInvationRequest{
+    conabit.englearn.common.Session session = 1;
+    string group_id = 2;
+}
+
+message RejectInvationReponse{
+    bool success = 1;
+}
+
+message MyGroupsRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message MyGroupsResponse{
+    message Group{
+        string name = 1;
+        string group_id = 2;
+    }
+    repeated Group groups = 1;
+}
+
+message GroudInvation{
+   string group_id = 1;
+   enum InvationStatus{
+       CREATED = 0;
+       ACCEPTED = 1;
+       REJECTED = 2;
+   }
+   InvationStatus status = 2;
+}

@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+import "proto/conabit/englearn/collection/word_service.proto";
+
+package conabit.englearn.collection;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection";
+
+service WordCollectionService{
+    rpc CreateWordCollection(CreateWordCollectionRequest) returns (CreateWordCollectionResponse) {}
+
+    rpc UpdateWordCollection(CreateWordCollectionRequest) returns (CreateWordCollectionResponse) {}
+
+    rpc GetWordCollection(GetWordCollectionRequest) returns (WordCollection) {}
+
+    rpc CreateGroupWordCollection(CreateGroupCollectionRequest) returns (CreateWordCollectionResponse) {}
+
+    rpc GetGroupWordCollections(GetGroupCollectionsRequest) returns (GetGroupCollectionsResponse) {}
+}
+
+message WordCollection{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated conabit.englearn.collection.WordPair words = 4;
+}
+
+message CreateWordCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordCollection word_collection = 2;
+}
+
+message CreateWordCollectionResponse{
+    string collection_id = 1;
+}
+
+message GetWordCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    string collection_id = 2; 
+    string collection_name = 3;
+}
+
+message CreateGroupCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordCollection WordCollection = 2;
+    string group_id = 3;
+}
+
+message GetGroupCollectionsRequest{
+    conabit.englearn.common.Session session = 1;
+    string group_id = 2;
+}
+
+message GetGroupCollectionsResponse{
+    repeated WordCollection collections = 1;
+}

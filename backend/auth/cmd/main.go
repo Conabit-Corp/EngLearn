@@ -60,6 +60,6 @@ func main() {
 		Handler: http.HandlerFunc(handler),
 	}
 
-	log.Println("Try start auth service")
+	log.Println("start auth service")
 	log.Fatal(httpServer.ListenAndServe())
 }

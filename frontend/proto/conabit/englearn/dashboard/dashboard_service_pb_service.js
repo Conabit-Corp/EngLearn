@@ -1,54 +1,54 @@
-// package: conabit.englearn.exercise
-// file: proto/conabit/englearn/exercise/exercise_service.proto
+// package: conabit.englearn.dashboard
+// file: proto/conabit/englearn/dashboard/dashboard_service.proto
 
-var proto_conabit_englearn_exercise_exercise_service_pb = require("../../../../proto/conabit/englearn/exercise/exercise_service_pb");
+var proto_conabit_englearn_dashboard_dashboard_service_pb = require("../../../../proto/conabit/englearn/dashboard/dashboard_service_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var ExerciseService = (function () {
-  function ExerciseService() {}
-  ExerciseService.serviceName = "conabit.englearn.exercise.ExerciseService";
-  return ExerciseService;
+var DashboardService = (function () {
+  function DashboardService() {}
+  DashboardService.serviceName = "conabit.englearn.dashboard.DashboardService";
+  return DashboardService;
 }());
 
-ExerciseService.StartNewExercise = {
-  methodName: "StartNewExercise",
-  service: ExerciseService,
+DashboardService.WordOfDay = {
+  methodName: "WordOfDay",
+  service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: proto_conabit_englearn_exercise_exercise_service_pb.StartNewExerciseRequest,
-  responseType: proto_conabit_englearn_exercise_exercise_service_pb.StartNewExerciseResponse
+  requestType: proto_conabit_englearn_dashboard_dashboard_service_pb.WordOfDayRequest,
+  responseType: proto_conabit_englearn_dashboard_dashboard_service_pb.WordOfDayResponse
 };
 
-ExerciseService.SolveTask = {
-  methodName: "SolveTask",
-  service: ExerciseService,
+DashboardService.MyStatisticsOverwiev = {
+  methodName: "MyStatisticsOverwiev",
+  service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskRequest,
-  responseType: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskResponse
+  requestType: proto_conabit_englearn_dashboard_dashboard_service_pb.MyStatisticsOverwievRequest,
+  responseType: proto_conabit_englearn_dashboard_dashboard_service_pb.MyStatisticsOverwievResponse
 };
 
-ExerciseService.FinishExercise = {
-  methodName: "FinishExercise",
-  service: ExerciseService,
+DashboardService.WordsToRepeat = {
+  methodName: "WordsToRepeat",
+  service: DashboardService,
   requestStream: false,
   responseStream: false,
-  requestType: proto_conabit_englearn_exercise_exercise_service_pb.FinishExerciseRequest,
-  responseType: proto_conabit_englearn_exercise_exercise_service_pb.Exercise
+  requestType: proto_conabit_englearn_dashboard_dashboard_service_pb.WordsToRepeatRequest,
+  responseType: proto_conabit_englearn_dashboard_dashboard_service_pb.WordsToRepeatResponse
 };
 
-exports.ExerciseService = ExerciseService;
+exports.DashboardService = DashboardService;
 
-function ExerciseServiceClient(serviceHost, options) {
+function DashboardServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-ExerciseServiceClient.prototype.startNewExercise = function startNewExercise(requestMessage, metadata, callback) {
+DashboardServiceClient.prototype.wordOfDay = function wordOfDay(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ExerciseService.StartNewExercise, {
+  var client = grpc.unary(DashboardService.WordOfDay, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -75,11 +75,11 @@ ExerciseServiceClient.prototype.startNewExercise = function startNewExercise(req
   };
 };
 
-ExerciseServiceClient.prototype.solveTask = function solveTask(requestMessage, metadata, callback) {
+DashboardServiceClient.prototype.myStatisticsOverwiev = function myStatisticsOverwiev(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ExerciseService.SolveTask, {
+  var client = grpc.unary(DashboardService.MyStatisticsOverwiev, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -106,11 +106,11 @@ ExerciseServiceClient.prototype.solveTask = function solveTask(requestMessage, m
   };
 };
 
-ExerciseServiceClient.prototype.finishExercise = function finishExercise(requestMessage, metadata, callback) {
+DashboardServiceClient.prototype.wordsToRepeat = function wordsToRepeat(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ExerciseService.FinishExercise, {
+  var client = grpc.unary(DashboardService.WordsToRepeat, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -137,5 +137,5 @@ ExerciseServiceClient.prototype.finishExercise = function finishExercise(request
   };
 };
 
-exports.ExerciseServiceClient = ExerciseServiceClient;
+exports.DashboardServiceClient = DashboardServiceClient;
 

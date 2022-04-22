@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"crypto/sha1"
+	"log"
 	"time"
 
 	authRepos "github.com/Conabit-Corp/EngLearn/backend/auth/internal/repos"
@@ -36,6 +37,7 @@ func (service *AuthService) SignIn(ctx context.Context, req *auth.SignInRequest)
 	sha := sha1.New()
 	sha.Write([]byte(req.Password))
 	sha.Write([]byte(service.Salt))
+	log.Printf("new signIn request: login = %s, passwordHash = %s", req.Login, sha.Sum(nil))
 
 	usr, err := service.AuthRepo.FindUserByExternalIdAndPasswordHash(ctx, req.Login, string(sha.Sum(nil)))
 	if err != nil {

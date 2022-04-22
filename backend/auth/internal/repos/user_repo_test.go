@@ -2,6 +2,7 @@ package repos
 
 import (
 	"context"
+	"log"
 	"math/rand"
 	"testing"
 	"time"
@@ -21,6 +22,7 @@ func TestUserRepoIntegration(t *testing.T) {
 }
 
 func (s *userRepoIntegrationTestSuite) SetupSuite() {
+	log.Println("init user repo integartion tests")
 	cnf := config.LoadConfigFromEnv()
 	mongo := inits.NewMongoConnection(cnf)
 	s.repo = NewMongoUserRepo(mongo)
@@ -41,6 +43,7 @@ func (s *userRepoIntegrationTestSuite) Test_Create_And_Find_User() {
 	s.NoError(err)
 	s.NotNil(foundUser)
 	s.Equal(*createdUser, *foundUser)
+	log.Println("pass test = Test_Create_And_Find_User")
 }
 
 func randomString() string {

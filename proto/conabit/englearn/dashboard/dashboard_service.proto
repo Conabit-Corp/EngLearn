@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+import "proto/conabit/englearn/collection/word_service.proto";
+
+package conabit.englearn.dashboard;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/dashboard";
+
+service DashboardService{
+    rpc WordOfDay(WordOfDayRequest) returns (WordOfDayResponse){}
+
+    rpc MyStatisticsOverwiev(MyStatisticsOverwievRequest) returns (MyStatisticsOverwievResponse){}
+
+    rpc WordsToRepeat(WordsToRepeatRequest) returns (WordsToRepeatResponse){}
+}
+
+message WordOfDayRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message WordOfDayResponse{
+    conabit.englearn.collection.WordPair word = 1;
+}
+
+message MyStatisticsOverwievRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message MyStatisticsOverwievResponse{}
+
+message WordsToRepeatRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message WordsToRepeatResponse{
+    //todo how start
+    repeated conabit.englearn.collection.WordPair word = 1;
+}

@@ -13,6 +13,15 @@ type ExerciseServiceStartNewExercise = {
   readonly responseType: typeof proto_conabit_englearn_exercise_exercise_service_pb.StartNewExerciseResponse;
 };
 
+type ExerciseServiceSolveTask = {
+  readonly methodName: string;
+  readonly service: typeof ExerciseService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskRequest;
+  readonly responseType: typeof proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskResponse;
+};
+
 type ExerciseServiceFinishExercise = {
   readonly methodName: string;
   readonly service: typeof ExerciseService;
@@ -25,6 +34,7 @@ type ExerciseServiceFinishExercise = {
 export class ExerciseService {
   static readonly serviceName: string;
   static readonly StartNewExercise: ExerciseServiceStartNewExercise;
+  static readonly SolveTask: ExerciseServiceSolveTask;
   static readonly FinishExercise: ExerciseServiceFinishExercise;
 }
 
@@ -68,6 +78,15 @@ export class ExerciseServiceClient {
   startNewExercise(
     requestMessage: proto_conabit_englearn_exercise_exercise_service_pb.StartNewExerciseRequest,
     callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_exercise_exercise_service_pb.StartNewExerciseResponse|null) => void
+  ): UnaryResponse;
+  solveTask(
+    requestMessage: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskResponse|null) => void
+  ): UnaryResponse;
+  solveTask(
+    requestMessage: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskRequest,
+    callback: (error: ServiceError|null, responseMessage: proto_conabit_englearn_exercise_exercise_service_pb.SolveTaskResponse|null) => void
   ): UnaryResponse;
   finishExercise(
     requestMessage: proto_conabit_englearn_exercise_exercise_service_pb.FinishExerciseRequest,
