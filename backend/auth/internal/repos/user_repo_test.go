@@ -14,7 +14,7 @@ import (
 
 type userRepoIntegrationTestSuite struct {
 	suite.Suite
-	repo UserRepo
+	repo *MongoUserRepo
 }
 
 func TestUserRepoIntegration(t *testing.T) {
@@ -31,15 +31,16 @@ func (s *userRepoIntegrationTestSuite) SetupSuite() {
 func (s *userRepoIntegrationTestSuite) Test_Create_And_Find_User() {
 	var err error
 	login, passwordHash := randomString(), randomString()
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
 
 	createdUser, err := s.repo.CreateUser(ctx, login, passwordHash)
 	s.NoError(err)
 	s.NotNil(createdUser)
-	s.Equal(login, createdUser.ExtrenalId)
+	s.Equal(login, createdUser.Nickname)
 	s.Equal(passwordHash, createdUser.PasswordHash)
 
-	foundUser, err := s.repo.FindUserByExternalId(ctx, login)
+	foundUser, err := s.repo.FindUserByNickname(ctx, login)
 	s.NoError(err)
 	s.NotNil(foundUser)
 	s.Equal(*createdUser, *foundUser)

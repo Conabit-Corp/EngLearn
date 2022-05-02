@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "proto/conabit/englearn/common/session.proto";
+import "proto/conabit/englearn/collection/collection_models.proto";
+
+package conabit.englearn.collection;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection";
+
+
+message CreateWordCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordCollection word_collection = 2;
+}
+
+message CreateGroupCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordCollection WordCollection = 2;
+    string group_id = 3;
+}
+
+message CreateWordCollectionResponse{
+    string collection_id = 1;
+}
+
+message GetWordCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    string collection_id = 2; 
+    string collection_name = 3;
+}
+
+message GetWordCollectionResponse{
+    WordCollection collection = 1;
+}
+
+message GetUserCollectionsRequest{
+    conabit.englearn.common.Session session = 1;
+}
+
+message GetUserCollectionsResponse{
+    CollectionsOverview collections = 1;
+}
+
+message GetGroupCollectionsRequest{
+    conabit.englearn.common.Session session = 1;
+    string group_id = 2;
+}
+
+message GetGroupCollectionsResponse{
+    CollectionsOverview collections = 1;   
+}
+
+message DeleteWordCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    string collection_id = 2;
+}
+
+message DeleteWordCollectionResponse{
+    WordCollection collection = 1;  
+}
+
+message AddWordToCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordPair word_pair = 2;
+}
+
+message AddWordToCollectionResponse{
+    string word_pair_id = 1;
+}
+
+message RemoveWordFromCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    string word_pair_id = 2;
+}
+
+message RemoveWordFromCollectionResponse{
+    WordPair word_pair = 1;
+}
+
+message EditWordFromCollectionRequest{
+    conabit.englearn.common.Session session = 1;
+    WordPair word_pair = 2;
+}
+
+message EditWordFromCollectionResponse{
+    // bool success = 1; ???
+}

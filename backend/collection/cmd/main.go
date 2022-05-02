@@ -4,42 +4,39 @@ import (
 	"log"
 	"net/http"
 
-	authRepos "github.com/Conabit-Corp/EngLearn/backend/auth/internal/repos"
-	authServices "github.com/Conabit-Corp/EngLearn/backend/auth/internal/services"
+	"github.com/Conabit-Corp/EngLearn/backend/collection/internal/repos"
+	"github.com/Conabit-Corp/EngLearn/backend/collection/internal/serivces"
 	cnf "github.com/Conabit-Corp/EngLearn/backend/common/pkg/config"
 	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/inits"
 	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/interceptors"
-	commonServices "github.com/Conabit-Corp/EngLearn/backend/common/pkg/services"
-	authProto "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/auth"
-
+	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/services"
+	collectionProto "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
 )
 
-//todo optimize
 var proceduresWithoutAuth = map[string]bool{
-	"/conabit.englearn.auth.AuthService/SignIn": true,
-	"/conabit.englearn.auth.AuthService/SignUp": true,
+	"/conabit.englearn.collection.WordCollectionService/DeleteWordCollection": true,
 }
 
 func main() {
-	log.Println("starting auth service")
+	log.Println("starting collection service")
 	envCnf := cnf.LoadConfigFromEnv()
 
 	mongo := inits.NewMongoConnection(envCnf)
 	redis := inits.NewRedisConnection(envCnf)
 
-	jwtService := commonServices.NewJwtService(envCnf)
-	authRepo := authRepos.NewMongoUserRepo(mongo)
-	authService := authServices.NewAuthService(jwtService, authRepo, redis, envCnf.Salt)
-	authInterceptor := interceptors.NewAuthInterceptor(jwtService, redis, proceduresWithoutAuth)
+	jwtSerivce := services.NewJwtService(envCnf)
+	authInterceptor := interceptors.NewAuthInterceptor(jwtSerivce, redis, proceduresWithoutAuth)
+	collectionRepo := repos.NewMongoWordCollectionRepo(mongo)
+	collectionService := serivces.NewWordCollectionService(collectionRepo)
 
 	grpcServer := grpc.NewServer(
-		grpc.ChainStreamInterceptor(authInterceptor.Stream()),
 		grpc.ChainUnaryInterceptor(authInterceptor.Unary()),
+		grpc.ChainStreamInterceptor(authInterceptor.Stream()),
 	)
 
-	authProto.RegisterAuthServiceServer(grpcServer, authService)
+	collectionProto.RegisterWordCollectionServiceServer(grpcServer, collectionService)
 
 	grpcWrapped := grpcweb.WrapServer(grpcServer,
 		grpcweb.WithOriginFunc(func(origin string) bool {
@@ -52,10 +49,10 @@ func main() {
 	}
 
 	httpServer := http.Server{
-		Addr:    ":4000",
+		Addr:    ":4003",
 		Handler: http.HandlerFunc(handler),
 	}
 
-	log.Println("auth service started")
+	log.Println("colletion serivce started")
 	log.Fatal(httpServer.ListenAndServe())
 }

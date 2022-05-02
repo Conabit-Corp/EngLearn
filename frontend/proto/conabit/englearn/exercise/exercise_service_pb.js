@@ -15,8 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var proto_conabit_englearn_collection_word_service_pb = require('../../../../proto/conabit/englearn/collection/word_service_pb.js');
-goog.object.extend(proto, proto_conabit_englearn_collection_word_service_pb);
+var proto_conabit_englearn_collection_collection_models_pb = require('../../../../proto/conabit/englearn/collection/collection_models_pb.js');
+goog.object.extend(proto, proto_conabit_englearn_collection_collection_models_pb);
 var proto_conabit_englearn_common_session_pb = require('../../../../proto/conabit/englearn/common/session_pb.js');
 goog.object.extend(proto, proto_conabit_englearn_common_session_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
@@ -528,7 +528,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.clearFailedTasksList = functi
  * @private {!Array<number>}
  * @const
  */
-proto.conabit.englearn.exercise.StartNewExerciseRequest.repeatedFields_ = [3];
+proto.conabit.englearn.exercise.StartNewExerciseRequest.repeatedFields_ = [4];
 
 
 
@@ -563,8 +563,9 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.toObject = function(incl
   var f, obj = {
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
     genType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    collectionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     wordsList: jspb.Message.toObjectList(msg.getWordsList(),
-    proto_conabit_englearn_collection_word_service_pb.WordPair.toObject, includeInstance)
+    proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -611,8 +612,12 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.deserializeBinaryFromRea
       msg.setGenType(value);
       break;
     case 3:
-      var value = new proto_conabit_englearn_collection_word_service_pb.WordPair;
-      reader.readMessage(value,proto_conabit_englearn_collection_word_service_pb.WordPair.deserializeBinaryFromReader);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionId(value);
+      break;
+    case 4:
+      var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
+      reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
       msg.addWords(value);
       break;
     default:
@@ -659,12 +664,19 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.serializeBinaryToWriter 
       f
     );
   }
+  f = message.getCollectionId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getWordsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
+      4,
       f,
-      proto_conabit_englearn_collection_word_service_pb.WordPair.serializeBinaryToWriter
+      proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
     );
   }
 };
@@ -735,12 +747,30 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setGenType = f
 
 
 /**
- * repeated conabit.englearn.collection.WordPair words = 3;
+ * optional string collection_id = 3;
+ * @return {string}
+ */
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.getCollectionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.exercise.StartNewExerciseRequest} returns this
+ */
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setCollectionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated conabit.englearn.collection.WordPair words = 4;
  * @return {!Array<!proto.conabit.englearn.collection.WordPair>}
  */
 proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.getWordsList = function() {
   return /** @type{!Array<!proto.conabit.englearn.collection.WordPair>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_conabit_englearn_collection_word_service_pb.WordPair, 3));
+    jspb.Message.getRepeatedWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 4));
 };
 
 
@@ -749,7 +779,7 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.getWordsList =
  * @return {!proto.conabit.englearn.exercise.StartNewExerciseRequest} returns this
 */
 proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setWordsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
@@ -759,7 +789,7 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setWordsList =
  * @return {!proto.conabit.englearn.collection.WordPair}
  */
 proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.addWords = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.conabit.englearn.collection.WordPair, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.conabit.englearn.collection.WordPair, opt_index);
 };
 
 
@@ -1509,7 +1539,7 @@ proto.conabit.englearn.exercise.Task.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     answer: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    word: (f = msg.getWord()) && proto_conabit_englearn_collection_word_service_pb.Word.toObject(includeInstance, f),
+    word: (f = msg.getWord()) && proto_conabit_englearn_collection_collection_models_pb.Word.toObject(includeInstance, f),
     pairId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     taskType: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
@@ -1557,8 +1587,8 @@ proto.conabit.englearn.exercise.Task.deserializeBinaryFromReader = function(msg,
       msg.setAnswer(value);
       break;
     case 3:
-      var value = new proto_conabit_englearn_collection_word_service_pb.Word;
-      reader.readMessage(value,proto_conabit_englearn_collection_word_service_pb.Word.deserializeBinaryFromReader);
+      var value = new proto_conabit_englearn_collection_collection_models_pb.Word;
+      reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.Word.deserializeBinaryFromReader);
       msg.setWord(value);
       break;
     case 4:
@@ -1617,7 +1647,7 @@ proto.conabit.englearn.exercise.Task.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       3,
       f,
-      proto_conabit_englearn_collection_word_service_pb.Word.serializeBinaryToWriter
+      proto_conabit_englearn_collection_collection_models_pb.Word.serializeBinaryToWriter
     );
   }
   f = message.getPairId();
@@ -1688,7 +1718,7 @@ proto.conabit.englearn.exercise.Task.prototype.setAnswer = function(value) {
  */
 proto.conabit.englearn.exercise.Task.prototype.getWord = function() {
   return /** @type{?proto.conabit.englearn.collection.Word} */ (
-    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_word_service_pb.Word, 3));
+    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.Word, 3));
 };
 
 

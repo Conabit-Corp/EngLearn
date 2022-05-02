@@ -10,46 +10,35 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type UserRepo interface {
-	CreateUser(ctx context.Context, login string, passwordHash string) (user *models.User, err error)
-
-	FindUserByExternalId(ctx context.Context, extrenalId string) (user *models.User, err error)
-
-	ExitstsByExternalId(ctx context.Context, extrenalId string) bool
-
-	FindUserByExternalIdAndPasswordHash(ctx context.Context, login string, passwordHash string) (user *models.User, err error)
-}
-
 type MongoUserRepo struct {
-	Mongo           *mongo.Client
-	UsersCollection *mongo.Collection
+	mongo           *mongo.Client
+	usersCollection *mongo.Collection
 }
 
-func NewMongoUserRepo(mongo *mongo.Client) UserRepo {
+func NewMongoUserRepo(mongo *mongo.Client) *MongoUserRepo {
 	return &MongoUserRepo{
-		Mongo: mongo,
-		UsersCollection: mongo.
+		mongo: mongo,
+		usersCollection: mongo.
 			Database("auth").
 			Collection("users"),
 	}
 }
 
-func (repo *MongoUserRepo) CreateUser(ctx context.Context, login string, passwordHash string) (user *models.User, err error) {
-	log.Printf("try create user with login = %s", login)
+func (repo *MongoUserRepo) CreateUser(ctx context.Context, nickname string, passwordHash string) (user *models.User, err error) {
+	log.Printf("try create user with login = %s", nickname)
 	var err0 error
 	usr := &models.User{
-		ExtrenalId:   login,
-		Nickname:     "User",
+		Nickname:     nickname,
 		PasswordHash: passwordHash,
 	}
-	result, err0 := repo.UsersCollection.
+	result, err0 := repo.usersCollection.
 		InsertOne(ctx, usr)
 	if err0 != nil {
 		log.Printf("cant`t create user, err = %s", err0.Error())
 		return nil, fmt.Errorf("failed save user")
 	}
 	var saved models.User
-	err0 = repo.UsersCollection.
+	err0 = repo.usersCollection.
 		FindOne(ctx, bson.M{"_id": result.InsertedID}).
 		Decode(&saved)
 	if err0 != nil {
@@ -61,39 +50,55 @@ func (repo *MongoUserRepo) CreateUser(ctx context.Context, login string, passwor
 	return &saved, nil
 }
 
-func (repo *MongoUserRepo) FindUserByExternalId(ctx context.Context, login string) (user *models.User, err error) {
-	log.Printf("try find user by externalId = %s", login)
+func (repo *MongoUserRepo) FindUserById(ctx context.Context, id string) (*models.User, error) {
+	log.Printf("try find user by id = %s", id)
 	var user0 models.User
-	err0 := repo.UsersCollection.
-		FindOne(ctx, bson.M{"ex_id": login}).
+	err0 := repo.usersCollection.
+		FindOne(ctx, bson.M{"_id": id}).
 		Decode(&user0)
 	if err0 != nil {
-		log.Printf("user by external id=%s not found, err = %s ", login, err0.Error())
-		return nil, fmt.Errorf("user by external id %s not found", login)
+		log.Printf("user by id=%s not found, err = %s ", id, err0.Error())
+		return nil, fmt.Errorf("user by id %s not found", id)
 	}
 	return &user0, nil
 }
 
-func (repo *MongoUserRepo) ExitstsByExternalId(ctx context.Context, extrenalId string) bool {
-	log.Printf("check user existing by externalId = %s", extrenalId)
+func (repo *MongoUserRepo) FindUserByNickname(ctx context.Context, nickname string) (*models.User, error) {
+	log.Printf("try find user by nickname = %s", nickname)
+	var user0 models.User
+	err0 := repo.usersCollection.
+		FindOne(ctx, bson.M{"nickname": nickname}).
+		Decode(&user0)
+	if err0 != nil {
+		log.Printf("user by nickname=%s not found, err = %s ", nickname, err0.Error())
+		return nil, fmt.Errorf("user by nickname %s not found", nickname)
+	}
+	return &user0, nil
+}
+
+func (repo *MongoUserRepo) UserExitstsByNickname(ctx context.Context, nickname string) bool {
+	log.Printf("check user existing by nickname = %s", nickname)
 	exists := true
-	count, err := repo.UsersCollection.CountDocuments(ctx, bson.M{"ex_id": extrenalId})
+	count, err := repo.usersCollection.CountDocuments(ctx, bson.M{"nickname": nickname})
 	if err != nil || count == 0 {
 		exists = false
 	}
-	log.Printf("user by externalId %s exists = %t", extrenalId, exists)
+	log.Printf("user by nickname %s exists = %t", nickname, exists)
 	return exists
 }
 
-func (repo *MongoUserRepo) FindUserByExternalIdAndPasswordHash(ctx context.Context, login string, passwordHash string) (user *models.User, err error) {
-	log.Printf("try find user by externalId %s and passwordHash %s", login, passwordHash)
+func (repo *MongoUserRepo) FindUserByNicknameAndPasswordHash(
+	ctx context.Context,
+	nickname string,
+	passwordHash string) (user *models.User, err error) {
+	log.Printf("try find user by nickname %s", nickname)
 	var user0 models.User
-	err0 := repo.UsersCollection.
-		FindOne(ctx, bson.M{"ex_id": login, "password": passwordHash}).
+	err0 := repo.usersCollection.
+		FindOne(ctx, bson.M{"nickname": nickname, "password": passwordHash}).
 		Decode(&user0)
 	if err0 != nil {
-		log.Printf("user by externalId %s and passwordHash %s not found", login, passwordHash)
-		return nil, fmt.Errorf("user by external id %s and password hash not found", login)
+		log.Printf("user by nickname %s not found", nickname)
+		return nil, fmt.Errorf("user by nickname %s not found", nickname)
 	}
 	return &user0, nil
 }

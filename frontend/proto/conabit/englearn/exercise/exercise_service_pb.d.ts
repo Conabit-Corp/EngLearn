@@ -2,7 +2,7 @@
 // file: proto/conabit/englearn/exercise/exercise_service.proto
 
 import * as jspb from "google-protobuf";
-import * as proto_conabit_englearn_collection_word_service_pb from "../../../../proto/conabit/englearn/collection/word_service_pb";
+import * as proto_conabit_englearn_collection_collection_models_pb from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 import * as proto_conabit_englearn_common_session_pb from "../../../../proto/conabit/englearn/common/session_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
@@ -59,10 +59,13 @@ export class StartNewExerciseRequest extends jspb.Message {
   getGenType(): StartNewExerciseRequest.GenerationTypeMap[keyof StartNewExerciseRequest.GenerationTypeMap];
   setGenType(value: StartNewExerciseRequest.GenerationTypeMap[keyof StartNewExerciseRequest.GenerationTypeMap]): void;
 
+  getCollectionId(): string;
+  setCollectionId(value: string): void;
+
   clearWordsList(): void;
-  getWordsList(): Array<proto_conabit_englearn_collection_word_service_pb.WordPair>;
-  setWordsList(value: Array<proto_conabit_englearn_collection_word_service_pb.WordPair>): void;
-  addWords(value?: proto_conabit_englearn_collection_word_service_pb.WordPair, index?: number): proto_conabit_englearn_collection_word_service_pb.WordPair;
+  getWordsList(): Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>;
+  setWordsList(value: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>): void;
+  addWords(value?: proto_conabit_englearn_collection_collection_models_pb.WordPair, index?: number): proto_conabit_englearn_collection_collection_models_pb.WordPair;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartNewExerciseRequest.AsObject;
@@ -78,7 +81,8 @@ export namespace StartNewExerciseRequest {
   export type AsObject = {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
     genType: StartNewExerciseRequest.GenerationTypeMap[keyof StartNewExerciseRequest.GenerationTypeMap],
-    wordsList: Array<proto_conabit_englearn_collection_word_service_pb.WordPair.AsObject>,
+    collectionId: string,
+    wordsList: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject>,
   }
 
   export interface GenerationTypeMap {
@@ -197,8 +201,8 @@ export class Task extends jspb.Message {
 
   hasWord(): boolean;
   clearWord(): void;
-  getWord(): proto_conabit_englearn_collection_word_service_pb.Word | undefined;
-  setWord(value?: proto_conabit_englearn_collection_word_service_pb.Word): void;
+  getWord(): proto_conabit_englearn_collection_collection_models_pb.Word | undefined;
+  setWord(value?: proto_conabit_englearn_collection_collection_models_pb.Word): void;
 
   getPairId(): string;
   setPairId(value: string): void;
@@ -220,7 +224,7 @@ export namespace Task {
   export type AsObject = {
     id: string,
     answer: string,
-    word?: proto_conabit_englearn_collection_word_service_pb.Word.AsObject,
+    word?: proto_conabit_englearn_collection_collection_models_pb.Word.AsObject,
     pairId: string,
     taskType: Task.TaskTypeMap[keyof Task.TaskTypeMap],
   }

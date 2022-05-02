@@ -3,7 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as proto_conabit_englearn_common_session_pb from "../../../../proto/conabit/englearn/common/session_pb";
-import * as proto_conabit_englearn_collection_word_service_pb from "../../../../proto/conabit/englearn/collection/word_service_pb";
+import * as proto_conabit_englearn_collection_collection_models_pb from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 
 export class WordOfDayRequest extends jspb.Message {
   hasSession(): boolean;
@@ -30,8 +30,8 @@ export namespace WordOfDayRequest {
 export class WordOfDayResponse extends jspb.Message {
   hasWord(): boolean;
   clearWord(): void;
-  getWord(): proto_conabit_englearn_collection_word_service_pb.WordPair | undefined;
-  setWord(value?: proto_conabit_englearn_collection_word_service_pb.WordPair): void;
+  getWord(): proto_conabit_englearn_collection_collection_models_pb.WordPair | undefined;
+  setWord(value?: proto_conabit_englearn_collection_collection_models_pb.WordPair): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WordOfDayResponse.AsObject;
@@ -45,7 +45,7 @@ export class WordOfDayResponse extends jspb.Message {
 
 export namespace WordOfDayResponse {
   export type AsObject = {
-    word?: proto_conabit_englearn_collection_word_service_pb.WordPair.AsObject,
+    word?: proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject,
   }
 }
 
@@ -111,9 +111,9 @@ export namespace WordsToRepeatRequest {
 
 export class WordsToRepeatResponse extends jspb.Message {
   clearWordList(): void;
-  getWordList(): Array<proto_conabit_englearn_collection_word_service_pb.WordPair>;
-  setWordList(value: Array<proto_conabit_englearn_collection_word_service_pb.WordPair>): void;
-  addWord(value?: proto_conabit_englearn_collection_word_service_pb.WordPair, index?: number): proto_conabit_englearn_collection_word_service_pb.WordPair;
+  getWordList(): Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>;
+  setWordList(value: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>): void;
+  addWord(value?: proto_conabit_englearn_collection_collection_models_pb.WordPair, index?: number): proto_conabit_englearn_collection_collection_models_pb.WordPair;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WordsToRepeatResponse.AsObject;
@@ -127,7 +127,7 @@ export class WordsToRepeatResponse extends jspb.Message {
 
 export namespace WordsToRepeatResponse {
   export type AsObject = {
-    wordList: Array<proto_conabit_englearn_collection_word_service_pb.WordPair.AsObject>,
+    wordList: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject>,
   }
 }
 

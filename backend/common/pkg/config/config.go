@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -48,7 +49,7 @@ func LoadConfigFromEnv() *AppConfig {
 func loadEnvByKey(key string) (value string) {
 	val, ok := os.LookupEnv(key)
 	if !ok {
-		panic(fmt.Sprintf("cannot load env value by key = %s", key))
+		log.Panicf("cannot load env value by key = %s", key)
 	}
 	return val
 }
@@ -56,7 +57,7 @@ func loadEnvByKey(key string) (value string) {
 func parseUint(str string) int {
 	val, err := strconv.Atoi(str)
 	if err != nil {
-		panic(err.Error())
+		log.Panicf("incorrect uint value in env = %s", err.Error())
 	}
 	return val
 }

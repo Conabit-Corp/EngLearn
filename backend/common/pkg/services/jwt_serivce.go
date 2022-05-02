@@ -23,8 +23,8 @@ func NewJwtService(cnf *config.AppConfig) *JwtService {
 
 type UserClaims struct {
 	jwt.StandardClaims
-	ExternalId string `json:"external_id"`
-	Nickname   string `json:"nickname"`
+	Id       string `json:"id"`
+	Nickname string `json:"nickname"`
 }
 
 func (service *JwtService) Generate(user *models.User) (string, error) {
@@ -32,11 +32,9 @@ func (service *JwtService) Generate(user *models.User) (string, error) {
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(service.JwtLifetime).Unix(),
 		},
-		ExternalId: user.ExtrenalId,
-		Nickname:   user.Nickname,
+		Id:       user.ID.Hex(),
+		Nickname: user.Nickname,
 	}
-
-	//todo check hmac
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(service.Secret))
 }
@@ -53,15 +51,12 @@ func (service *JwtService) Verify(jwtToken string) (*UserClaims, error) {
 			return []byte(service.Secret), nil
 		},
 	)
-
 	if err != nil {
 		return nil, fmt.Errorf("invalid token: %w", err)
 	}
-
 	claims, ok := token.Claims.(*UserClaims)
 	if !ok {
 		return nil, fmt.Errorf("invalid token claims")
 	}
-
 	return claims, nil
 }

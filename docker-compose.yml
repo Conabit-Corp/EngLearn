@@ -21,7 +21,7 @@ services:
   auth:
     build:
       context: .
-      dockerfile: Dockerfile.auth
+      dockerfile: ./docker/Dockerfile.auth
     environment:
       - REDIS_URL=redis:${REDIS_PORT}
       - REDIS_PASS=${REDIS_PASS}
@@ -41,7 +41,7 @@ services:
   dashboard:
     build:
       context: .
-      dockerfile: Dockerfile.dashboard
+      dockerfile: ./docker/Dockerfile.dashboard
     environment:
       - REDIS_URL=redis:${REDIS_PORT}
       - REDIS_PASS=${REDIS_PASS}
@@ -61,7 +61,7 @@ services:
   exercise:
     build:
       context: .
-      dockerfile: Dockerfile.exercise
+      dockerfile: ./docker/Dockerfile.exercise
     environment:
       - REDIS_URL=redis:${REDIS_PORT}
       - REDIS_PASS=${REDIS_PASS}
@@ -73,6 +73,46 @@ services:
       - JWT_LIFETIME_DAYS=${JWT_LIFETIME_DAYS}
     ports:
       - '${EXCERCISE_PORT}:4002'
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+  group:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.group
+    environment:
+      - REDIS_URL=redis:${REDIS_PORT}
+      - REDIS_PASS=${REDIS_PASS}
+      - MONGO_URL=mongo:${MONGO_PORT}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+      - SECRET_KEY=${SECRET_KEY}
+      - SALT=${SALT}
+      - JWT_LIFETIME_DAYS=${JWT_LIFETIME_DAYS}
+    ports:
+      - '${GROUP_PORT}:4004'
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+  collection:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.collection
+    environment:
+      - REDIS_URL=redis:${REDIS_PORT}
+      - REDIS_PASS=${REDIS_PASS}
+      - MONGO_URL=mongo:${MONGO_PORT}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+      - SECRET_KEY=${SECRET_KEY}
+      - SALT=${SALT}
+      - JWT_LIFETIME_DAYS=${JWT_LIFETIME_DAYS}
+    ports:
+      - '${COLLECTION_PORT}:4003'
     depends_on:
       - mongo
       - redis

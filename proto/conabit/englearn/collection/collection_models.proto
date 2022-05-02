@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package conabit.englearn.collection;
+
+option go_package = "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection";
+
+message WordCollection{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated WordPair words = 4;
+}
+
+message WordPair{
+    string id = 1;
+    Word word_1 = 2;
+    Word word_2 = 3;
+}
+
+message Word{
+    string id = 1;
+    string country_code = 2;
+    string value = 3;
+}
+
+message CollectionsOverview{
+    message Overview{
+        string collection_id = 1;
+        string collection_name = 2;
+    }
+    repeated Overview collections = 1;
+}

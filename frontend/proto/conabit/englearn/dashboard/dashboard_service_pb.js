@@ -17,8 +17,8 @@ var global = Function('return this')();
 
 var proto_conabit_englearn_common_session_pb = require('../../../../proto/conabit/englearn/common/session_pb.js');
 goog.object.extend(proto, proto_conabit_englearn_common_session_pb);
-var proto_conabit_englearn_collection_word_service_pb = require('../../../../proto/conabit/englearn/collection/word_service_pb.js');
-goog.object.extend(proto, proto_conabit_englearn_collection_word_service_pb);
+var proto_conabit_englearn_collection_collection_models_pb = require('../../../../proto/conabit/englearn/collection/collection_models_pb.js');
+goog.object.extend(proto, proto_conabit_englearn_collection_collection_models_pb);
 goog.exportSymbol('proto.conabit.englearn.dashboard.MyStatisticsOverwievRequest', null, global);
 goog.exportSymbol('proto.conabit.englearn.dashboard.MyStatisticsOverwievResponse', null, global);
 goog.exportSymbol('proto.conabit.englearn.dashboard.WordOfDayRequest', null, global);
@@ -334,7 +334,7 @@ proto.conabit.englearn.dashboard.WordOfDayResponse.prototype.toObject = function
  */
 proto.conabit.englearn.dashboard.WordOfDayResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    word: (f = msg.getWord()) && proto_conabit_englearn_collection_word_service_pb.WordPair.toObject(includeInstance, f)
+    word: (f = msg.getWord()) && proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -372,8 +372,8 @@ proto.conabit.englearn.dashboard.WordOfDayResponse.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto_conabit_englearn_collection_word_service_pb.WordPair;
-      reader.readMessage(value,proto_conabit_englearn_collection_word_service_pb.WordPair.deserializeBinaryFromReader);
+      var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
+      reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
       msg.setWord(value);
       break;
     default:
@@ -410,7 +410,7 @@ proto.conabit.englearn.dashboard.WordOfDayResponse.serializeBinaryToWriter = fun
     writer.writeMessage(
       1,
       f,
-      proto_conabit_englearn_collection_word_service_pb.WordPair.serializeBinaryToWriter
+      proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
     );
   }
 };
@@ -422,7 +422,7 @@ proto.conabit.englearn.dashboard.WordOfDayResponse.serializeBinaryToWriter = fun
  */
 proto.conabit.englearn.dashboard.WordOfDayResponse.prototype.getWord = function() {
   return /** @type{?proto.conabit.englearn.collection.WordPair} */ (
-    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_word_service_pb.WordPair, 1));
+    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 1));
 };
 
 
@@ -896,7 +896,7 @@ proto.conabit.englearn.dashboard.WordsToRepeatResponse.prototype.toObject = func
 proto.conabit.englearn.dashboard.WordsToRepeatResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     wordList: jspb.Message.toObjectList(msg.getWordList(),
-    proto_conabit_englearn_collection_word_service_pb.WordPair.toObject, includeInstance)
+    proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -934,8 +934,8 @@ proto.conabit.englearn.dashboard.WordsToRepeatResponse.deserializeBinaryFromRead
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto_conabit_englearn_collection_word_service_pb.WordPair;
-      reader.readMessage(value,proto_conabit_englearn_collection_word_service_pb.WordPair.deserializeBinaryFromReader);
+      var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
+      reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
       msg.addWord(value);
       break;
     default:
@@ -972,7 +972,7 @@ proto.conabit.englearn.dashboard.WordsToRepeatResponse.serializeBinaryToWriter =
     writer.writeRepeatedMessage(
       1,
       f,
-      proto_conabit_englearn_collection_word_service_pb.WordPair.serializeBinaryToWriter
+      proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
     );
   }
 };
@@ -984,7 +984,7 @@ proto.conabit.englearn.dashboard.WordsToRepeatResponse.serializeBinaryToWriter =
  */
 proto.conabit.englearn.dashboard.WordsToRepeatResponse.prototype.getWordList = function() {
   return /** @type{!Array<!proto.conabit.englearn.collection.WordPair>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_conabit_englearn_collection_word_service_pb.WordPair, 1));
+    jspb.Message.getRepeatedWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 1));
 };
 
 

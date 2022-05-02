@@ -2,23 +2,32 @@ package interceptors
 
 import (
 	"context"
+	"log"
+	"time"
 
 	"github.com/Conabit-Corp/EngLearn/backend/common/pkg/models"
 	s "github.com/Conabit-Corp/EngLearn/backend/common/pkg/services"
+	"github.com/go-redis/redis/v8"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 )
 
 type AuthInterceptor struct {
-	JwtService       *s.JwtService
-	accessProcedures map[string]bool
+	jwtService            *s.JwtService
+	redis                 *redis.Client
+	proceduresWithoutAuth map[string]bool
 }
 
-func NewAuthInterceptor(jwtService *s.JwtService, accessProcedures map[string]bool) *AuthInterceptor {
+func NewAuthInterceptor(
+	jwtService *s.JwtService,
+	redis *redis.Client,
+	proceduresWithoutAuth map[string]bool) *AuthInterceptor {
 	return &AuthInterceptor{
-		JwtService:       jwtService,
-		accessProcedures: accessProcedures,
+		jwtService:            jwtService,
+		redis:                 redis,
+		proceduresWithoutAuth: proceduresWithoutAuth,
 	}
 }
 
@@ -29,19 +38,16 @@ func (interceptor *AuthInterceptor) Unary() grpc.UnaryServerInterceptor {
 		info *grpc.UnaryServerInfo,
 		handler grpc.UnaryHandler) (interface{}, error) {
 		var err error
-		authNeeded, err := interceptor.authNeeded(info.FullMethod)
-		if err != nil {
-			return nil, err
-		}
+		authNeeded := interceptor.authNeeded(info.FullMethod)
 		if !authNeeded {
 			return handler(ctx, req)
 		}
 		jwt := req.(models.HasSession).GetSession().Jwt
-		err = interceptor.check(jwt)
+		usrId, err := interceptor.check(jwt)
 		if err != nil {
 			return nil, err
 		}
-		return handler(ctx, req)
+		return handler(context.WithValue(ctx, "user_id", usrId), req)
 	}
 }
 
@@ -52,35 +58,52 @@ func (interceptor *AuthInterceptor) Stream() grpc.StreamServerInterceptor {
 		info *grpc.StreamServerInfo,
 		handler grpc.StreamHandler) error {
 		var err error
-		authNeeded, err := interceptor.authNeeded(info.FullMethod)
-		if err != nil {
-			return err
-		}
+		authNeeded := interceptor.authNeeded(info.FullMethod)
 		if !authNeeded {
 			return handler(srv, ss)
 		}
 		//todo debug
 		jwt := srv.(models.HasSession).GetSession().Jwt
-		err = interceptor.check(jwt)
+		usrId, err := interceptor.check(jwt)
 		if err != nil {
 			return err
 		}
+		//todo debug
+		trailer := metadata.Pairs("user_id", usrId)
+		ss.SetTrailer(trailer)
+		ss.Context()
 		return handler(srv, ss)
 	}
 }
 
-func (interceptor *AuthInterceptor) authNeeded(method string) (bool, error) {
-	auth, ok := interceptor.accessProcedures[method]
-	if !ok {
-		return true, status.Errorf(codes.PermissionDenied, "Unknown procedure call")
-	}
-	return auth, nil
+func (interceptor *AuthInterceptor) authNeeded(method string) bool {
+	_, ok := interceptor.proceduresWithoutAuth[method]
+	return !ok
 }
 
-func (interceptor *AuthInterceptor) check(token string) error {
-	_, err := interceptor.JwtService.Verify(token)
+func (interceptor *AuthInterceptor) check(token string) (string, error) {
+	claims, err := interceptor.jwtService.Verify(token)
 	if err != nil {
-		return status.Errorf(codes.PermissionDenied, "Jwt token invalid")
+		log.Printf("failed jwt verifying = %s", err.Error())
+		return "", status.Errorf(codes.PermissionDenied, "Jwt token invalid")
 	}
-	return nil
+	if !interceptor.containsInRedis(token) {
+		return "", status.Errorf(codes.PermissionDenied, "Unknown jwt token")
+	}
+	return claims.Id, nil
+}
+
+func (interceptor *AuthInterceptor) containsInRedis(token string) bool {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	defer cancel()
+	res, err := interceptor.redis.Get(ctx, token).Result()
+	if err != nil || err == redis.Nil {
+		log.Printf("error while receiving redis key by value = %s", err.Error())
+		return false
+	}
+	if res == "" {
+		log.Printf("empty user id in redis with jwt = %s", token)
+		return false
+	}
+	return true
 }

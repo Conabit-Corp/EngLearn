@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "proto/conabit/englearn/common/session.proto";
-import "proto/conabit/englearn/collection/word_service.proto";
+import "proto/conabit/englearn/collection/collection_models.proto";
 
 package conabit.englearn.dashboard;
 
