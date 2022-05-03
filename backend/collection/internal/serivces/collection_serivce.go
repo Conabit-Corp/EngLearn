@@ -25,41 +25,13 @@ func NewWordCollectionService(collectionRepo *repos.MongoWordCollectionRepo) *Wo
 func (service *WordCollectionSerivce) CreateWordCollection(
 	ctx context.Context,
 	req *collectionGen.CreateWordCollectionRequest) (*collectionGen.CreateWordCollectionResponse, error) {
-	usrId, err := userIdFromCtx(ctx)
+	userId, err := userIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
-	pairIds := []primitive.ObjectID{}
-	for _, pairF := range req.WordCollection.Words {
-		id1, err := service.saveWord(ctx, pairF.Word_1)
-		if err != nil {
-			return nil, status.Errorf(codes.Internal, err.Error())
-		}
-		id2, err := service.saveWord(ctx, pairF.Word_2)
-		if err != nil {
-			return nil, status.Errorf(codes.Internal, err.Error())
-		}
-		pairId, err := service.collectionRepo.
-			SaveWordPair(ctx, &models.WordPair{
-				Word1Id: id1,
-				Word2Id: id2,
-			})
-		if err != nil {
-			return nil, status.Errorf(codes.Internal, err.Error())
-		}
-		pairIds = append(pairIds, pairId)
-	}
-	collection := &models.WordCollection{
-		OwnerId:     usrId,
-		Name:        req.WordCollection.Name,
-		Description: req.WordCollection.Description,
-		WordPairs:   pairIds,
-	}
-	collectionId, err := service.collectionRepo.
-		SaveCollection(ctx, collection)
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, err.Error())
-	}
+	collection := models.WordCollectionFromProto(req.WordCollection)
+	collection.OwnerId = userId
+	collectionId, err := service.collectionRepo.SaveCollection(ctx, collection)
 	return &collectionGen.CreateWordCollectionResponse{
 		CollectionId: collectionId.Hex(),
 	}, nil
@@ -68,11 +40,11 @@ func (service *WordCollectionSerivce) CreateWordCollection(
 func (service *WordCollectionSerivce) GetUserWordCollections(
 	ctx context.Context,
 	req *collectionGen.GetUserCollectionsRequest) (*collectionGen.GetUserCollectionsResponse, error) {
-	usrId, err := userIdFromCtx(ctx)
+	userId, err := userIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
-	collections, err := service.collectionRepo.GetCollectionNamesAndIdsByUserId(ctx, usrId)
+	collections, err := service.collectionRepo.GetCollectionNamesAndIdsByUserId(ctx, userId)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -93,7 +65,24 @@ func (service *WordCollectionSerivce) GetUserWordCollections(
 func (service *WordCollectionSerivce) GetWordCollection(
 	ctx context.Context,
 	req *collectionGen.GetWordCollectionRequest) (*collectionGen.GetWordCollectionResponse, error) {
-	return nil, nil
+	if req.CollectionId == "" {
+		return nil, status.Errorf(codes.InvalidArgument, "Collection id empty")
+	}
+	userId, err := userIdFromCtx(ctx)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "invalid collection id format")
+	}
+	collection, err := service.collectionRepo.GetUserCollectionById(ctx, userId, collectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	return &collectionGen.GetWordCollectionResponse{
+		Collection: models.WordCollectionToProto(collection),
+	}, nil
 }
 
 func (service *WordCollectionSerivce) CreateGroupWordCollection(
@@ -117,7 +106,22 @@ func (service *WordCollectionSerivce) DeleteWordCollection(
 func (service *WordCollectionSerivce) AddWordToCollection(
 	ctx context.Context,
 	req *collectionGen.AddWordToCollectionRequest) (*collectionGen.AddWordToCollectionResponse, error) {
-	return nil, nil
+	userId, err := userIdFromCtx(ctx)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
+	}
+	pair := models.WordPairFromProto(req.WordPair)
+	id, err := service.collectionRepo.SaveWordPair(ctx, userId, collectionId, pair)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	return &collectionGen.AddWordToCollectionResponse{
+		WordPairId: id.Hex(),
+	}, nil
 }
 
 func (service *WordCollectionSerivce) RemoveWordFromCollection(
@@ -130,20 +134,6 @@ func (service *WordCollectionSerivce) EditWordFromCollection(
 	ctx context.Context,
 	req *collectionGen.EditWordFromCollectionRequest) (*collectionGen.EditWordFromCollectionResponse, error) {
 	return nil, nil
-}
-
-func (service *WordCollectionSerivce) saveWord(
-	ctx context.Context,
-	word *collectionGen.Word) (primitive.ObjectID, error) {
-	id, err := service.collectionRepo.
-		SaveWord(ctx, &models.Word{
-			CountryCode: word.CountryCode,
-			Value:       word.Value,
-		})
-	if err != nil {
-		return primitive.NilObjectID, err
-	}
-	return id, err
 }
 
 func userIdFromCtx(ctx context.Context) (primitive.ObjectID, error) {

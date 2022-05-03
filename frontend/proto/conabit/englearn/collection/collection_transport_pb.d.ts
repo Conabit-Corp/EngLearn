@@ -283,6 +283,9 @@ export class AddWordToCollectionRequest extends jspb.Message {
   getSession(): proto_conabit_englearn_common_session_pb.Session | undefined;
   setSession(value?: proto_conabit_englearn_common_session_pb.Session): void;
 
+  getCollectionId(): string;
+  setCollectionId(value: string): void;
+
   hasWordPair(): boolean;
   clearWordPair(): void;
   getWordPair(): proto_conabit_englearn_collection_collection_models_pb.WordPair | undefined;
@@ -301,6 +304,7 @@ export class AddWordToCollectionRequest extends jspb.Message {
 export namespace AddWordToCollectionRequest {
   export type AsObject = {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
+    collectionId: string,
     wordPair?: proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject,
   }
 }

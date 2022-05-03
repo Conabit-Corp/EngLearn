@@ -2318,6 +2318,7 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.toObject 
 proto.conabit.englearn.collection.AddWordToCollectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
+    collectionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     wordPair: (f = msg.getWordPair()) && proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject(includeInstance, f)
   };
 
@@ -2361,6 +2362,10 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.deserializeBinaryFr
       msg.setSession(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionId(value);
+      break;
+    case 3:
       var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
       reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
       msg.setWordPair(value);
@@ -2402,10 +2407,17 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.serializeBinaryToWr
       proto_conabit_englearn_common_session_pb.Session.serializeBinaryToWriter
     );
   }
+  f = message.getCollectionId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getWordPair();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
     );
@@ -2451,12 +2463,30 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.hasSessio
 
 
 /**
- * optional WordPair word_pair = 2;
+ * optional string collection_id = 2;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.getCollectionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.AddWordToCollectionRequest} returns this
+ */
+proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.setCollectionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional WordPair word_pair = 3;
  * @return {?proto.conabit.englearn.collection.WordPair}
  */
 proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.getWordPair = function() {
   return /** @type{?proto.conabit.englearn.collection.WordPair} */ (
-    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 2));
+    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 3));
 };
 
 
@@ -2465,7 +2495,7 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.getWordPa
  * @return {!proto.conabit.englearn.collection.AddWordToCollectionRequest} returns this
 */
 proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.setWordPair = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -2483,7 +2513,7 @@ proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.clearWord
  * @return {boolean}
  */
 proto.conabit.englearn.collection.AddWordToCollectionRequest.prototype.hasWordPair = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

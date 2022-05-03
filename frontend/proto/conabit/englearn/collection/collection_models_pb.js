@@ -639,7 +639,6 @@ proto.conabit.englearn.collection.Word.prototype.toObject = function(opt_include
  */
 proto.conabit.englearn.collection.Word.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     countryCode: jspb.Message.getFieldWithDefault(msg, 2, ""),
     value: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -678,10 +677,6 @@ proto.conabit.englearn.collection.Word.deserializeBinaryFromReader = function(ms
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setCountryCode(value);
@@ -719,13 +714,6 @@ proto.conabit.englearn.collection.Word.prototype.serializeBinary = function() {
  */
 proto.conabit.englearn.collection.Word.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getCountryCode();
   if (f.length > 0) {
     writer.writeString(
@@ -740,24 +728,6 @@ proto.conabit.englearn.collection.Word.serializeBinaryToWriter = function(messag
       f
     );
   }
-};
-
-
-/**
- * optional string id = 1;
- * @return {string}
- */
-proto.conabit.englearn.collection.Word.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.conabit.englearn.collection.Word} returns this
- */
-proto.conabit.englearn.collection.Word.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

@@ -18,7 +18,6 @@ message WordPair{
 }
 
 message Word{
-    string id = 1;
     string country_code = 2;
     string value = 3;
 }

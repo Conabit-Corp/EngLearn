@@ -70,9 +70,6 @@ export namespace WordPair {
 }
 
 export class Word extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   getCountryCode(): string;
   setCountryCode(value: string): void;
 
@@ -91,7 +88,6 @@ export class Word extends jspb.Message {
 
 export namespace Word {
   export type AsObject = {
-    id: string,
     countryCode: string,
     value: string,
   }
