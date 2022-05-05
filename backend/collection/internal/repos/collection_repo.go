@@ -6,7 +6,6 @@ import (
 	"log"
 
 	"github.com/Conabit-Corp/EngLearn/backend/collection/pkg/models"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -18,10 +17,10 @@ type MongoWordCollectionRepo struct {
 }
 
 func NewMongoWordCollectionRepo(mongo *mongo.Client) *MongoWordCollectionRepo {
-	collection := mongo.Database("collection")
+	db := mongo.Database("collection")
 	return &MongoWordCollectionRepo{
 		mongo:           mongo,
-		wordCollections: collection.Collection("wordCollections"),
+		wordCollections: db.Collection("wordCollections"),
 	}
 }
 
@@ -71,8 +70,8 @@ func (repo *MongoWordCollectionRepo) SaveWordPair(
 	pair.ID = primitive.NewObjectID()
 	_, err := repo.wordCollections.
 		UpdateOne(ctx,
-			bson.M{"_id": collectionId, "ownerId": userId},
-			bson.M{"$push": bson.M{"wordPairs": pair}})
+			userCollectionFilter(userId, collectionId),
+			pushPairToCollectionQuery(pair))
 	if err != nil {
 		msg := "saving word pair failed"
 		log.Printf("%s = %s", msg, err.Error())
@@ -85,7 +84,7 @@ func (repo *MongoWordCollectionRepo) GetCollectionNamesAndIdsByUserId(
 	ctx context.Context,
 	userId primitive.ObjectID) (*[]models.WordCollection, error) {
 	opts := options.Find().
-		SetProjection(bson.M{"_id": 1, "name": 1})
+		SetProjection(collectionIdAndNameProjection())
 	return repo.getCollectionsByUserIdWithOptions(ctx, userId, opts)
 }
 
@@ -99,7 +98,7 @@ func (repo *MongoWordCollectionRepo) GetUserCollectionById(
 	}
 	var collection models.WordCollection
 	err := repo.wordCollections.
-		FindOne(ctx, bson.M{"_id": collectionId, "ownerId": userId}).
+		FindOne(ctx, userCollectionFilter(userId, collectionId)).
 		Decode(&collection)
 	if err != nil {
 		log.Printf("error while getting word collections = %s", err.Error())
@@ -117,7 +116,7 @@ func (repo *MongoWordCollectionRepo) DeleteWordCollection(
 		return nil, err
 	}
 	_, err = repo.wordCollections.
-		DeleteOne(ctx, bson.M{"_id": collectionId, "ownerId": userId})
+		DeleteOne(ctx, userCollectionFilter(userId, collectionId))
 	if err != nil {
 		msg := "error while deleting word collection"
 		log.Printf("%s = %s", msg, err.Error())
@@ -156,12 +155,7 @@ func (repo *MongoWordCollectionRepo) userCollectionWordPairExists(
 	collectionId primitive.ObjectID,
 	wordPairId primitive.ObjectID) bool {
 	count, err := repo.wordCollections.
-		CountDocuments(ctx, bson.M{
-			"_id":     collectionId,
-			"ownerId": userId,
-			"wordPairs": bson.M{
-				"_id": wordPairId,
-			}})
+		CountDocuments(ctx, userCollectionWordPairFilter(userId, collectionId, wordPairId))
 	if err != nil {
 		log.Printf("error while getting word pair info = %s", err.Error())
 		return false
@@ -185,11 +179,7 @@ func (repo *MongoWordCollectionRepo) userCollectionExists(ctx context.Context,
 	userId primitive.ObjectID,
 	collectionId primitive.ObjectID) bool {
 	count, err := repo.wordCollections.
-		CountDocuments(ctx,
-			bson.M{
-				"_id":     collectionId,
-				"ownerId": userId,
-			})
+		CountDocuments(ctx, userCollectionFilter(userId, collectionId))
 	if err != nil {
 		log.Printf("error while getting word pair info = %s", err.Error())
 		return false
@@ -214,18 +204,9 @@ func (repo *MongoWordCollectionRepo) getUserCollectionWordPair(
 	collectionId primitive.ObjectID,
 	wordPairId primitive.ObjectID) (*models.WordPair, error) {
 	var collection models.WordCollection
-	opts := options.FindOne().SetProjection(bson.M{"wordPairs": 1})
+	opts := options.FindOne().SetProjection(wordPairsProjection())
 	err := repo.wordCollections.
-		FindOne(ctx,
-			bson.M{
-				"_id":     collectionId,
-				"ownerId": userId,
-				"wordPairs": bson.M{
-					"$elemMatch": bson.M{
-						"_id": wordPairId,
-					},
-				},
-			}, opts).
+		FindOne(ctx, getUserCollectionWordPairQuery(userId, collectionId, wordPairId), opts).
 		Decode(&collection)
 	if err != nil {
 		return nil, err
@@ -246,17 +227,8 @@ func (repo *MongoWordCollectionRepo) deleteUserCollectionWordPair(
 	wordPairId primitive.ObjectID) error {
 	_, err := repo.wordCollections.
 		UpdateOne(ctx,
-			bson.M{
-				"_id":     collectionId,
-				"ownerId": userId,
-			},
-			bson.M{
-				"$pull": bson.M{
-					"wordPairs": bson.M{
-						"_id": wordPairId,
-					},
-				},
-			},
+			userCollectionFilter(userId, collectionId),
+			pullWordPairFromCollectionQuery(wordPairId),
 		)
 	return err
 }
@@ -267,7 +239,7 @@ func (repo *MongoWordCollectionRepo) getCollectionsByUserIdWithOptions(
 	opts *options.FindOptions) (*[]models.WordCollection, error) {
 	var collections []models.WordCollection
 	cursor, err := repo.wordCollections.
-		Find(ctx, bson.M{"ownerId": userId}, opts)
+		Find(ctx, userCollectionsFilter(userId), opts)
 	if err != nil {
 		msg := "failed find collections"
 		log.Printf("%s = %s", msg, err.Error())
