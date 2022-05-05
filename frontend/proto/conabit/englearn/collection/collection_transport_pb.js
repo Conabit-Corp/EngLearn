@@ -2680,7 +2680,8 @@ proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.toOb
 proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
-    wordPairId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    collectionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    wordPairId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -2724,6 +2725,10 @@ proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.deserializeBin
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
       msg.setWordPairId(value);
       break;
     default:
@@ -2763,10 +2768,17 @@ proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.serializeBinar
       proto_conabit_englearn_common_session_pb.Session.serializeBinaryToWriter
     );
   }
-  f = message.getWordPairId();
+  f = message.getCollectionId();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getWordPairId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -2811,10 +2823,10 @@ proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.hasS
 
 
 /**
- * optional string word_pair_id = 2;
+ * optional string collection_id = 2;
  * @return {string}
  */
-proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.getWordPairId = function() {
+proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.getCollectionId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -2823,8 +2835,26 @@ proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.getW
  * @param {string} value
  * @return {!proto.conabit.englearn.collection.RemoveWordFromCollectionRequest} returns this
  */
-proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.setWordPairId = function(value) {
+proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.setCollectionId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string word_pair_id = 3;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.getWordPairId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.RemoveWordFromCollectionRequest} returns this
+ */
+proto.conabit.englearn.collection.RemoveWordFromCollectionRequest.prototype.setWordPairId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -3012,6 +3042,7 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.toObje
 proto.conabit.englearn.collection.EditWordFromCollectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
+    collectionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     wordPair: (f = msg.getWordPair()) && proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject(includeInstance, f)
   };
 
@@ -3055,6 +3086,10 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.deserializeBinar
       msg.setSession(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionId(value);
+      break;
+    case 3:
       var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
       reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
       msg.setWordPair(value);
@@ -3096,10 +3131,17 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.serializeBinaryT
       proto_conabit_englearn_common_session_pb.Session.serializeBinaryToWriter
     );
   }
+  f = message.getCollectionId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getWordPair();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
     );
@@ -3145,12 +3187,30 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.hasSes
 
 
 /**
- * optional WordPair word_pair = 2;
+ * optional string collection_id = 2;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.getCollectionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.EditWordFromCollectionRequest} returns this
+ */
+proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.setCollectionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional WordPair word_pair = 3;
  * @return {?proto.conabit.englearn.collection.WordPair}
  */
 proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.getWordPair = function() {
   return /** @type{?proto.conabit.englearn.collection.WordPair} */ (
-    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 2));
+    jspb.Message.getWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 3));
 };
 
 
@@ -3159,7 +3219,7 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.getWor
  * @return {!proto.conabit.englearn.collection.EditWordFromCollectionRequest} returns this
 */
 proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.setWordPair = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -3177,7 +3237,7 @@ proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.clearW
  * @return {boolean}
  */
 proto.conabit.englearn.collection.EditWordFromCollectionRequest.prototype.hasWordPair = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -3213,7 +3273,7 @@ proto.conabit.englearn.collection.EditWordFromCollectionResponse.prototype.toObj
  */
 proto.conabit.englearn.collection.EditWordFromCollectionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -3250,6 +3310,10 @@ proto.conabit.englearn.collection.EditWordFromCollectionResponse.deserializeBina
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSuccess(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3279,6 +3343,31 @@ proto.conabit.englearn.collection.EditWordFromCollectionResponse.prototype.seria
  */
 proto.conabit.englearn.collection.EditWordFromCollectionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSuccess();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool success = 1;
+ * @return {boolean}
+ */
+proto.conabit.englearn.collection.EditWordFromCollectionResponse.prototype.getSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.conabit.englearn.collection.EditWordFromCollectionResponse} returns this
+ */
+proto.conabit.englearn.collection.EditWordFromCollectionResponse.prototype.setSuccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 

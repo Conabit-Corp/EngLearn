@@ -71,7 +71,8 @@ message AddWordToCollectionResponse{
 
 message RemoveWordFromCollectionRequest{
     conabit.englearn.common.Session session = 1;
-    string word_pair_id = 2;
+    string collection_id = 2;
+    string word_pair_id = 3;
 }
 
 message RemoveWordFromCollectionResponse{
@@ -80,9 +81,11 @@ message RemoveWordFromCollectionResponse{
 
 message EditWordFromCollectionRequest{
     conabit.englearn.common.Session session = 1;
-    WordPair word_pair = 2;
+    string collection_id = 2;
+    WordPair word_pair = 3;
 }
 
 message EditWordFromCollectionResponse{
+    bool success = 1;
     // bool success = 1; ???
 }

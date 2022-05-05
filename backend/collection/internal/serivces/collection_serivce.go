@@ -100,7 +100,21 @@ func (service *WordCollectionSerivce) GetGroupWordCollections(
 func (service *WordCollectionSerivce) DeleteWordCollection(
 	ctx context.Context,
 	req *collectionGen.DeleteWordCollectionRequest) (*collectionGen.DeleteWordCollectionResponse, error) {
-	return nil, nil
+	userId, err := userIdFromCtx(ctx)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
+	}
+	collection, err := service.collectionRepo.DeleteWordCollection(ctx, userId, collectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	return &collectionGen.DeleteWordCollectionResponse{
+		Collection: models.WordCollectionToProto(collection),
+	}, nil
 }
 
 func (service *WordCollectionSerivce) AddWordToCollection(
@@ -127,13 +141,47 @@ func (service *WordCollectionSerivce) AddWordToCollection(
 func (service *WordCollectionSerivce) RemoveWordFromCollection(
 	ctx context.Context,
 	req *collectionGen.RemoveWordFromCollectionRequest) (*collectionGen.RemoveWordFromCollectionResponse, error) {
-	return nil, nil
+	userId, err := userIdFromCtx(ctx)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
+	}
+	wordPairId, err := primitive.ObjectIDFromHex(req.WordPairId)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid word pair id format")
+	}
+	wordPair, err := service.collectionRepo.
+		DeleteWordPairFromCollection(ctx, userId, collectionId, wordPairId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	return &collectionGen.RemoveWordFromCollectionResponse{
+		WordPair: models.WordPairToProto(wordPair),
+	}, nil
 }
 
 func (service *WordCollectionSerivce) EditWordFromCollection(
 	ctx context.Context,
 	req *collectionGen.EditWordFromCollectionRequest) (*collectionGen.EditWordFromCollectionResponse, error) {
-	return nil, nil
+	userId, err := userIdFromCtx(ctx)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
+	}
+	wordPair := models.WordPairFromProto(req.WordPair)
+	_, err = service.collectionRepo.UpdateWordPair(ctx, userId, collectionId, wordPair)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal,err.Error())
+	}
+	return &collectionGen.EditWordFromCollectionResponse{
+		Success: true,
+	}, nil
 }
 
 func userIdFromCtx(ctx context.Context) (primitive.ObjectID, error) {

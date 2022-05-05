@@ -335,6 +335,9 @@ export class RemoveWordFromCollectionRequest extends jspb.Message {
   getSession(): proto_conabit_englearn_common_session_pb.Session | undefined;
   setSession(value?: proto_conabit_englearn_common_session_pb.Session): void;
 
+  getCollectionId(): string;
+  setCollectionId(value: string): void;
+
   getWordPairId(): string;
   setWordPairId(value: string): void;
 
@@ -351,6 +354,7 @@ export class RemoveWordFromCollectionRequest extends jspb.Message {
 export namespace RemoveWordFromCollectionRequest {
   export type AsObject = {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
+    collectionId: string,
     wordPairId: string,
   }
 }
@@ -383,6 +387,9 @@ export class EditWordFromCollectionRequest extends jspb.Message {
   getSession(): proto_conabit_englearn_common_session_pb.Session | undefined;
   setSession(value?: proto_conabit_englearn_common_session_pb.Session): void;
 
+  getCollectionId(): string;
+  setCollectionId(value: string): void;
+
   hasWordPair(): boolean;
   clearWordPair(): void;
   getWordPair(): proto_conabit_englearn_collection_collection_models_pb.WordPair | undefined;
@@ -401,11 +408,15 @@ export class EditWordFromCollectionRequest extends jspb.Message {
 export namespace EditWordFromCollectionRequest {
   export type AsObject = {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
+    collectionId: string,
     wordPair?: proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject,
   }
 }
 
 export class EditWordFromCollectionResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EditWordFromCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: EditWordFromCollectionResponse): EditWordFromCollectionResponse.AsObject;
@@ -418,6 +429,7 @@ export class EditWordFromCollectionResponse extends jspb.Message {
 
 export namespace EditWordFromCollectionResponse {
   export type AsObject = {
+    success: boolean,
   }
 }
 

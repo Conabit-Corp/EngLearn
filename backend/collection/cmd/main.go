@@ -15,9 +15,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-var proceduresWithoutAuth = map[string]bool{
-	"/conabit.englearn.collection.WordCollectionService/DeleteWordCollection": true,
-}
+var proceduresWithoutAuth = map[string]bool{}
 
 func main() {
 	log.Println("starting collection service")
