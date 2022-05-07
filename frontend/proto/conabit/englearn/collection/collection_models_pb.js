@@ -131,7 +131,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.conabit.englearn.collection.WordCollection.repeatedFields_ = [4];
+proto.conabit.englearn.collection.WordCollection.repeatedFields_ = [6];
 
 
 
@@ -167,6 +167,8 @@ proto.conabit.englearn.collection.WordCollection.toObject = function(includeInst
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    countryCode1: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    countryCode2: jspb.Message.getFieldWithDefault(msg, 5, ""),
     wordsList: jspb.Message.toObjectList(msg.getWordsList(),
     proto.conabit.englearn.collection.WordPair.toObject, includeInstance)
   };
@@ -218,6 +220,14 @@ proto.conabit.englearn.collection.WordCollection.deserializeBinaryFromReader = f
       msg.setDescription(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCountryCode1(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCountryCode2(value);
+      break;
+    case 6:
       var value = new proto.conabit.englearn.collection.WordPair;
       reader.readMessage(value,proto.conabit.englearn.collection.WordPair.deserializeBinaryFromReader);
       msg.addWords(value);
@@ -272,10 +282,24 @@ proto.conabit.englearn.collection.WordCollection.serializeBinaryToWriter = funct
       f
     );
   }
+  f = message.getCountryCode1();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getCountryCode2();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
   f = message.getWordsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      4,
+      6,
       f,
       proto.conabit.englearn.collection.WordPair.serializeBinaryToWriter
     );
@@ -338,12 +362,48 @@ proto.conabit.englearn.collection.WordCollection.prototype.setDescription = func
 
 
 /**
- * repeated WordPair words = 4;
+ * optional string country_code_1 = 4;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.WordCollection.prototype.getCountryCode1 = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.WordCollection} returns this
+ */
+proto.conabit.englearn.collection.WordCollection.prototype.setCountryCode1 = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string country_code_2 = 5;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.WordCollection.prototype.getCountryCode2 = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.WordCollection} returns this
+ */
+proto.conabit.englearn.collection.WordCollection.prototype.setCountryCode2 = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * repeated WordPair words = 6;
  * @return {!Array<!proto.conabit.englearn.collection.WordPair>}
  */
 proto.conabit.englearn.collection.WordCollection.prototype.getWordsList = function() {
   return /** @type{!Array<!proto.conabit.englearn.collection.WordPair>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.collection.WordPair, 4));
+    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.collection.WordPair, 6));
 };
 
 
@@ -352,7 +412,7 @@ proto.conabit.englearn.collection.WordCollection.prototype.getWordsList = functi
  * @return {!proto.conabit.englearn.collection.WordCollection} returns this
 */
 proto.conabit.englearn.collection.WordCollection.prototype.setWordsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
 
@@ -362,7 +422,7 @@ proto.conabit.englearn.collection.WordCollection.prototype.setWordsList = functi
  * @return {!proto.conabit.englearn.collection.WordPair}
  */
 proto.conabit.englearn.collection.WordCollection.prototype.addWords = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.conabit.englearn.collection.WordPair, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.conabit.englearn.collection.WordPair, opt_index);
 };
 
 

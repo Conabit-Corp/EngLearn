@@ -6,6 +6,7 @@ import (
 
 	"github.com/Conabit-Corp/EngLearn/backend/collection/internal/repos"
 	"github.com/Conabit-Corp/EngLearn/backend/collection/pkg/models"
+	commonServices "github.com/Conabit-Corp/EngLearn/backend/common/pkg/services"
 	collectionGen "github.com/Conabit-Corp/EngLearn/proto/conabit/englearn/collection"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"google.golang.org/grpc/codes"
@@ -22,12 +23,30 @@ func NewWordCollectionService(collectionRepo *repos.MongoWordCollectionRepo) *Wo
 	}
 }
 
+//todo
+func (service *WordCollectionSerivce) CreateGroupWordCollection(
+	ctx context.Context,
+	req *collectionGen.CreateGroupCollectionRequest) (*collectionGen.CreateWordCollectionResponse, error) {
+	return nil, nil
+}
+
+//todo
+func (service *WordCollectionSerivce) GetGroupWordCollections(
+	ctx context.Context,
+	req *collectionGen.GetGroupCollectionsRequest) (*collectionGen.GetGroupCollectionsResponse, error) {
+	return nil, nil
+}
+
 func (service *WordCollectionSerivce) CreateWordCollection(
 	ctx context.Context,
 	req *collectionGen.CreateWordCollectionRequest) (*collectionGen.CreateWordCollectionResponse, error) {
 	userId, err := userIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	err = service.validateRequestCollection(req.WordCollection)
+	if err != nil {
+		return nil, err
 	}
 	collection := models.WordCollectionFromProto(req.WordCollection)
 	collection.OwnerId = userId
@@ -85,18 +104,6 @@ func (service *WordCollectionSerivce) GetWordCollection(
 	}, nil
 }
 
-func (service *WordCollectionSerivce) CreateGroupWordCollection(
-	ctx context.Context,
-	req *collectionGen.CreateGroupCollectionRequest) (*collectionGen.CreateWordCollectionResponse, error) {
-	return nil, nil
-}
-
-func (service *WordCollectionSerivce) GetGroupWordCollections(
-	ctx context.Context,
-	req *collectionGen.GetGroupCollectionsRequest) (*collectionGen.GetGroupCollectionsResponse, error) {
-	return nil, nil
-}
-
 func (service *WordCollectionSerivce) DeleteWordCollection(
 	ctx context.Context,
 	req *collectionGen.DeleteWordCollectionRequest) (*collectionGen.DeleteWordCollectionResponse, error) {
@@ -127,6 +134,15 @@ func (service *WordCollectionSerivce) AddWordToCollection(
 	collectionId, err := primitive.ObjectIDFromHex(req.CollectionId)
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
+	}
+	collection, err := service.collectionRepo.GetUserCollectionCountryCodes(ctx, userId, collectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	err = service.validateRequestWordPair(
+		collection.CountryCode1, collection.CountryCode2, req.WordPair)
+	if err != nil {
+		return nil, err
 	}
 	pair := models.WordPairFromProto(req.WordPair)
 	id, err := service.collectionRepo.SaveWordPair(ctx, userId, collectionId, pair)
@@ -174,14 +190,51 @@ func (service *WordCollectionSerivce) EditWordFromCollection(
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
 	}
+	collection, err := service.collectionRepo.GetUserCollectionCountryCodes(ctx, userId, collectionId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
+	err = service.validateRequestWordPair(
+		collection.CountryCode1, collection.CountryCode2, req.WordPair)
+	if err != nil {
+		return nil, err
+	}
 	wordPair := models.WordPairFromProto(req.WordPair)
 	_, err = service.collectionRepo.UpdateWordPair(ctx, userId, collectionId, wordPair)
 	if err != nil {
-		return nil, status.Errorf(codes.Internal,err.Error())
+		return nil, status.Errorf(codes.Internal, err.Error())
 	}
 	return &collectionGen.EditWordFromCollectionResponse{
 		Success: true,
 	}, nil
+}
+
+func (service *WordCollectionSerivce) validateRequestCollection(collection *collectionGen.WordCollection) error {
+	if collection.CountryCode_1 == collection.CountryCode_2 {
+		return status.Errorf(codes.InvalidArgument, "a collection have same country codes")
+	}
+	for _, pair := range collection.Words {
+		err := service.validateRequestWordPair(collection.CountryCode_1, collection.CountryCode_2, pair)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (service *WordCollectionSerivce) validateRequestWordPair(
+	code1 string, code2 string, pair *collectionGen.WordPair) error {
+	if !(code1 == pair.Word_1.CountryCode && code2 == pair.Word_2.CountryCode ||
+		code1 == pair.Word_2.CountryCode && code2 == pair.Word_1.CountryCode) {
+		return status.Errorf(codes.InvalidArgument,
+			"one of word pairs have country codes not the same as the collection")
+	}
+	if !commonServices.IsSingleWord(pair.Word_1.Value) ||
+		!commonServices.IsSingleWord(pair.Word_2.Value) {
+		return status.Errorf(codes.InvalidArgument,
+			"one of word pairs contains invalid value, must have single word")
+	}
+	return nil
 }
 
 func userIdFromCtx(ctx context.Context) (primitive.ObjectID, error) {

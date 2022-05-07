@@ -230,6 +230,8 @@ interface CollectionOverview {
 
 function newWordCollection(): WordCollection {
     const words = new WordCollection()
+    words.setCountryCode1("en")
+    words.setCountryCode2("ru")
     words.setName("duuuuude")
     words.setDescription("yes, its what?")
     for (let idx = 0; idx < 1; idx++) {

@@ -18,10 +18,11 @@ service ExerciseService{
 
 message Exercise{
     string id = 1;
-    google.protobuf.Timestamp started_at = 2;
-    google.protobuf.Timestamp finished_at = 3;
-    repeated Task solved_tasks = 4;
-    repeated Task failed_tasks = 5;
+    string collection_id = 2;
+    google.protobuf.Timestamp started_at = 3;
+    google.protobuf.Timestamp finished_at = 4;
+    repeated Task solved_tasks = 5;
+    repeated Task failed_tasks = 6;
 }
 
 message StartNewExerciseRequest{
@@ -33,7 +34,7 @@ message StartNewExerciseRequest{
     }
     GenerationType gen_type = 2;
     string collection_id = 3;
-    repeated conabit.englearn.collection.WordPair words = 4;   
+    repeated string word_ids = 4;   
 }
 
 message StartNewExerciseResponse{    
@@ -44,7 +45,6 @@ message FinishExerciseRequest{
     conabit.englearn.common.Session session = 1;
     repeated Task tasks = 2;
 }
-
 
 message SolveTaskRequest{
     conabit.englearn.common.Session session = 1;

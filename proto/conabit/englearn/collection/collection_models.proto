@@ -8,7 +8,9 @@ message WordCollection{
     string id = 1;
     string name = 2;
     string description = 3;
-    repeated WordPair words = 4;
+    string country_code_1 = 4;
+    string country_code_2 = 5;
+    repeated WordPair words = 6;
 }
 
 message WordPair{

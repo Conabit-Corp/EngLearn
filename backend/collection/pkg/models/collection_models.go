@@ -6,11 +6,14 @@ import (
 )
 
 type WordCollection struct {
-	ID          primitive.ObjectID `bson:"_id,omitempty"`
-	OwnerId     primitive.ObjectID `bson:"ownerId,omitempty"`
-	Name        string             `bson:"name,omitempty"`
-	Description string             `bson:"description,omitempty"`
-	WordPairs   []WordPair         `bson:"wordPairs,omitempty"`
+	ID           primitive.ObjectID `bson:"_id,omitempty"`
+	OwnerId      primitive.ObjectID `bson:"ownerId,omitempty"`
+	GroupId      primitive.ObjectID `bson:"groupId,omitempty"`
+	CountryCode1 string             `bson:"countryCode1,omitempty"`
+	CountryCode2 string             `bson:"countryCode2,omitempty"`
+	Name         string             `bson:"name,omitempty"`
+	Description  string             `bson:"description,omitempty"`
+	WordPairs    []WordPair         `bson:"wordPairs,omitempty"`
 }
 
 type WordPair struct {
@@ -34,10 +37,12 @@ func WordCollectionFromProto(collection *collectionGen.WordCollection) *WordColl
 		pairs = append(pairs, *WordPairFromProto(pair))
 	}
 	r := &WordCollection{
-		ID:          id,
-		Name:        collection.Name,
-		Description: collection.Description,
-		WordPairs:   pairs,
+		ID:           id,
+		Name:         collection.Name,
+		Description:  collection.Description,
+		CountryCode1: collection.CountryCode_1,
+		CountryCode2: collection.CountryCode_2,
+		WordPairs:    pairs,
 	}
 	return r
 }

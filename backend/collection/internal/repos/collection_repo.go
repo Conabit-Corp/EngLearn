@@ -80,6 +80,23 @@ func (repo *MongoWordCollectionRepo) SaveWordPair(
 	return pair.ID, nil
 }
 
+func (repo *MongoWordCollectionRepo) GetUserCollectionCountryCodes(
+	ctx context.Context,
+	userId primitive.ObjectID,
+	collectionId primitive.ObjectID) (*models.WordCollection, error) {
+	var collection models.WordCollection
+	opts := options.FindOne().SetProjection(collectionCountryCodesProjection())
+	err := repo.wordCollections.
+		FindOne(ctx, userCollectionFilter(userId, collectionId), opts).
+		Decode(&collection)
+	if err != nil {
+		msg := "failed find word collection"
+		log.Printf("%s = %s", msg, err.Error())
+		return nil, fmt.Errorf(msg)
+	}
+	return &collection, nil
+}
+
 func (repo *MongoWordCollectionRepo) GetCollectionNamesAndIdsByUserId(
 	ctx context.Context,
 	userId primitive.ObjectID) (*[]models.WordCollection, error) {
@@ -164,11 +181,10 @@ func (repo *MongoWordCollectionRepo) userCollectionWordPairExists(
 		return false
 	}
 	if count > 1 {
-		log.Printf(
-			`duplicate word pairs found, 
-				collection id = %d,
-				word pair id = %d,
-				user id = %d`,
+		log.Printf(`duplicate word pairs found, 
+						collection id = %d,
+						word pair id = %d,
+						user id = %d`,
 			collectionId, userId, wordPairId)
 		return false
 	}
@@ -188,10 +204,9 @@ func (repo *MongoWordCollectionRepo) userCollectionExists(ctx context.Context,
 		return false
 	}
 	if count > 1 {
-		log.Printf(
-			`duplicate word collections found,
-				collection id = %d,
-				user id = %d`,
+		log.Printf(`duplicate word collections found,
+						collection id = %d,
+						user id = %d`,
 			collectionId, userId)
 		return false
 	}

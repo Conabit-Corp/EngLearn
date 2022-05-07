@@ -13,6 +13,12 @@ export class WordCollection extends jspb.Message {
   getDescription(): string;
   setDescription(value: string): void;
 
+  getCountryCode1(): string;
+  setCountryCode1(value: string): void;
+
+  getCountryCode2(): string;
+  setCountryCode2(value: string): void;
+
   clearWordsList(): void;
   getWordsList(): Array<WordPair>;
   setWordsList(value: Array<WordPair>): void;
@@ -33,6 +39,8 @@ export namespace WordCollection {
     id: string,
     name: string,
     description: string,
+    countryCode1: string,
+    countryCode2: string,
     wordsList: Array<WordPair.AsObject>,
   }
 }

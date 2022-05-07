@@ -10,6 +10,9 @@ export class Exercise extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getCollectionId(): string;
+  setCollectionId(value: string): void;
+
   hasStartedAt(): boolean;
   clearStartedAt(): void;
   getStartedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -43,6 +46,7 @@ export class Exercise extends jspb.Message {
 export namespace Exercise {
   export type AsObject = {
     id: string,
+    collectionId: string,
     startedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     finishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     solvedTasksList: Array<Task.AsObject>,
@@ -62,10 +66,10 @@ export class StartNewExerciseRequest extends jspb.Message {
   getCollectionId(): string;
   setCollectionId(value: string): void;
 
-  clearWordsList(): void;
-  getWordsList(): Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>;
-  setWordsList(value: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair>): void;
-  addWords(value?: proto_conabit_englearn_collection_collection_models_pb.WordPair, index?: number): proto_conabit_englearn_collection_collection_models_pb.WordPair;
+  clearWordIdsList(): void;
+  getWordIdsList(): Array<string>;
+  setWordIdsList(value: Array<string>): void;
+  addWordIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartNewExerciseRequest.AsObject;
@@ -82,7 +86,7 @@ export namespace StartNewExerciseRequest {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
     genType: StartNewExerciseRequest.GenerationTypeMap[keyof StartNewExerciseRequest.GenerationTypeMap],
     collectionId: string,
-    wordsList: Array<proto_conabit_englearn_collection_collection_models_pb.WordPair.AsObject>,
+    wordIdsList: Array<string>,
   }
 
   export interface GenerationTypeMap {

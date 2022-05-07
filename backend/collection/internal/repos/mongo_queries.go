@@ -73,3 +73,10 @@ func collectionIdAndNameProjection() bson.M {
 		"name": 1,
 	}
 }
+
+func collectionCountryCodesProjection() bson.M {
+	return bson.M{
+		"countryCode1": 1,
+		"countryCode2": 1,
+	}
+}

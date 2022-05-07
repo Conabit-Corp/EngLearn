@@ -183,7 +183,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.conabit.englearn.exercise.Exercise.repeatedFields_ = [4,5];
+proto.conabit.englearn.exercise.Exercise.repeatedFields_ = [5,6];
 
 
 
@@ -217,6 +217,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.toObject = function(opt_inclu
 proto.conabit.englearn.exercise.Exercise.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    collectionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     startedAt: (f = msg.getStartedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     finishedAt: (f = msg.getFinishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     solvedTasksList: jspb.Message.toObjectList(msg.getSolvedTasksList(),
@@ -264,21 +265,25 @@ proto.conabit.englearn.exercise.Exercise.deserializeBinaryFromReader = function(
       msg.setId(value);
       break;
     case 2:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setStartedAt(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionId(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setFinishedAt(value);
+      msg.setStartedAt(value);
       break;
     case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setFinishedAt(value);
+      break;
+    case 5:
       var value = new proto.conabit.englearn.exercise.Task;
       reader.readMessage(value,proto.conabit.englearn.exercise.Task.deserializeBinaryFromReader);
       msg.addSolvedTasks(value);
       break;
-    case 5:
+    case 6:
       var value = new proto.conabit.englearn.exercise.Task;
       reader.readMessage(value,proto.conabit.englearn.exercise.Task.deserializeBinaryFromReader);
       msg.addFailedTasks(value);
@@ -319,15 +324,14 @@ proto.conabit.englearn.exercise.Exercise.serializeBinaryToWriter = function(mess
       f
     );
   }
-  f = message.getStartedAt();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getCollectionId();
+  if (f.length > 0) {
+    writer.writeString(
       2,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getFinishedAt();
+  f = message.getStartedAt();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -335,10 +339,18 @@ proto.conabit.englearn.exercise.Exercise.serializeBinaryToWriter = function(mess
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = message.getFinishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
   f = message.getSolvedTasksList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      4,
+      5,
       f,
       proto.conabit.englearn.exercise.Task.serializeBinaryToWriter
     );
@@ -346,7 +358,7 @@ proto.conabit.englearn.exercise.Exercise.serializeBinaryToWriter = function(mess
   f = message.getFailedTasksList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
+      6,
       f,
       proto.conabit.englearn.exercise.Task.serializeBinaryToWriter
     );
@@ -373,12 +385,30 @@ proto.conabit.englearn.exercise.Exercise.prototype.setId = function(value) {
 
 
 /**
- * optional google.protobuf.Timestamp started_at = 2;
+ * optional string collection_id = 2;
+ * @return {string}
+ */
+proto.conabit.englearn.exercise.Exercise.prototype.getCollectionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.exercise.Exercise} returns this
+ */
+proto.conabit.englearn.exercise.Exercise.prototype.setCollectionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp started_at = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.getStartedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
 
 
@@ -387,7 +417,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.getStartedAt = function() {
  * @return {!proto.conabit.englearn.exercise.Exercise} returns this
 */
 proto.conabit.englearn.exercise.Exercise.prototype.setStartedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -405,17 +435,17 @@ proto.conabit.englearn.exercise.Exercise.prototype.clearStartedAt = function() {
  * @return {boolean}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.hasStartedAt = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp finished_at = 3;
+ * optional google.protobuf.Timestamp finished_at = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.getFinishedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
 
 
@@ -424,7 +454,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.getFinishedAt = function() {
  * @return {!proto.conabit.englearn.exercise.Exercise} returns this
 */
 proto.conabit.englearn.exercise.Exercise.prototype.setFinishedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -442,17 +472,17 @@ proto.conabit.englearn.exercise.Exercise.prototype.clearFinishedAt = function() 
  * @return {boolean}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.hasFinishedAt = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * repeated Task solved_tasks = 4;
+ * repeated Task solved_tasks = 5;
  * @return {!Array<!proto.conabit.englearn.exercise.Task>}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.getSolvedTasksList = function() {
   return /** @type{!Array<!proto.conabit.englearn.exercise.Task>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.exercise.Task, 4));
+    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.exercise.Task, 5));
 };
 
 
@@ -461,7 +491,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.getSolvedTasksList = function
  * @return {!proto.conabit.englearn.exercise.Exercise} returns this
 */
 proto.conabit.englearn.exercise.Exercise.prototype.setSolvedTasksList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
 
@@ -471,7 +501,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.setSolvedTasksList = function
  * @return {!proto.conabit.englearn.exercise.Task}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.addSolvedTasks = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.conabit.englearn.exercise.Task, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.conabit.englearn.exercise.Task, opt_index);
 };
 
 
@@ -485,12 +515,12 @@ proto.conabit.englearn.exercise.Exercise.prototype.clearSolvedTasksList = functi
 
 
 /**
- * repeated Task failed_tasks = 5;
+ * repeated Task failed_tasks = 6;
  * @return {!Array<!proto.conabit.englearn.exercise.Task>}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.getFailedTasksList = function() {
   return /** @type{!Array<!proto.conabit.englearn.exercise.Task>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.exercise.Task, 5));
+    jspb.Message.getRepeatedWrapperField(this, proto.conabit.englearn.exercise.Task, 6));
 };
 
 
@@ -499,7 +529,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.getFailedTasksList = function
  * @return {!proto.conabit.englearn.exercise.Exercise} returns this
 */
 proto.conabit.englearn.exercise.Exercise.prototype.setFailedTasksList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
 
@@ -509,7 +539,7 @@ proto.conabit.englearn.exercise.Exercise.prototype.setFailedTasksList = function
  * @return {!proto.conabit.englearn.exercise.Task}
  */
 proto.conabit.englearn.exercise.Exercise.prototype.addFailedTasks = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.conabit.englearn.exercise.Task, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.conabit.englearn.exercise.Task, opt_index);
 };
 
 
@@ -564,8 +594,7 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.toObject = function(incl
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
     genType: jspb.Message.getFieldWithDefault(msg, 2, 0),
     collectionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    wordsList: jspb.Message.toObjectList(msg.getWordsList(),
-    proto_conabit_englearn_collection_collection_models_pb.WordPair.toObject, includeInstance)
+    wordIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -616,9 +645,8 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.deserializeBinaryFromRea
       msg.setCollectionId(value);
       break;
     case 4:
-      var value = new proto_conabit_englearn_collection_collection_models_pb.WordPair;
-      reader.readMessage(value,proto_conabit_englearn_collection_collection_models_pb.WordPair.deserializeBinaryFromReader);
-      msg.addWords(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.addWordIds(value);
       break;
     default:
       reader.skipField();
@@ -671,12 +699,11 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.serializeBinaryToWriter 
       f
     );
   }
-  f = message.getWordsList();
+  f = message.getWordIdsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
+    writer.writeRepeatedString(
       4,
-      f,
-      proto_conabit_englearn_collection_collection_models_pb.WordPair.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -765,31 +792,30 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setCollectionI
 
 
 /**
- * repeated conabit.englearn.collection.WordPair words = 4;
- * @return {!Array<!proto.conabit.englearn.collection.WordPair>}
+ * repeated string word_ids = 4;
+ * @return {!Array<string>}
  */
-proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.getWordsList = function() {
-  return /** @type{!Array<!proto.conabit.englearn.collection.WordPair>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_conabit_englearn_collection_collection_models_pb.WordPair, 4));
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.getWordIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
 /**
- * @param {!Array<!proto.conabit.englearn.collection.WordPair>} value
+ * @param {!Array<string>} value
  * @return {!proto.conabit.englearn.exercise.StartNewExerciseRequest} returns this
-*/
-proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setWordsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+ */
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.setWordIdsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * @param {!proto.conabit.englearn.collection.WordPair=} opt_value
+ * @param {string} value
  * @param {number=} opt_index
- * @return {!proto.conabit.englearn.collection.WordPair}
+ * @return {!proto.conabit.englearn.exercise.StartNewExerciseRequest} returns this
  */
-proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.addWords = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.conabit.englearn.collection.WordPair, opt_index);
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.addWordIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
@@ -797,8 +823,8 @@ proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.addWords = fun
  * Clears the list making it empty but non-null.
  * @return {!proto.conabit.englearn.exercise.StartNewExerciseRequest} returns this
  */
-proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.clearWordsList = function() {
-  return this.setWordsList([]);
+proto.conabit.englearn.exercise.StartNewExerciseRequest.prototype.clearWordIdsList = function() {
+  return this.setWordIdsList([]);
 };
 
 
