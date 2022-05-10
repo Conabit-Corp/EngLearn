@@ -70,10 +70,12 @@ func WordCollectionToProto(collection *WordCollection) *collectionGen.WordCollec
 		pairs = append(pairs, WordPairToProto(&pair))
 	}
 	return &collectionGen.WordCollection{
-		Id:          collection.ID.Hex(),
-		Name:        collection.Name,
-		Description: collection.Description,
-		Words:       pairs,
+		Id:            collection.ID.Hex(),
+		CountryCode_1: collection.CountryCode1,
+		CountryCode_2: collection.CountryCode2,
+		Name:          collection.Name,
+		Description:   collection.Description,
+		Words:         pairs,
 	}
 }
 

@@ -135,12 +135,7 @@ func (service *WordCollectionSerivce) AddWordToCollection(
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
 	}
-	collection, err := service.collectionRepo.GetUserCollectionCountryCodes(ctx, userId, collectionId)
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, err.Error())
-	}
-	err = service.validateRequestWordPair(
-		collection.CountryCode1, collection.CountryCode2, req.WordPair)
+	err = service.canAddWordToCollection(ctx, userId, collectionId, req.WordPair)
 	if err != nil {
 		return nil, err
 	}
@@ -190,12 +185,7 @@ func (service *WordCollectionSerivce) EditWordFromCollection(
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid collection id format")
 	}
-	collection, err := service.collectionRepo.GetUserCollectionCountryCodes(ctx, userId, collectionId)
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, err.Error())
-	}
-	err = service.validateRequestWordPair(
-		collection.CountryCode1, collection.CountryCode2, req.WordPair)
+	err = service.canAddWordToCollection(ctx, userId, collectionId, req.WordPair)
 	if err != nil {
 		return nil, err
 	}
@@ -222,15 +212,35 @@ func (service *WordCollectionSerivce) validateRequestCollection(collection *coll
 	return nil
 }
 
+func (service *WordCollectionSerivce) canAddWordToCollection(
+	ctx context.Context,
+	userId primitive.ObjectID,
+	collectionId primitive.ObjectID,
+	wordPairProto *collectionGen.WordPair) error {
+	collection, err := service.collectionRepo.GetUserCollectionCountryCodes(ctx, userId, collectionId)
+	if err != nil {
+		return status.Errorf(codes.Internal, err.Error())
+	}
+	err = service.validateRequestWordPair(
+		collection.CountryCode1, collection.CountryCode2, wordPairProto)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (service *WordCollectionSerivce) validateRequestWordPair(
-	code1 string, code2 string, pair *collectionGen.WordPair) error {
-	if !(code1 == pair.Word_1.CountryCode && code2 == pair.Word_2.CountryCode ||
-		code1 == pair.Word_2.CountryCode && code2 == pair.Word_1.CountryCode) {
+	code1 string, code2 string, wordPairProto *collectionGen.WordPair) error {
+	if wordPairProto.Word_1.Value == wordPairProto.Word_2.Value {
+		return status.Errorf(codes.InvalidArgument, "one of word pairs have same words")
+	}
+	if !(code1 == wordPairProto.Word_1.CountryCode && code2 == wordPairProto.Word_2.CountryCode ||
+		code1 == wordPairProto.Word_2.CountryCode && code2 == wordPairProto.Word_1.CountryCode) {
 		return status.Errorf(codes.InvalidArgument,
 			"one of word pairs have country codes not the same as the collection")
 	}
-	if !commonServices.IsSingleWord(pair.Word_1.Value) ||
-		!commonServices.IsSingleWord(pair.Word_2.Value) {
+	if !commonServices.IsSingleWord(wordPairProto.Word_1.Value) ||
+		!commonServices.IsSingleWord(wordPairProto.Word_2.Value) {
 		return status.Errorf(codes.InvalidArgument,
 			"one of word pairs contains invalid value, must have single word")
 	}
