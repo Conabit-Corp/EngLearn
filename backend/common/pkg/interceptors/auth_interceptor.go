@@ -42,7 +42,11 @@ func (interceptor *AuthInterceptor) Unary() grpc.UnaryServerInterceptor {
 		if !authNeeded {
 			return handler(ctx, req)
 		}
-		jwt := req.(models.HasSession).GetSession().Jwt
+		hasSession, ok := req.(models.HasSession)
+		if !ok {
+			return nil, status.Errorf(codes.PermissionDenied, "Jwt token invalid")
+		}
+		jwt := hasSession.GetSession().Jwt
 		usrId, err := interceptor.check(jwt)
 		if err != nil {
 			return nil, err
