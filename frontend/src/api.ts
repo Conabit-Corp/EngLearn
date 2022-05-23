@@ -37,7 +37,7 @@ function logOut() {
     )
 }
 
-function signIn() {
+export const signIn = () => {
     const req = new SignInRequest()
     req.setLogin("newUser333")
     req.setPassword("password")
@@ -158,7 +158,7 @@ function deleteWordPair() {
     req.setSession(session)
     req.setCollectionId(collectionIdInput.value)
     req.setWordPairId(wordPairIdInput.value)
-    console.log(req.toObject());    
+    console.log(req.toObject());
     grpc.unary(WordCollectionService.RemoveWordFromCollection, {
         request: req,
         host: "http://localhost:4003",
@@ -195,25 +195,25 @@ function updateWordPair() {
     })
 }
 
-signUpButton.onclick = (e) => signUp()
+// signUpButton.onclick = (e) => signUp()
 
-signInButton.onclick = (e) => signIn()
+// signInButton.onclick = (e) => signIn()
 
-logoutButton.onclick = (e) => logOut()
+// logoutButton.onclick = (e) => logOut()
 
-createCollectionButton.onclick = (e) => createCollection()
+// createCollectionButton.onclick = (e) => createCollection()
 
-myCollectionsButton.onclick = (e) => getWordCollections()
+// myCollectionsButton.onclick = (e) => getWordCollections()
 
-getCollectionByIdButton.onclick = (e) => getCollectionById()
+// getCollectionByIdButton.onclick = (e) => getCollectionById()
 
-addWordPairButton.onclick = (e) => addWordPair()
+// addWordPairButton.onclick = (e) => addWordPair()
 
-deleteWordCollectionButton.onclick = (e) => deleteCollection()
+// deleteWordCollectionButton.onclick = (e) => deleteCollection()
 
-deleteWordPairButton.onclick = (e) => deleteWordPair()
+// deleteWordPairButton.onclick = (e) => deleteWordPair()
 
-updateWordPairButton.onclick = (e) => updateWordPair()
+// updateWordPairButton.onclick = (e) => updateWordPair()
 
 interface CollectionOverviewsResponse {
     overview: CollectionsOverwies
