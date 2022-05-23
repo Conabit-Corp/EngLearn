@@ -1,7 +1,5 @@
-#!/bin/bash
-
 echo "build services"
-
+cd ..
 go build -o ./auth-service.bin ./backend/auth/cmd/main.go
 go build -o ./exercise-service.bin ./backend/exercise/cmd/main.go
 go build -o ./dashboard-service.bin ./backend/dashboard/cmd/main.go

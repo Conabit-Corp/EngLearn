@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "englearn description",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build:proto && npm run webpack-dev",
-    "webpack-dev": "cd frontend && webpack serve --hot --inline --port 8081 --host 0.0.0.0 --output-public-path=http://localhost:8081/build/",
-    "build:proto": "./protogen.sh",
-    "up:backend": "./compose_up.sh"
+    "start": "npm run webpack-dev",
+    "webpack-dev": "cd frontend && webpack serve --hot --inline --port 8081 --host 0.0.0.0 --output-public-path=http://localhost:8081/build/"
   },
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.13.0",

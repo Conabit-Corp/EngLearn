@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd ..
 go get -u github.com/golang/protobuf/protoc-gen-go
 PGG=${HOME}/go/bin/protoc-gen-go
 
