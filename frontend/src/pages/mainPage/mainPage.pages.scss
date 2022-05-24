@@ -1,0 +1,19 @@
+@import "../../config.scss";
+
+.mainContainer {
+  min-height: 100vh;
+  max-width: 1180px;
+  height: 1px; //это нужно чтобы дочерний блок мог занять всю высоту
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  .mainContainer__content {
+    width: 100%;
+    min-height: 700px;
+    max-height: 860px;
+    height: 100%;
+    margin-left: 50px;
+    background-color: aqua;
+  }
+}

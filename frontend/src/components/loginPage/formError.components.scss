@@ -1,0 +1,15 @@
+@import "../../config.scss";
+
+.form__error {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  height: 16px;
+  color: $Error_red;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.form_errorText {
+  display: none;
+}

@@ -1,0 +1,172 @@
+@import "../../config.scss";
+
+.form {
+  background-color: #ffffff;
+  max-width: 454px;
+  max-height: 600px;
+  min-height: 600px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 66px 50px 22px 50px;
+  display: flex;
+  flex-direction: column;
+
+  .form__title {
+    height: 88px;
+    max-width: 228px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: $Text_Black;
+    margin-bottom: 66px;
+  }
+
+  label {
+    height: 20px;
+  }
+
+  .form__container {
+    align-items: center;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    margin-bottom: 48px;
+    border: none;
+    border-bottom: 2px solid $input_Silver;
+    max-width: 354px;
+    max-height: 32px;
+    display: flex;
+    flex-direction: row;
+
+    &:focus-within {
+      border-bottom: 2px solid $Main_Blue--focus;
+    }
+  }
+
+  .form__input {
+    border: none;
+    padding: 0;
+    background: none;
+    width: 100%;
+    max-height: 32px;
+    height: 100%;
+    color: $inputText_silver;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 15px;
+
+    &::placeholder {
+      font-weight: 500;
+      font-size: 18px;
+      color: $Placeholder_silver;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .form__password {
+    padding-left: 18px;
+  }
+
+  .form__password_margin {
+    margin-bottom: 40px;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 14px;
+    color: $Icon_silver;
+    line-height: 17px;
+    padding-bottom: 2px;
+  }
+
+  .form__or {
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form__hr {
+    margin: 0 6px;
+    width: 70px;
+    align-items: center;
+  }
+
+  .form__signUpContainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__signUp {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    color: $Placeholder_silver;
+
+    &:hover {
+      color: $Icon_silver;
+    }
+
+    &:active {
+      color: $inputText_silver;
+    }
+  }
+
+  .form__signUpContainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__container_error {
+    border-bottom: 2px solid $Error_red;
+
+    svg path {
+      fill: $Error_red;
+    }
+
+    &:focus-within {
+      border-bottom: 2px solid $Error_red;
+    }
+
+    .form__mail_error {
+      &::placeholder {
+        color: $Error_red;
+      }
+    }
+
+    .form__password_error {
+      &::placeholder {
+        color: $Error_red;
+      }
+    }
+  }
+
+  .passwordToogler svg path {
+    fill: $icon_Silver--hover;
+  }
+
+  .passwordToogler:hover svg path {
+    fill: $icon_Silver--hover;
+  }
+
+  .passwordToogler:active svg path {
+    fill: $Icon_silver;
+  }
+}
