@@ -13,7 +13,6 @@ export const LoginChecker = ({ signIn, navigate, location, fromPage }: any) => {
       errorText.classList.remove("form_errorText");
       inputError.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
-
       break;
     } else if (input.length !== 2) {
       console.log("Братка у тебя не введено мыло");
@@ -21,12 +20,14 @@ export const LoginChecker = ({ signIn, navigate, location, fromPage }: any) => {
       errorText.textContent = "Invalid mail";
       inputError.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
+      break;
     } else {
       errorText.classList.add("form_errorText");
       errorText.textContent = "Invalid mail";
       inputError.classList.remove("form__mail_error");
       containerError.classList.remove("form__container_error");
       passwordChecker();
+      break;
     }
   }
   function passwordChecker() {
@@ -37,7 +38,7 @@ export const LoginChecker = ({ signIn, navigate, location, fromPage }: any) => {
       errorText.textContent = "Invalid passowd";
     } else {
       passwordContainer.classList.remove("form__container_error");
-      signIn('newUserToken', () => navigate(fromPage, { replace: true }))
+      signIn(emailInput, passwordInput, () => navigate(fromPage, { replace: true }))
     }
   }
 };

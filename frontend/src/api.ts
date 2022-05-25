@@ -37,21 +37,21 @@ function logOut() {
     )
 }
 
-export const signIn = () => {
-    const req = new SignInRequest()
-    req.setLogin("newUser333")
-    req.setPassword("password")
-    grpc.unary(AuthService.SignIn,
-        {
-            request: req,
-            host: "http://localhost:4000",
-            onEnd: (r) => {
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
-                localStorage.setItem('token', r.message + '');
-            }
-        }
-    )
-}
+// export const signIn = () => {
+//     const req = new SignInRequest()
+//     req.setLogin("newUser333")
+//     req.setPassword("password")
+//     grpc.unary(AuthService.SignIn,
+//         {
+//             request: req,
+//             host: "http://localhost:4000",
+//             onEnd: (r) => {
+//                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
+//                 localStorage.setItem('token', r.message + '');
+//             }
+//         }
+//     )
+// }
 
 function signUp() {
     const req = new SignUpRequest()
