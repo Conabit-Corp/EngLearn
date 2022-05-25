@@ -1,8 +1,7 @@
-import React from "react";
 import { Navigate } from 'react-router-dom';
 import { Form } from '../../components/loginPage/form.components';
 
-export const LoginPage = () => {
+export const LoginPage = (): JSX.Element | null => {
 
   if (localStorage.getItem('token') === null) {
     return <Form />

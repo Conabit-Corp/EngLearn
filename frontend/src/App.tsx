@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import { RequireAuth } from "./hoc/RequireAuth";
 import { AuthProvider } from "./hoc/AuthProvider";
-import { LoginPage } from './pages/login/login.pages';
+import { LoginPage } from './pages/signPages/login.pages';
 // import { LoginPage } from './pages/login/login.pages';
 // import { RegPage } from "./pages/signPages/registrationPage.pages.jsx";
 import { MainPage } from "./pages/mainPage/mainPage.pages";

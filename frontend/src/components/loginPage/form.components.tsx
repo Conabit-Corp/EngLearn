@@ -9,7 +9,7 @@ import { SocialBtns } from "./socialBtns.components";
 import { LoginChecker } from "../../utils/loginPage/loginChecker.utils";
 import { FormError } from "./formError.components";
 
-export const Form = () => {
+export const Form = (): JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signIn }: any = useAuth();
