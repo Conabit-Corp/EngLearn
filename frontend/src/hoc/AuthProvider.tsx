@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }: { children: React.ReactElement | null
     signInRequest(login, password, cb)
   }
 
-  const signOut = (cb: any) => {
+  const signOut = (cb: () => void) => {
     localStorage.removeItem('token');
     cb();
   }
