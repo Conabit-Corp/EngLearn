@@ -1,4 +1,4 @@
-export const LoginChecker = ({ signIn, navigate, location, fromPage }: any) => {
+export const LoginChecker = ({ signIn, navigate, fromPage }: any) => {
   let errorText: any = document.getElementById("errorText");
   let inputError: any = document.getElementById("emailInput");
   let containerError: any = document.getElementById("containerForm");

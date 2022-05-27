@@ -22,7 +22,7 @@ export const Form = (): JSX.Element => {
       <MailInput />
       <PasswordInput />
       <FormError />
-      <ButtonAuth onClick={() => LoginChecker({ signIn, navigate, location, fromPage })} textContent="Log in" />
+      <ButtonAuth onClick={() => LoginChecker({ signIn, navigate, fromPage })} textContent="Log in" />
       <div className="form__or">
         {/* <hr
           className="form__hr"

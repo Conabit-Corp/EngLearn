@@ -31,3 +31,32 @@ export const signInRequest = (login: string, password: string, cb: () => void): 
     }
   )
 }
+
+export const signUp = (login: string, password: string, rePassword: string, cb: () => void) => {
+  const req = new SignUpRequest()
+  req.setLogin(login)
+  req.setPassword(password)
+  //I use only password. For first connect grpc without second input for repeat password
+  req.setRePassword(password)
+  grpc.unary(AuthService.SignUp,
+    {
+      request: req,
+      host: "http://localhost:4000",
+      onEnd: res => {
+        const { status, statusMessage, message } = res;
+        if (status === grpc.Code.OK) {
+          let resMessage = message as AuthResponse;
+          let result = resMessage.getSession()?.getJwt()
+          if (result === undefined) {
+            console.error('result undefined');
+          } else {
+            localStorage.setItem('token', result);
+            cb();
+          }
+        } else {
+          console.error(statusMessage);
+        }
+      }
+    }
+  )
+}

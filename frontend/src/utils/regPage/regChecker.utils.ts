@@ -1,4 +1,6 @@
-export const RegChecker = () => {
+import { signUp } from "../../apiGRPC/authService";
+
+export const RegChecker = ({ navigate, fromPage }: any) => {
   let errorText: any = document.getElementById("errorText");
   let inputError: any = document.getElementById("emailInput");
   let containerError: any = document.getElementById("containerForm");
@@ -37,7 +39,9 @@ export const RegChecker = () => {
       errorText.classList.remove("form_errorText");
       errorText.textContent = "Password must be at least 6 charcters";
     } else {
+      console.log('OK');
       passwordContainer.classList.remove("form__container_error");
+      signUp(emailInput.value, passwordInput, 'undefined', () => navigate(fromPage, { replace: true }))
     }
   }
 };
