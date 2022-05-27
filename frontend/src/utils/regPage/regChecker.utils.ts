@@ -13,7 +13,6 @@ export const RegChecker = () => {
       errorText.classList.remove("form_errorText");
       inputError.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
-
       break;
     } else if (input.length !== 2) {
       console.log("Братка у тебя не введено мыло");
@@ -21,12 +20,14 @@ export const RegChecker = () => {
       errorText.textContent = "Invalid mail adress format";
       inputError.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
+      break;
     } else {
       errorText.classList.add("form_errorText");
       errorText.textContent = "Invalid mail address format";
       inputError.classList.remove("form__mail_error");
       containerError.classList.remove("form__container_error");
       passwordChecker();
+      break;
     }
   }
   function passwordChecker() {
