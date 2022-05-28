@@ -7,7 +7,7 @@ import { LoginPage } from './pages/signPages/login.pages';
 // import { LoginPage } from './pages/login/login.pages';
 import { RegPage } from "./pages/signPages/registrationPage.pages";
 import { MainPage } from "./pages/mainPage/mainPage.pages";
-// import { ProfilePage } from "./pages/profilePage/profilePage.pages";
+import { ProfilePage } from "./pages/profilePage/profilePage.pages";
 import { HomePage } from "./pages/homePage/homePage.pages";
 
 function App() {
@@ -22,13 +22,13 @@ function App() {
               </RequireAuth>
             }
           />
-          {/* <Route path="/profile"
+          <Route path="/profile"
             element={
               <RequireAuth>
                 <ProfilePage />
               </RequireAuth>
             }
-          /> */}
+          />
         </Route>
         <Route path="/" element={<div>Какая либо страница приветствия</div>} />
         <Route path="*" element={<div style={{ fontSize: 100 }}>404</div>} />
