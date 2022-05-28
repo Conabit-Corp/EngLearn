@@ -8,13 +8,13 @@ import { LoginPage } from './pages/signPages/login.pages';
 import { RegPage } from "./pages/signPages/registrationPage.pages";
 import { MainPage } from "./pages/mainPage/mainPage.pages";
 // import { ProfilePage } from "./pages/profilePage/profilePage.pages";
-// import { HomePage } from "./pages/homePage/homePage.pages";
+import { HomePage } from "./pages/homePage/homePage.pages";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* <Route element={<MainPage />}>
+        <Route element={<MainPage />}>
           <Route path="/home"
             element={
               <RequireAuth>
@@ -22,14 +22,14 @@ function App() {
               </RequireAuth>
             }
           />
-          <Route path="/profile"
+          {/* <Route path="/profile"
             element={
               <RequireAuth>
                 <ProfilePage />
               </RequireAuth>
             }
-          />
-        </Route> */}
+          /> */}
+        </Route>
         <Route path="/" element={<div>Какая либо страница приветствия</div>} />
         <Route path="*" element={<div style={{ fontSize: 100 }}>404</div>} />
         <Route path="/login" element={<div className="appContainer"><LoginPage /></div>} />

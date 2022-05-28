@@ -1,6 +1,6 @@
 import React from 'react';
 import './menuItem.components.scss';
-// import { ReactComponent as ProfileIcon } from '../../../images/menu/profileIcon.svg';
+// import ProfileIcon from '../../../images/menu/profileIcon.svg';
 // import { ReactComponent as HomeIcon } from '../../../images/menu/homeIcon.svg';
 // import { ReactComponent as MyDictionaryIcon } from '../../../images/menu/dictionaryIcon.svg';
 // import { ReactComponent as CollectionsIcon } from '../../../images/menu/collectionsIcon.svg';
