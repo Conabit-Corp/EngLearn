@@ -1,12 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { RegForm } from "../../components/signPages/regPage/form.components";
+import { SignForm } from "../../components/signPages/form.components";
 
 export const RegPage = (): JSX.Element | null => {
   if (localStorage.getItem('token') === null) {
-    return <RegForm />
+    return <SignForm page={'signUp'} title={'Create Account'} buttonContent={'Sign up'} />
   } else {
     return <Navigate to={'/'} />
   }
-
 };

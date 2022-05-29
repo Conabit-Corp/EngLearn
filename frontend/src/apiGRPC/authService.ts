@@ -32,12 +32,11 @@ export const signInRequest = (login: string, password: string, cb: () => void): 
   )
 }
 
-export const signUp = (login: string, password: string, rePassword: string, cb: () => void) => {
+export const signUp = (login: string, password: string, repeatPassword: string, cb: () => void) => {
   const req = new SignUpRequest()
   req.setLogin(login)
   req.setPassword(password)
-  //I use only password. For first connect grpc without second input for repeat password
-  req.setRePassword(password)
+  req.setRePassword(repeatPassword)
   grpc.unary(AuthService.SignUp,
     {
       request: req,

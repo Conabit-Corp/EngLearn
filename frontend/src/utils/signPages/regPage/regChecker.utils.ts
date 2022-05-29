@@ -1,22 +1,23 @@
-import { signUp } from "../../apiGRPC/authService";
+import { signUp } from "../../../apiGRPC/authService";
 
 export const RegChecker = ({ navigate, fromPage }: any) => {
   let errorText: any = document.getElementById("errorText");
   let inputError: any = document.getElementById("emailInput");
   let containerError: any = document.getElementById("containerForm");
-  let emailInput = (document.getElementById("emailInput") as any);
-  let passwordInput = (document.getElementById("passwordInput") as any).value;
+  let email = (document.getElementById("emailInput") as any).value;
+  let password = (document.getElementById("passwordInput") as any).value;
+  let repeatPassword = (document.getElementById('repeatPasswordInput') as any).value;
   let passwordContainer: any = document.getElementById("passwordContainer");
 
-  let input = emailInput.value.split("@");
-  for (let el of input) {
+  let emailSplit = email.split("@");
+  for (let el of emailSplit) {
     if (el == "") {
       console.log("Братка у тебя не введено мыло");
       errorText.classList.remove("form_errorText");
       inputError.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
       break;
-    } else if (input.length !== 2) {
+    } else if (emailSplit.length !== 2) {
       console.log("Братка у тебя не введено мыло");
       errorText.classList.remove("form_errorText");
       errorText.textContent = "Invalid mail adress format";
@@ -33,7 +34,7 @@ export const RegChecker = ({ navigate, fromPage }: any) => {
     }
   }
   function passwordChecker() {
-    if (passwordInput.length < 6) {
+    if (password.length < 6) {
       passwordContainer.classList.add("form__container_error");
       console.log("братка пароль ошибся ");
       errorText.classList.remove("form_errorText");
@@ -41,7 +42,7 @@ export const RegChecker = ({ navigate, fromPage }: any) => {
     } else {
       console.log('OK');
       passwordContainer.classList.remove("form__container_error");
-      signUp(emailInput.value, passwordInput, 'undefined', () => navigate(fromPage, { replace: true }))
+      signUp(email, password, repeatPassword, () => navigate(fromPage, { replace: true }))
     }
   }
 };
