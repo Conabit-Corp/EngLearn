@@ -13,14 +13,14 @@ export const LoginChecker = (props: Props) => {
   let passwordInput = (document.getElementById("passwordInput") as HTMLInputElement).value;
   let passwordContainer: HTMLElement = document.getElementById("passwordContainer")!;
 
-  let email = emailInput.value.split("@");
-  for (let el of email) {
+  let emailSplit = emailInput.value.split("@");
+  for (let el of emailSplit) {
     if (el == "") {
       errorText.classList.remove("form_errorText");
       emailInput.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
       break;
-    } else if (email.length !== 2) {
+    } else if (emailSplit.length !== 2) {
       errorText.classList.remove("form_errorText");
       errorText.textContent = "Invalid mail";
       emailInput.classList.add("form__mail_error");
