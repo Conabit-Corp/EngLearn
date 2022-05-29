@@ -24,21 +24,9 @@ export const Form = (): JSX.Element => {
       <FormError />
       <ButtonAuth onClick={() => LoginChecker({ signIn, navigate, fromPage })} textContent="Log in" />
       <div className="form__or">
-        {/* <hr
-          className="form__hr"
-          align="center"
-          width="100%"
-          size="1"
-          color="#dddddd"
-        /> */}
+        <div className="form__hr" />
         <span>or</span>
-        {/* <hr
-          className="form__hr"
-          align='center'
-          width="100%"
-          size="1"
-          color="#dddddd"
-        /> */}
+        <div className="form__hr" />
       </div>
       <SocialBtns />
       <div className="form__signUpContainer">

@@ -96,8 +96,10 @@
 
   .form__hr {
     margin: 0 6px;
-    width: 70px;
     align-items: center;
+    width: 70px;
+    height: 1px;
+    background-color: #dddddd
   }
 
   .form__signUpContainer {
