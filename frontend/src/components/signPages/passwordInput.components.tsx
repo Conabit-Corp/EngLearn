@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export const PasswordInput = ({ page, placeholder, id }: { page: string, placeholder: string, id: string }) => {
+interface Props {
+  page: string,
+  placeholder: string,
+  id: string
+}
+
+export const PasswordInput = (props: Props) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
@@ -24,14 +30,14 @@ export const PasswordInput = ({ page, placeholder, id }: { page: string, placeho
         </svg>
       </label>
       <input
-        id={id}
+        id={props.id}
         className="form__input form__password form__password_error"
         type={
-          page === 'logIn' ?
+          props.page === 'logIn' ?
             hidePassword ? "password" : "text"
             : 'text'
         }
-        placeholder={placeholder}
+        placeholder={props.placeholder}
       />
       <div
         className="passwordToogler passwordToogler_error"
@@ -43,7 +49,7 @@ export const PasswordInput = ({ page, placeholder, id }: { page: string, placeho
           }
         }}
       >
-        {page === 'logIn' ?
+        {props.page === 'logIn' ?
           hidePassword ? (
             <svg
               width="20"
