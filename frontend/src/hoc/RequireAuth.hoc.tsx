@@ -1,11 +1,15 @@
 import { useLocation, Navigate } from 'react-router-dom';
 
-export const RequireAuth = ({ children }: any) => {
+interface Props {
+  children: JSX.Element,
+}
+
+export const RequireAuth = (props: Props) => {
   const location = useLocation();
 
   if (localStorage.getItem('token') === null) {
     return <Navigate to='/login' state={{ from: location }} />
   }
 
-  return children;
+  return props.children;
 }
