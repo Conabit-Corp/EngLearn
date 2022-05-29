@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { signInRequest } from "../apiGRPC/authService";
+import { logOutRequest } from "../apiGRPC/authService";
 
 export const AuthContext = createContext(null);
 
@@ -10,8 +11,7 @@ export const AuthProvider = ({ children }: { children: React.ReactElement | null
   }
 
   const signOut = (cb: () => void) => {
-    localStorage.removeItem('token');
-    cb();
+    logOutRequest(cb)
   }
 
   const value: any = { signIn, signOut };

@@ -20,22 +20,22 @@ const deleteWordPairButton = document.getElementById('deleteWordPair')!
 const updateWordPairButton = document.getElementById('updateWordPair')!
 
 
-function logOut() {
-    const logoutreq = new LogoutRequest()
-    const session = new Session()
-    session.setJwt(localStorage.getItem('token') ?? '')
-    logoutreq.setSession(session)
-    grpc.unary(AuthService.Logout,
-        {
-            request: logoutreq,
-            host: "http://localhost:4000",
-            onEnd: (r) => {
-                localStorage.removeItem('token')
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
-            }
-        }
-    )
-}
+// function logOut() {
+//     const logoutreq = new LogoutRequest()
+//     const session = new Session()
+//     session.setJwt(localStorage.getItem('token') ?? '')
+//     logoutreq.setSession(session)
+//     grpc.unary(AuthService.Logout,
+//         {
+//             request: logoutreq,
+//             host: "http://localhost:4000",
+//             onEnd: (r) => {
+//                 localStorage.removeItem('token')
+//                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+//             }
+//         }
+//     )
+// }
 
 // export const signIn = () => {
 //     const req = new SignInRequest()

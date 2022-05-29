@@ -60,3 +60,24 @@ export const signUp = (login: string, password: string, rePassword: string, cb: 
     }
   )
 }
+
+export const logOutRequest = (cb: () => void) => {
+  const logoutreq = new LogoutRequest();
+  const session = new Session();
+  session.setJwt(localStorage.getItem('token') ?? '');
+  logoutreq.setSession(session)
+  grpc.unary(AuthService.Logout,
+    {
+      request: logoutreq,
+      host: "http://localhost:4000",
+      onEnd: res => {
+        const { status, statusMessage } = res;
+        if (status === grpc.Code.OK) {
+          cb();
+        } else {
+          console.error(statusMessage);
+        }
+      }
+    }
+  )
+}

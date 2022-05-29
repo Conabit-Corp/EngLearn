@@ -9,7 +9,18 @@ export const ProfilePage = (): JSX.Element => {
   return (
     <div>
       PROFILE
-      <button onClick={() => signOut(() => navigate('/login', { replace: true }))}>ВЫЙТИ</button>
+      <button
+        onClick={
+          () => signOut(
+            () => {
+              localStorage.removeItem('token'),
+                navigate('/login', { replace: true })
+            }
+          )
+        }
+      >
+        ВЫЙТИ
+      </button>
     </div>
   )
 }
