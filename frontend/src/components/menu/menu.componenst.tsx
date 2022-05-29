@@ -12,7 +12,7 @@ export const Menu = (): JSX.Element => {
         }
         to='/profile'
       >
-        <MenuItem name={'Profile'} active={false} />
+        <MenuItem name={'Profile'} />
       </NavLink>
       <NavLink
         className={
@@ -21,10 +21,10 @@ export const Menu = (): JSX.Element => {
         }
         to='/home'
       >
-        <MenuItem name={'Home'} active={true} />
+        <MenuItem name={'Home'} />
       </NavLink>
-      <MenuItem name={'My Dictionary'} active={false} />
-      <MenuItem name={'Collections'} active={false} />
+      <MenuItem name={'My Dictionary'} />
+      <MenuItem name={'Collections'} />
     </div>
   )
 }
