@@ -1,8 +1,9 @@
 import { useAuth } from "../../hook/useAuth";
 import { useNavigate } from "react-router-dom";
+import { TODO_ANY } from "../../TODO_ANY";
 
 export const ProfilePage = (): JSX.Element => {
-  const { signOut }: any = useAuth();
+  const { signOut }: TODO_ANY = useAuth();
   const navigate = useNavigate();
 
   return (

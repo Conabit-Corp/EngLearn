@@ -7,6 +7,7 @@ import { ButtonAuth } from "./buttonAuth.components";
 import { SocialBtns } from "./socialBtns.components";
 import { LoginChecker, RegChecker } from "../../utils/export.utils";
 import { FormError } from "./formError.components";
+import { TODO_ANY } from "../../TODO_ANY";
 
 interface Props {
   page: string,
@@ -17,7 +18,7 @@ interface Props {
 export const SignForm = (props: Props): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
   const location: Location = useLocation();
-  const { signIn }: any = useAuth();
+  const { signIn }: TODO_ANY = useAuth();
 
   const fromPage = (location.state as { from: { pathname: string } })?.from.pathname || "/";
 

@@ -1,10 +1,14 @@
 import { createContext } from "react";
-import { signInRequest } from "../apiGRPC/authService";
-import { logOutRequest } from "../apiGRPC/authService";
+import { signInRequest, logOutRequest } from "../apiGRPC/authService";
+import { TODO_ANY } from "../TODO_ANY";
 
 export const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }: { children: React.ReactElement | null }): JSX.Element => {
+interface Props {
+  children: React.ReactElement | null,
+}
+
+export const AuthProvider = (props: Props): JSX.Element => {
 
   const signIn = (login: string, password: string, cb: () => void) => {
     signInRequest(login, password, cb)
@@ -14,11 +18,11 @@ export const AuthProvider = ({ children }: { children: React.ReactElement | null
     logOutRequest(cb)
   }
 
-  const value: any = { signIn, signOut };
+  const value: TODO_ANY = { signIn, signOut };
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {props.children}
     </AuthContext.Provider>
   )
 }

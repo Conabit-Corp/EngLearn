@@ -1,7 +1,8 @@
 import { NavigateFunction } from "react-router-dom";
+import { TODO_ANY } from "../../../TODO_ANY";
 
 interface Props {
-  signIn: any,
+  signIn: TODO_ANY,
   navigate: NavigateFunction,
   fromPage: string,
 }
