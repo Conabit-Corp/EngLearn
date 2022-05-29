@@ -1,6 +1,4 @@
-import React from "react";
-
-export const MailInput = () => {
+export const MailInput = (): JSX.Element => {
   return (
     <div id='containerForm' className="form__container ">
       <label htmlFor="emailInput">
