@@ -8,7 +8,8 @@ export const ButtonAuth = (
     <a
       id="loginBtn"
       onClick={onClick}
-      className="form__button">
+      className="form__button"
+    >
       {textContent}
     </a>
   );
