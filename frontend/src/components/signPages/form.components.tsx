@@ -1,4 +1,3 @@
-import React from "react";
 import "./form.components.scss";
 import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from "../../hook/useAuth";
@@ -9,7 +8,13 @@ import { SocialBtns } from "./socialBtns.components";
 import { LoginChecker, RegChecker } from "../../utils/export.utils";
 import { FormError } from "./formError.components";
 
-export const SignForm = ({ page, title, buttonContent }: { page: string, title: string, buttonContent: string }): JSX.Element => {
+interface Props {
+  page: string,
+  title: string,
+  buttonContent: string,
+};
+
+export const SignForm = (props: Props): JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signIn }: any = useAuth();
@@ -18,23 +23,23 @@ export const SignForm = ({ page, title, buttonContent }: { page: string, title: 
 
   return (
     <div className="form">
-      <h1 className="form__title">{title}</h1>
+      <h1 className="form__title">{props.title}</h1>
       <MailInput />
-      <PasswordInput page={page} placeholder={'Password'} id={'passwordInput'} />
-      {page !== 'logIn' ?
-        <PasswordInput page={page} placeholder={'Repeat password'} id={'repeatPasswordInput'} />
+      <PasswordInput page={props.page} placeholder={'Password'} id={'passwordInput'} />
+      {props.page !== 'logIn' ?
+        <PasswordInput page={props.page} placeholder={'Repeat password'} id={'repeatPasswordInput'} />
         :
         null
       }
       <FormError />
       <ButtonAuth
         onClick={
-          page === 'logIn' ?
+          props.page === 'logIn' ?
             () => LoginChecker({ signIn, navigate, fromPage })
             :
             () => RegChecker({ navigate, fromPage })
         }
-        textContent={buttonContent}
+        textContent={props.buttonContent}
       />
       <div className="form__or">
         <div className="form__hr" />
@@ -45,9 +50,9 @@ export const SignForm = ({ page, title, buttonContent }: { page: string, title: 
       <div className="form__signUpContainer">
         <NavLink
           className="form__signUp"
-          to={page === 'logIn' ? '/registration' : '/login'}
+          to={props.page === 'logIn' ? '/registration' : '/login'}
         >
-          {page === 'logIn' ? 'Sign up' : 'Sign in'}
+          {props.page === 'logIn' ? 'Sign up' : 'Sign in'}
         </NavLink>
       </div>
     </div>
