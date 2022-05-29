@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { Form } from '../../components/loginPage/form.components';
+import { Form } from '../../components/signPages/loginPage/form.components';
 
 export const LoginPage = (): JSX.Element | null => {
 

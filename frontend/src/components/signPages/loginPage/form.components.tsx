@@ -1,12 +1,12 @@
 import React from "react";
 import "./form.components.scss";
 import { useLocation, useNavigate, NavLink } from 'react-router-dom';
-import { useAuth } from "../../hook/useAuth";
+import { useAuth } from "../../../hook/useAuth";
 import { PasswordInput } from "./passwordInput.components";
 import { MailInput } from "./mailInput.components";
-import { ButtonAuth } from "./buttonAuth.components";
+import { ButtonAuth } from "../buttonAuth.components";
 import { SocialBtns } from "./socialBtns.components";
-import { LoginChecker } from "../../utils/loginPage/loginChecker.utils";
+import { LoginChecker } from "../../../utils/loginPage/loginChecker.utils";
 import { FormError } from "./formError.components";
 
 export const Form = (): JSX.Element => {

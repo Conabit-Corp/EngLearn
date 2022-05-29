@@ -16,9 +16,11 @@
   color: #ffffff;
   background-color: $Main_Blue;
   margin-bottom: 17px;
+
   &:hover {
     background-color: $Main_Blue--focus;
   }
+
   &:active {
     background-color: $Main_Blue--click;
   }

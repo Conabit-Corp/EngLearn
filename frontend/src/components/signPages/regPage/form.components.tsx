@@ -3,9 +3,9 @@ import "../loginPage/form.components.scss";
 import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { PasswordInput } from "./passwordInput.components";
 import { MailInput } from "./mailInput.components";
-import { ButtonAuth } from "./buttonAuth.components";
+import { ButtonAuth } from "../buttonAuth.components";
 import { SocialBtns } from "./socialBtns.components";
-import { RegChecker } from "../../utils/regPage/regChecker.utils";
+import { RegChecker } from "../../../utils/regPage/regChecker.utils";
 import { FormError } from "./formError.components";
 
 export const RegForm = () => {
