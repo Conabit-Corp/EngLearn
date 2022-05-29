@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
 import { Routes, Route } from 'react-router-dom';
-import { RequireAuth } from "./hoc/RequireAuth";
-import { AuthProvider } from "./hoc/AuthProvider";
+import { RequireAuth } from "./hoc/RequireAuth.hoc";
+import { AuthProvider } from "./hoc/AuthProvider.hoc";
 import {
   LoginPage,
   RegPage,

@@ -4,7 +4,7 @@ import { logOutRequest } from "../apiGRPC/authService";
 
 export const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }: { children: React.ReactElement | null }) => {
+export const AuthProvider = ({ children }: { children: React.ReactElement | null }): JSX.Element => {
 
   const signIn = (login: string, password: string, cb: () => void) => {
     signInRequest(login, password, cb)
