@@ -1,9 +1,8 @@
-import React from "react";
 import './mainPage.pages.scss';
 import { Outlet } from 'react-router-dom';
 import { Menu } from "../../components/menu/menu.componenst";
 
-export const MainPage = () => {
+export const MainPage = (): JSX.Element => {
   return (
     <div className="mainContainer">
       <Menu />
