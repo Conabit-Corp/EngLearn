@@ -1,40 +1,46 @@
+import { NavigateFunction } from "react-router-dom";
 import { signUp } from "../../../apiGRPC/authService";
 
-export const RegChecker = ({ navigate, fromPage }: any) => {
-  let errorText: any = document.getElementById("errorText");
-  let inputError: any = document.getElementById("emailInput");
-  let containerError: any = document.getElementById("containerForm");
-  let email = (document.getElementById("emailInput") as any).value;
-  let password = (document.getElementById("passwordInput") as any).value;
-  let repeatPassword = (document.getElementById('repeatPasswordInput') as any).value;
-  let passwordContainer: any = document.getElementById("passwordContainer");
+interface Props {
+  navigate: NavigateFunction,
+  fromPage: string,
+}
 
-  let emailSplit = email.split("@");
+export const RegChecker = (props: Props) => {
+  let errorText: HTMLElement = document.getElementById("errorText")!;
+  let containerError: HTMLElement = document.getElementById("containerForm")!;
+  let emailInput = (document.getElementById("emailInput") as HTMLInputElement);
+  let passwordInput = (document.getElementById("passwordInput") as HTMLInputElement);
+  let repeatPasswordInput = (document.getElementById('repeatPasswordInput') as HTMLInputElement);
+  let passwordContainer: HTMLElement = document.getElementById("passwordContainer")!;
+
+  let emailSplit = emailInput.value.split("@");
   for (let el of emailSplit) {
     if (el == "") {
       console.log("Братка у тебя не введено мыло");
       errorText.classList.remove("form_errorText");
-      inputError.classList.add("form__mail_error");
+      emailInput.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
       break;
     } else if (emailSplit.length !== 2) {
       console.log("Братка у тебя не введено мыло");
       errorText.classList.remove("form_errorText");
       errorText.textContent = "Invalid mail adress format";
-      inputError.classList.add("form__mail_error");
+      emailInput.classList.add("form__mail_error");
       containerError.classList.add("form__container_error");
       break;
     } else {
       errorText.classList.add("form_errorText");
       errorText.textContent = "Invalid mail address format";
-      inputError.classList.remove("form__mail_error");
+      emailInput.classList.remove("form__mail_error");
       containerError.classList.remove("form__container_error");
       passwordChecker();
       break;
-    }
-  }
+    };
+  };
+
   function passwordChecker() {
-    if (password.length < 6) {
+    if (passwordInput.value.length < 6) {
       passwordContainer.classList.add("form__container_error");
       console.log("братка пароль ошибся ");
       errorText.classList.remove("form_errorText");
@@ -42,7 +48,12 @@ export const RegChecker = ({ navigate, fromPage }: any) => {
     } else {
       console.log('OK');
       passwordContainer.classList.remove("form__container_error");
-      signUp(email, password, repeatPassword, () => navigate(fromPage, { replace: true }))
-    }
-  }
+      signUp(
+        emailInput.value,
+        passwordInput.value,
+        repeatPasswordInput.value,
+        () => props.navigate(props.fromPage, { replace: true })
+      )
+    };
+  };
 };
