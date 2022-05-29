@@ -1,5 +1,5 @@
 import "./form.components.scss";
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useLocation, useNavigate, NavLink, NavigateFunction, Location } from "react-router-dom";
 import { useAuth } from "../../hook/useAuth";
 import { PasswordInput } from "./passwordInput.components";
 import { MailInput } from "./mailInput.components";
@@ -15,8 +15,8 @@ interface Props {
 };
 
 export const SignForm = (props: Props): JSX.Element => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate: NavigateFunction = useNavigate();
+  const location: Location = useLocation();
   const { signIn }: any = useAuth();
 
   const fromPage = (location.state as { from: { pathname: string } })?.from.pathname || "/";
