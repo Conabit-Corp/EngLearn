@@ -20,55 +20,55 @@ const deleteWordPairButton = document.getElementById('deleteWordPair')!
 const updateWordPairButton = document.getElementById('updateWordPair')!
 
 
-function logOut() {
-    const logoutreq = new LogoutRequest()
-    const session = new Session()
-    session.setJwt(localStorage.getItem('token') ?? '')
-    logoutreq.setSession(session)
-    grpc.unary(AuthService.Logout,
-        {
-            request: logoutreq,
-            host: "http://localhost:4000",
-            onEnd: (r) => {
-                localStorage.removeItem('token')
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
-            }
-        }
-    )
-}
+// function logOut() {
+//     const logoutreq = new LogoutRequest()
+//     const session = new Session()
+//     session.setJwt(localStorage.getItem('token') ?? '')
+//     logoutreq.setSession(session)
+//     grpc.unary(AuthService.Logout,
+//         {
+//             request: logoutreq,
+//             host: "http://localhost:4000",
+//             onEnd: (r) => {
+//                 localStorage.removeItem('token')
+//                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+//             }
+//         }
+//     )
+// }
 
-export const signIn = () => {
-    const req = new SignInRequest()
-    req.setLogin("newUser333")
-    req.setPassword("password")
-    grpc.unary(AuthService.SignIn,
-        {
-            request: req,
-            host: "http://localhost:4000",
-            onEnd: (r) => {
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
-                localStorage.setItem('token', r.message + '');
-            }
-        }
-    )
-}
+// export const signIn = () => {
+//     const req = new SignInRequest()
+//     req.setLogin("newUser333")
+//     req.setPassword("password")
+//     grpc.unary(AuthService.SignIn,
+//         {
+//             request: req,
+//             host: "http://localhost:4000",
+//             onEnd: (r) => {
+//                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
+//                 localStorage.setItem('token', r.message + '');
+//             }
+//         }
+//     )
+// }
 
-function signUp() {
-    const req = new SignUpRequest()
-    req.setLogin("newUser333")
-    req.setPassword("password")
-    req.setRePassword("password")
-    grpc.unary(AuthService.SignUp,
-        {
-            request: req,
-            host: "http://localhost:4000",
-            onEnd: (r) => {
-                console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
-                localStorage.setItem('token', r.message + '');
-            }
-        }
-    )
-}
+// function signUp() {
+//     const req = new SignUpRequest()
+//     req.setLogin("newUser333")
+//     req.setPassword("password")
+//     req.setRePassword("password")
+//     grpc.unary(AuthService.SignUp,
+//         {
+//             request: req,
+//             host: "http://localhost:4000",
+//             onEnd: (r) => {
+//                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+//                 localStorage.setItem('token', r.message + '');
+//             }
+//         }
+//     )
+// }
 
 function createCollection() {
     const session = new Session()

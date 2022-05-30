@@ -1,7 +1,6 @@
-import React from "react";
 import "./socialBtns.components.scss";
 
-export const SocialBtns = () => {
+export const SocialBtns = (): JSX.Element => {
   return (
     <div className="form__socialBtns">
       <a href="#" className="circle">

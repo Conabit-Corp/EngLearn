@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .circle {
     margin: 0 16px;
     display: flex;
@@ -15,9 +16,11 @@
     width: 40px;
     height: 40px;
     background: $Text_Black;
+
     &:hover {
       background-color: #1e2022;
     }
+
     &:active {
       background-color: #0e0e0e;
     }

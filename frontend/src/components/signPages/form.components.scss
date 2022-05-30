@@ -3,7 +3,8 @@
 .form {
   background-color: #ffffff;
   max-width: 454px;
-  max-height: 600px;
+  height: fit-content;
+  max-height: 700px;
   min-height: 600px;
   position: absolute;
   top: 0;
@@ -96,8 +97,10 @@
 
   .form__hr {
     margin: 0 6px;
-    width: 70px;
     align-items: center;
+    width: 70px;
+    height: 1px;
+    background-color: #dddddd;
   }
 
   .form__signUpContainer {
