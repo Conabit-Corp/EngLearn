@@ -45,7 +45,13 @@ export const RegChecker = (props: Props) => {
       console.log("братка пароль ошибся ");
       errorText.classList.remove("form_errorText");
       errorText.textContent = "Password must be at least 6 charcters";
-    } else {
+    }
+    else if (passwordInput.value.length !== repeatPasswordInput.value.length){
+      passwordContainer.classList.add("form__container_error");
+      errorText.classList.remove("form_errorText");
+      errorText.textContent = "Passwords don't match";
+    }
+    else {
       console.log('OK');
       passwordContainer.classList.remove("form__container_error");
       signUp(
