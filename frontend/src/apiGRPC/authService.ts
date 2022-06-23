@@ -12,7 +12,7 @@ export const signInRequest = (login: string, password: string, cb: () => void): 
   grpc.unary(AuthService.SignIn,
     {
       request: req,
-      host: "http://localhost:4000",
+      host: "http://10.3.21.205:4000",
       onEnd: res => {
         const { status, statusMessage, message } = res;
         if (status === grpc.Code.OK) {
@@ -40,7 +40,7 @@ export const signUp = (login: string, password: string, repeatPassword: string, 
   grpc.unary(AuthService.SignUp,
     {
       request: req,
-      host: "http://localhost:4000",
+      host: "http://10.3.21.205:4000",
       onEnd: res => {
         const { status, statusMessage, message } = res;
         if (status === grpc.Code.OK) {
@@ -68,7 +68,7 @@ export const logOutRequest = (cb: () => void) => {
   grpc.unary(AuthService.Logout,
     {
       request: logoutreq,
-      host: "http://localhost:4000",
+      host: "http://10.3.21.205:4000",
       onEnd: res => {
         const { status, statusMessage } = res;
         if (status === grpc.Code.OK) {

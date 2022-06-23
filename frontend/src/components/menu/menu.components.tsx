@@ -1,4 +1,4 @@
-import './menu.componenst.scss';
+import './menu.components.scss';
 import { NavLink } from 'react-router-dom';
 import { MenuItem } from "./menuItems/menuItem.components";
 

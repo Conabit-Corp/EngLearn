@@ -173,3 +173,11 @@
     fill: $Icon_silver;
   }
 }
+
+@media (max-width: 500px) {
+  .form {
+    box-shadow: none;
+    border-radius: 0px;
+    padding: 60px 30px 22px 30px;
+  }
+}
