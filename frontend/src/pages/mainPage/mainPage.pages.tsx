@@ -1,6 +1,6 @@
 import './mainPage.pages.scss';
 import { Outlet } from 'react-router-dom';
-import { Menu } from "../../components/menu/menu.componenst";
+import { Menu } from "../../components/menu/menu.components";
 import { MobileHeader } from "../../components/mobileHeader/mobileHeader.components";
 
 export const MainPage = (): JSX.Element => {
