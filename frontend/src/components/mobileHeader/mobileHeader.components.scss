@@ -80,6 +80,14 @@
     margin: 0;
   }
 
+  .header__menuItemLink {
+    text-decoration: none;
+  }
+
+  .header__menuItemLink_active .header__menuItem {
+    color: $Main_Blue;
+  }
+
   .header__menuItem {
     color: $inputText_silver;
     font-size: 18px;

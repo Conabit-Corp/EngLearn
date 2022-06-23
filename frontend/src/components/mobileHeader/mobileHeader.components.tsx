@@ -1,5 +1,6 @@
 import "./mobileHeader.components.scss";
-import { mobileMenuToggle } from "../../utils/export.utils"
+import { NavLink } from 'react-router-dom';
+import { mobileMenuToggle } from "../../utils/export.utils";
 
 export const MobileHeader = () => {
 
@@ -32,10 +33,34 @@ export const MobileHeader = () => {
 
       <nav className="header__menu" id="mobileMenu">
         <ul className="header__menuList">
-          <li className="header__menuItem" onClick={mobileMenuToggle}>Profile</li>
-          <li className="header__menuItem" onClick={mobileMenuToggle}>Home</li>
-          <li className="header__menuItem" onClick={mobileMenuToggle}>My Dictionary</li>
-          <li className="header__menuItem" onClick={mobileMenuToggle}>Collections</li>
+          <NavLink to='/profile' className={
+            ({ isActive }) =>
+              isActive ? 'header__menuItemLink header__menuItemLink_active' : 'header__menuItemLink'
+          }>
+            <li className="header__menuItem" onClick={mobileMenuToggle}>Profile</li>
+          </NavLink>
+
+          <NavLink to='/home' className={
+            ({ isActive }) =>
+              isActive ? 'header__menuItemLink header__menuItemLink_active' : 'header__menuItemLink'
+          }>
+            <li className="header__menuItem" onClick={mobileMenuToggle}>Home</li>
+          </NavLink>
+
+          <NavLink to='/404' className={
+            ({ isActive }) =>
+              isActive ? 'header__menuItemLink header__menuItemLink_active' : 'header__menuItemLink'
+          }>
+            <li className="header__menuItem" onClick={mobileMenuToggle}>My Dictionary</li>
+          </NavLink>
+
+          <NavLink to='/404' className={
+            ({ isActive }) =>
+              isActive ? 'header__menuItemLink header__menuItemLink_active' : 'header__menuItemLink'
+          }>
+            <li className="header__menuItem" onClick={mobileMenuToggle}>Collections</li>
+          </NavLink>
+
         </ul>
       </nav>
     </header>
