@@ -8,6 +8,4 @@ export const mobileMenuToggle = () => {
 
   menu.classList.toggle('hide');
   htmlBody.classList.toggle('no-scroll');
-
-  console.log(htmlBody);
 }
