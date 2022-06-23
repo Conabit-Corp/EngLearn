@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
+  border-bottom: 1px solid#EBEBEB;
 
   .logo {
     width: fit-content;
@@ -59,5 +60,11 @@
     stroke-dasharray: 90 207;
     stroke-dashoffset: -134;
     stroke-width: 6;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    display: none;
   }
 }
