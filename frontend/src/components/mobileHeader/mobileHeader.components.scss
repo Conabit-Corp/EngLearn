@@ -1,0 +1,113 @@
+@import "../../config.scss";
+
+.header {
+  display: flex;
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid#EBEBEB;
+
+  .header__logo {
+    width: fit-content;
+  }
+
+  .header__burgerMenu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+  }
+
+  .line {
+    fill: none;
+    stroke: $Main_Blue;
+    stroke-linecap: round;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+
+  .line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+  }
+
+  .line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+
+  .opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+
+  .opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+  }
+
+  .opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+
+  .header__menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 55px;
+    height: calc(100% - 55px);
+    background: #ffffff;
+  }
+
+  .header__menuList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .header__menuItemLink {
+    text-decoration: none;
+  }
+
+  .header__menuItemLink_active .header__menuItem {
+    color: $Main_Blue;
+  }
+
+  .header__menuItem {
+    color: $inputText_silver;
+    font-size: 18px;
+    padding: 16px 15px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #2469fd25;
+      color: $Main_Blue--focus;
+    }
+  }
+
+  .hide {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    display: none;
+  }
+}
