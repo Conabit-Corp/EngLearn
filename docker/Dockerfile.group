@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM golang:1.17-alpine
 
 RUN apk add --no-cache libc6-compat 
 

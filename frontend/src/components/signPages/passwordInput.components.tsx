@@ -10,7 +10,7 @@ export const PasswordInput = (props: Props) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <div id="passwordContainer" className="form__container form__password_margin ">
+    <div id="passwordContainer" className="form__container form__containerPassword form__password_margin ">
       <label htmlFor="passwordInput">
         <svg
           width="18"
