@@ -28,7 +28,7 @@ function logOut() {
     grpc.unary(AuthService.Logout,
         {
             request: logoutreq,
-            host: "http://localhost:4000",
+            host: "http://10.3.21.205:4000",
             onEnd: (r) => {
                 localStorage.removeItem('token')
                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
@@ -39,12 +39,12 @@ function logOut() {
 
 function signIn() {
     const req = new SignInRequest()
-    req.setLogin("newUser333")
-    req.setPassword("password")
+    req.setLogin("testuser@123")
+    req.setPassword("123123")
     grpc.unary(AuthService.SignIn,
         {
             request: req,
-            host: "http://localhost:4000",
+            host: "http://10.3.21.205:4000",
             onEnd: (r) => {
                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
                 localStorage.setItem('token', r.message + '');
@@ -55,13 +55,13 @@ function signIn() {
 
 function signUp() {
     const req = new SignUpRequest()
-    req.setLogin("newUser333")
-    req.setPassword("password")
-    req.setRePassword("password")
+    req.setLogin("testuser@123")
+    req.setPassword("123123")
+    req.setRePassword("123123")
     grpc.unary(AuthService.SignUp,
         {
             request: req,
-            host: "http://localhost:4000",
+            host: "http://10.3.21.205:4000",
             onEnd: (r) => {
                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
                 localStorage.setItem('token', r.message + '');
@@ -79,7 +79,7 @@ function createCollection() {
     grpc.unary(WordCollectionService.CreateWordCollection,
         {
             request: req,
-            host: "http://localhost:4003",
+            host: "http://10.3.21.205:4003",
             onEnd: (r) => {
                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
             }
@@ -89,13 +89,15 @@ function createCollection() {
 
 function getWordCollections() {
     const req = new GetUserCollectionsRequest()
+    console.log(req.toObject());
+
     const session = new Session()
     session.setJwt(localStorage.getItem('token') ?? '')
     req.setSession(session)
     grpc.unary(WordCollectionService.GetUserWordCollections,
         {
             request: req,
-            host: "http://localhost:4003",
+            host: "http://10.3.21.205:4003",
             onEnd: (r) => {
                 const response = r.message?.toObject() as CollectionOverviewsResponse
                 console.log(response)
@@ -112,7 +114,7 @@ function getCollectionById() {
     grpc.unary(WordCollectionService.GetWordCollection,
         {
             request: req,
-            host: "http://localhost:4003",
+            host: "http://10.3.21.205:4003",
             onEnd: (r) => {
                 console.log(r.message?.toObject())
             }
@@ -129,7 +131,7 @@ function addWordPair() {
     grpc.unary(WordCollectionService.AddWordToCollection,
         {
             request: req,
-            host: "http://localhost:4003",
+            host: "http://10.3.21.205:4000",
             onEnd: (r) => {
                 console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
             }
@@ -144,7 +146,7 @@ function deleteCollection() {
     req.setCollectionId(collectionIdInput.value)
     grpc.unary(WordCollectionService.DeleteWordCollection, {
         request: req,
-        host: "http://localhost:4003",
+        host: "http://10.3.21.205:4000",
         onEnd: (r) => {
             console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
         }
@@ -158,10 +160,10 @@ function deleteWordPair() {
     req.setSession(session)
     req.setCollectionId(collectionIdInput.value)
     req.setWordPairId(wordPairIdInput.value)
-    console.log(req.toObject());    
+    console.log(req.toObject());
     grpc.unary(WordCollectionService.RemoveWordFromCollection, {
         request: req,
-        host: "http://localhost:4003",
+        host: "http://10.3.21.205:4000",
         onEnd: (r) => {
             console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
         }
@@ -188,7 +190,7 @@ function updateWordPair() {
     console.log(req.toObject());
     grpc.unary(WordCollectionService.EditWordFromCollection, {
         request: req,
-        host: "http://localhost:4003",
+        host: "http://10.3.21.205:4000",
         onEnd: (r) => {
             console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
         }
@@ -232,8 +234,8 @@ function newWordCollection(): WordCollection {
     const words = new WordCollection()
     words.setCountryCode1("en")
     words.setCountryCode2("ru")
-    words.setName("duuuuude")
-    words.setDescription("yes, its what?")
+    words.setName("Top 100 vegitables")
+    words.setDescription("Just i like peach")
     for (let idx = 0; idx < 1; idx++) {
         words.addWords(newWordPair())
     }
