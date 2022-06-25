@@ -3,7 +3,7 @@ import { AboutCollection } from "../../components/createCollection/export.create
 
 export const CreateCollection = (): JSX.Element => {
   return (
-    <div>
+    <div className="createCollectionContainer">
       <AboutCollection />
     </div>
   )
