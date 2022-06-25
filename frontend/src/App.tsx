@@ -15,7 +15,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route element={<MainPage />}>
-          <Route path="/home"
+          <Route path="/home/*"
             element={
               <RequireAuth>
                 <HomePage />
