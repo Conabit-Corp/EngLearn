@@ -6,12 +6,12 @@ export const AboutCollection = (): JSX.Element => {
       <input
         type="text"
         placeholder="Untitled"
-        className="aboutCollectiion_input aboutCollectiion_titleInput"
+        className="aboutCollectiion__input aboutCollectiion__titleInput"
       />
       <input
         type="text"
         placeholder="Description..."
-        className="aboutCollectiion_input aboutCollectiion_descriptionInput"
+        className="aboutCollectiion__input aboutCollectiion__descriptionInput"
       />
     </div>
   )
