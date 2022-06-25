@@ -34,4 +34,19 @@
       border: 1px solid $Main_Blue--focus;
     }
   }
+
+  .formNewWord__button {
+    max-width: 100px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    background-color: $Main_Blue;
+    color: #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $Main_Blue--focus;
+    }
+  }
 }
