@@ -1,0 +1,27 @@
+@import "../../../config.scss";
+
+.wordRow {
+  max-height: 51px;
+  display: flex;
+
+  .wordRow__input {
+    outline: none;
+    border: none;
+    height: 51px;
+    width: 250px;
+    border-bottom: 1px solid $Placeholder_silver;
+    color: $icon_Silver--click;
+    font-size: 18px;
+  }
+
+  .wordRow__deleteButton {
+    margin: 0;
+    display: flex;
+    border: none;
+    height: 51px;
+    max-width: 54px;
+    width: 100%;
+    border-bottom: 1px solid $Placeholder_silver;
+    cursor: pointer;
+  }
+}

@@ -1,7 +1,7 @@
 import "./createCollectionButtons.components.scss";
 import { useNavigate } from "react-router-dom";
 
-export const CreateCollectionButtons = () => {
+export const CreateCollectionButtons = (): JSX.Element => {
 
   const navigate = useNavigate();
 
