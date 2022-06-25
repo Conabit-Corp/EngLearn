@@ -1,5 +1,5 @@
 import "./createCollection.pages.scss";
-import { AboutCollection, FormNewWord, NewWordsTable } from "../../components/createCollection/export.createCollection.components";
+import { AboutCollection, FormNewWord, NewWordsTable, CreateCollectionButtons } from "../../components/createCollection/export.createCollection.components";
 
 export const CreateCollection = (): JSX.Element => {
   return (
@@ -7,6 +7,7 @@ export const CreateCollection = (): JSX.Element => {
       <AboutCollection />
       <FormNewWord />
       <NewWordsTable />
+      <CreateCollectionButtons />
     </div>
   )
 }
