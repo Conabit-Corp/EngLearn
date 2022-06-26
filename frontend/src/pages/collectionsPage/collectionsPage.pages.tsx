@@ -1,5 +1,10 @@
+import { ColletionItem } from '../../components/collections/collectionItem.components'
+
+
 export const CollectionsPage = (): JSX.Element => {
   return (
-    <div>collections...</div>
+
+      <ColletionItem />
+
   )
 }
