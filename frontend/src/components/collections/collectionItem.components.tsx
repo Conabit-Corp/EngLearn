@@ -9,7 +9,7 @@ export const ColletionItem = (): JSX.Element => {
     Homework
     </div>
     <div className='collection__description'>
-    until 28.06.2022
+    These are the words for my next trip to the USA an...
     </div>
   </div>
   )

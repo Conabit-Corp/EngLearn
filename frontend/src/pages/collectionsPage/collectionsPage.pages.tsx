@@ -11,9 +11,7 @@ export const CollectionsPage = (): JSX.Element => {
       <ColletionItem />
       <ColletionItem />
       <ColletionItem />
-      <ColletionItem />
-      <ColletionItem />
-      <ColletionItem />
+      
     </div>  
   )
 }

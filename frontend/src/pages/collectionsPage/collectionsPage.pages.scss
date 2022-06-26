@@ -2,5 +2,19 @@
 
 .collectionsList{
   max-height:676px ;
-  overflow-y: scroll
+  overflow-y:auto;
+}
+
+.collectionsList::-webkit-scrollbar {
+  width: 5px; /* ширина для вертикального скролла */
+  //height: px; /* высота для горизонтального скролла */
+  background-color: #2469fd57;
+  opacity: 0.4;
+
+}
+.collectionsList::-webkit-scrollbar-thumb {
+  background-color: #246afd;
+  // opacity: 0,4;
+  border-radius: 9em;
+  // box-shadow: inset 1px 1px 10px #f3faf7;
 }
