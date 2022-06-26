@@ -8,8 +8,6 @@ interface Props {
 }
 
 export const WordRow = (props: Props): JSX.Element => {
-  console.log(props.word);
-
   return (
     <div className="wordRow">
       <input
@@ -19,7 +17,7 @@ export const WordRow = (props: Props): JSX.Element => {
         defaultValue={props.word.eng}
         onChange={e => {
           //Для обновления объекта внутри состояния мы копируем всё состояние на каждом изменении инпута и перезаписываем с новым оъектом.
-          props.setWords((prevState: any[]) =>
+          props.setWords((prevState: Array<WordObj>) =>
             prevState.map((item, index) =>
               index === props.index
                 ? { ...item, eng: e.target.value }

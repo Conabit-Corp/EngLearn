@@ -17,7 +17,13 @@ export const NewWordsTable = (props: Props): JSX.Element => {
         :
         props.words.map((word, index): JSX.Element => {
           return (
-            <WordRow word={word} setWords={props.setWords} index={index} key={index} />
+            <WordRow
+              word={word}
+              setWords={props.setWords}
+              index={index}
+              //key должен быть уникальным, использование index нестабильно
+              key={word.eng + word.ru + index}
+            />
           )
         })
       }

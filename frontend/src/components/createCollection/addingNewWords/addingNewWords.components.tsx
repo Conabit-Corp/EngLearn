@@ -9,17 +9,11 @@ export type WordObj = {
 
 export const AddingNewWords = (): JSX.Element => {
 
-  const [words, setWords] = useState<Array<WordObj>>(
-    [
-      { ru: 'просто', eng: 'just' },
-      { ru: 'мшка', eng: 'mouse' },
-      { ru: 'книга', eng: 'book' },
-    ]
-  );
+  const [words, setWords] = useState<Array<WordObj>>([]);
 
   return (
     <>
-      <FormNewWord />
+      <FormNewWord words={words} setWords={setWords} />
       <NewWordsTable words={words} setWords={setWords} />
     </>
   )
