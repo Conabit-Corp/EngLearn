@@ -1,8 +1,9 @@
 import "./wordRow.components.scss";
+import { WordObj } from "../addingNewWords.components";
 
 interface Props {
-  word: any,
-  setWords: any,
+  word: WordObj,
+  setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
   index: number,
 }
 
