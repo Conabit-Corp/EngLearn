@@ -16,6 +16,16 @@ export const WordRow = (props: Props): JSX.Element => {
         className="wordRow__input"
         placeholder={props.word.eng}
         defaultValue={props.word.eng}
+        onChange={e => {
+          //Для обновления объекта внутри состояния мы копируем всё состояние на каждом изменении инпута и перезаписываем с новым оъектом.
+          props.setWords((prevState: any[]) =>
+            prevState.map((item, index) =>
+              index === props.index
+                ? { ...item, eng: e.target.value }
+                : item
+            )
+          )
+        }}
       />
       <input
         type="text"
@@ -23,7 +33,6 @@ export const WordRow = (props: Props): JSX.Element => {
         className="wordRow__input"
         defaultValue={props.word.ru}
         onChange={e => {
-          //Для обновления объекта внутри состояния мы копируем всё состояние на каждом изменении инпута и перезаписываем с новым оъектом.
           props.setWords((prevState: any[]) =>
             prevState.map((item, index) =>
               index === props.index
