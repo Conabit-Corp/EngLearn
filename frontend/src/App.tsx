@@ -7,7 +7,8 @@ import {
   RegPage,
   MainPage,
   ProfilePage,
-  HomePage
+  HomePage,
+  CollectionsPage
 } from './pages/export.pages';
 
 function App() {
@@ -26,6 +27,13 @@ function App() {
             element={
               <RequireAuth>
                 <ProfilePage />
+              </RequireAuth>
+            }
+          />
+          <Route path="/collections"
+            element={
+              <RequireAuth>
+                <CollectionsPage />
               </RequireAuth>
             }
           />

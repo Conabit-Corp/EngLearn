@@ -24,7 +24,16 @@ export const Menu = (): JSX.Element => {
         <MenuItem name={'Home'} />
       </NavLink>
       <MenuItem name={'My Dictionary'} />
-      <MenuItem name={'Collections'} />
+      <NavLink
+        className={
+          ({ isActive }) =>
+            isActive ? 'menuContainer__link item_active' : 'menuContainer__link'
+        }
+        to='/collections'
+      >
+        <MenuItem name={'Collections'} />
+      </NavLink>
+      
     </div>
   )
 }
