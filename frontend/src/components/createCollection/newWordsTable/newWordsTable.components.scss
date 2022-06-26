@@ -20,7 +20,23 @@
   max-width: 554px;
   display: flex;
   flex-direction: column;
-  padding-top: 43px;
+  margin-top: 43px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #A7C3FE;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $Main_Blue;
+    border-radius: 100px;
+  }
 
   .newWordsTable__row {
     max-height: 51px;
