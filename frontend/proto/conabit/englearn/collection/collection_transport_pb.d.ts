@@ -94,9 +94,6 @@ export class GetWordCollectionRequest extends jspb.Message {
   getCollectionId(): string;
   setCollectionId(value: string): void;
 
-  getCollectionName(): string;
-  setCollectionName(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetWordCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetWordCollectionRequest): GetWordCollectionRequest.AsObject;
@@ -111,7 +108,6 @@ export namespace GetWordCollectionRequest {
   export type AsObject = {
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
     collectionId: string,
-    collectionName: string,
   }
 }
 

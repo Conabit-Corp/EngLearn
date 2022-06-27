@@ -28,6 +28,7 @@ message CollectionsOverview{
     message Overview{
         string collection_id = 1;
         string collection_name = 2;
+        string collection_description = 3;
     }
     repeated Overview collections = 1;
 }

@@ -58,7 +58,7 @@ func _projectWordPairsAggregate() bson.D {
 		Key: "$project",
 		Value: bson.D{
 			{Key: "wordPairs", Value: 1},
-			{Key: "_id",Value: 0},
+			{Key: "_id", Value: 0},
 		},
 	}}
 }
@@ -134,16 +134,11 @@ func pullWordPairFromCollectionQuery(wordPairId primitive.ObjectID) bson.M {
 	}
 }
 
-func wordPairsProjection() bson.M {
+func collectionIdAndNameAndDescProjection() bson.M {
 	return bson.M{
-		"wordPairs": 1,
-	}
-}
-
-func collectionIdAndNameProjection() bson.M {
-	return bson.M{
-		"_id":  1,
-		"name": 1,
+		"_id":         1,
+		"name":        1,
+		"description": 1,
 	}
 }
 

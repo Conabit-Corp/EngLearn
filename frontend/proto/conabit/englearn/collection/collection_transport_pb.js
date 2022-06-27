@@ -990,8 +990,7 @@ proto.conabit.englearn.collection.GetWordCollectionRequest.prototype.toObject = 
 proto.conabit.englearn.collection.GetWordCollectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     session: (f = msg.getSession()) && proto_conabit_englearn_common_session_pb.Session.toObject(includeInstance, f),
-    collectionId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    collectionName: jspb.Message.getFieldWithDefault(msg, 3, "")
+    collectionId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1037,10 +1036,6 @@ proto.conabit.englearn.collection.GetWordCollectionRequest.deserializeBinaryFrom
       var value = /** @type {string} */ (reader.readString());
       msg.setCollectionId(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCollectionName(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1082,13 +1077,6 @@ proto.conabit.englearn.collection.GetWordCollectionRequest.serializeBinaryToWrit
   if (f.length > 0) {
     writer.writeString(
       2,
-      f
-    );
-  }
-  f = message.getCollectionName();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
       f
     );
   }
@@ -1147,24 +1135,6 @@ proto.conabit.englearn.collection.GetWordCollectionRequest.prototype.getCollecti
  */
 proto.conabit.englearn.collection.GetWordCollectionRequest.prototype.setCollectionId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string collection_name = 3;
- * @return {string}
- */
-proto.conabit.englearn.collection.GetWordCollectionRequest.prototype.getCollectionName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.conabit.englearn.collection.GetWordCollectionRequest} returns this
- */
-proto.conabit.englearn.collection.GetWordCollectionRequest.prototype.setCollectionName = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
