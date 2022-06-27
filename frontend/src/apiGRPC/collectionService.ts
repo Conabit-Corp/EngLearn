@@ -35,7 +35,7 @@ export const createCollectionRequest = (collectionTitle: string, collectionDescr
   )
 }
 
-export const getWordsCollections = (setCollections: React.Dispatch<React.SetStateAction<Object>>) => {
+export const getWordsCollections = (setCollections: React.Dispatch<React.SetStateAction<CollectionOverviewsResponse | undefined>>) => {
   const req = new GetUserCollectionsRequest()
   console.log(req.toObject());
 
@@ -52,4 +52,3 @@ export const getWordsCollections = (setCollections: React.Dispatch<React.SetStat
           }
       })
 }
-
