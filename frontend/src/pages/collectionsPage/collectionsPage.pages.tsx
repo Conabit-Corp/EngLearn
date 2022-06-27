@@ -3,7 +3,8 @@ import './collectionsPage.pages.scss'
 
 export const CollectionsPage = (): JSX.Element => {
   return (
-    <div className='collectionsList'>
+    <div className="collectionsContainer">
+     <div className='collectionsList'>
       <ColletionItem />
       <ColletionItem />
       <ColletionItem />
@@ -11,7 +12,7 @@ export const CollectionsPage = (): JSX.Element => {
       <ColletionItem />
       <ColletionItem />
       <ColletionItem />
-      
     </div>  
+    </div>
   )
 }

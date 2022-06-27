@@ -1,21 +1,36 @@
 @import "../../config.scss";
 
-.collectionsList{
-  max-height:676px ;
+.collectionsContainer{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  
+  
   overflow-y:auto;
   
+&::-webkit-scrollbar {
+  width: 5px;
 }
 
-.collectionsList::-webkit-scrollbar {
-  width: 5px; /* ширина для вертикального скролла */
-  //height: px; /* высота для горизонтального скролла */
-  background-color: #2469fd57;
-  opacity: 0.4;
+&::-webkit-scrollbar-track {
+  background-color: #A7C3FE;
+  border-radius: 100px;
+  margin-top: 25px; 
+  margin-bottom: 25px; 
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: $Main_Blue;
+  border-radius: 100px;
+}
 
 }
-.collectionsList::-webkit-scrollbar-thumb {
-  background-color: #246afd;
-  // opacity: 0,4;
-  border-radius: 9em;
-  // box-shadow: inset 1px 1px 10px #f3faf7;
+
+.collectionsList{
+height: 100%;
+  // margin-top: 10px;
+  padding-bottom: 25px;
+  max-height:676px ;
+
 }
+
+
