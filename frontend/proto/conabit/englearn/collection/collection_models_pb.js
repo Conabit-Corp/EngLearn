@@ -982,7 +982,8 @@ proto.conabit.englearn.collection.CollectionsOverview.Overview.prototype.toObjec
 proto.conabit.englearn.collection.CollectionsOverview.Overview.toObject = function(includeInstance, msg) {
   var f, obj = {
     collectionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    collectionName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    collectionName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    collectionDescription: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1027,6 +1028,10 @@ proto.conabit.englearn.collection.CollectionsOverview.Overview.deserializeBinary
       var value = /** @type {string} */ (reader.readString());
       msg.setCollectionName(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCollectionDescription(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1070,6 +1075,13 @@ proto.conabit.englearn.collection.CollectionsOverview.Overview.serializeBinaryTo
       f
     );
   }
+  f = message.getCollectionDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -1106,6 +1118,24 @@ proto.conabit.englearn.collection.CollectionsOverview.Overview.prototype.getColl
  */
 proto.conabit.englearn.collection.CollectionsOverview.Overview.prototype.setCollectionName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string collection_description = 3;
+ * @return {string}
+ */
+proto.conabit.englearn.collection.CollectionsOverview.Overview.prototype.getCollectionDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.conabit.englearn.collection.CollectionsOverview.Overview} returns this
+ */
+proto.conabit.englearn.collection.CollectionsOverview.Overview.prototype.setCollectionDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

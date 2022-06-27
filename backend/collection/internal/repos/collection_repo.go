@@ -17,10 +17,10 @@ type MongoWordCollectionRepo struct {
 }
 
 func NewMongoWordCollectionRepo(mongo *mongo.Client) *MongoWordCollectionRepo {
-	db := mongo.Database("collection")
+	db := mongo.Database("collectionService")
 	return &MongoWordCollectionRepo{
 		mongo:           mongo,
-		wordCollections: db.Collection("wordCollections"),
+		wordCollections: db.Collection("words"),
 	}
 }
 
@@ -84,11 +84,11 @@ func (repo *MongoWordCollectionRepo) GetUserCollectionCountryCodes(
 	return &collection, nil
 }
 
-func (repo *MongoWordCollectionRepo) GetCollectionNamesAndIdsByUserId(
+func (repo *MongoWordCollectionRepo) GetCollectionOverviewsByUserId(
 	ctx context.Context,
 	userId primitive.ObjectID) (*[]models.WordCollection, error) {
 	opts := options.Find().
-		SetProjection(collectionIdAndNameProjection())
+		SetProjection(collectionIdAndNameAndDescProjection())
 	return repo.getCollectionsByUserIdWithOptions(ctx, userId, opts)
 }
 
