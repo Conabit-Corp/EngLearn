@@ -12,7 +12,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const [firstWord, setFirstWord] = useState('');
   const [secondWord, setSecondWord] = useState('');
 
-  function addWord() {
+  function addWord(): void {
     let newWord: WordObj = {
       ru: secondWord,
       eng: firstWord,

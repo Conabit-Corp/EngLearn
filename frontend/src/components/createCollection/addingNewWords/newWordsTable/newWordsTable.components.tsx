@@ -8,6 +8,16 @@ interface Props {
 }
 
 export const NewWordsTable = (props: Props): JSX.Element => {
+
+  function removeWord(index: number): void {
+    console.log(index);
+
+    let newWordsArray: WordObj[] = JSON.parse(JSON.stringify(props.words));
+    newWordsArray.splice(index, 1);
+
+    props.setWords(newWordsArray)
+  }
+
   return (
     <div className={props.words.length < 1 ? "newWordsTable_noWords" : "newWordsTable"}>
       {props.words.length < 1 ?
@@ -21,6 +31,7 @@ export const NewWordsTable = (props: Props): JSX.Element => {
               word={word}
               setWords={props.setWords}
               index={index}
+              removeWord={removeWord}
               //key должен быть уникальным, использование index нестабильно
               key={word.eng + word.ru + index}
             />

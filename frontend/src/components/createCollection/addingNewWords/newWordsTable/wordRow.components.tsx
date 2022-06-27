@@ -5,6 +5,7 @@ interface Props {
   word: WordObj,
   setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
   index: number,
+  removeWord: Function,
 }
 
 export const WordRow = (props: Props): JSX.Element => {
@@ -41,7 +42,7 @@ export const WordRow = (props: Props): JSX.Element => {
           )
         }}
       />
-      <a className="wordRow__deleteButton">del</a>
+      <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>del</a>
     </div>
   )
 }
