@@ -1,6 +1,7 @@
 import "./formNewWord.components.scss";
 import { WordObj } from "./addingNewWords.components";
 import { useState } from "react";
+import { addNewWordChecker } from "../../../utils/createCollection/addNewWordChecker.utils";
 
 interface Props {
   words: Array<WordObj>,
@@ -38,7 +39,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
         className="formNewWord__input"
         onChange={e => setSecondWord(e.target.value)}
       />
-      <button className="formNewWord__button" onClick={() => addWord()}>Add word</button>
+      <button className="formNewWord__button" onClick={() => addNewWordChecker(firstWord, secondWord, addWord)}>Add word</button>
     </div>
   )
 }
