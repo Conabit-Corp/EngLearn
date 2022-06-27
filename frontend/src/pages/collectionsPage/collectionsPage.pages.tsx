@@ -10,6 +10,8 @@ export const CollectionsPage = (): JSX.Element => {
     getWordsCollections(setCollections);
   }, []);
 
+
+  //Вот как из collections нужно теперь доставать массив с коллециями:
   console.log(collections?.collections.collectionsList)
 
   return (
