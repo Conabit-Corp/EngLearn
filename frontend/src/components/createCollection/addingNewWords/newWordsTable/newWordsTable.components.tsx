@@ -1,6 +1,6 @@
 import "./newWordsTable.components.scss";
 import { WordRow } from "./wordRow.components";
-import { WordObj } from "../addingNewWords.components";
+import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
 
 interface Props {
   words: Array<WordObj>,

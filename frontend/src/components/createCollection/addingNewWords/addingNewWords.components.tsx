@@ -1,20 +1,17 @@
-import { useState } from "react";
 import { FormNewWord } from "./formNewWord.components";
 import { NewWordsTable } from "./newWordsTable/newWordsTable.components";
+import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 
-export type WordObj = {
-  eng: string,
-  ru: string
+interface Props {
+  words: Array<WordObj>,
+  setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
 }
 
-export const AddingNewWords = (): JSX.Element => {
-
-  const [words, setWords] = useState<Array<WordObj>>([]);
-
+export const AddingNewWords = (props: Props): JSX.Element => {
   return (
     <>
-      <FormNewWord words={words} setWords={setWords} />
-      <NewWordsTable words={words} setWords={setWords} />
+      <FormNewWord words={props.words} setWords={props.setWords} />
+      <NewWordsTable words={props.words} setWords={props.setWords} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import "./wordRow.components.scss";
-import { WordObj } from "../addingNewWords.components";
+import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
 
 interface Props {
   word: WordObj,
