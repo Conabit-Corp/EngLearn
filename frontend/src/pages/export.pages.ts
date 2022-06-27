@@ -4,3 +4,4 @@ export { MainPage } from './mainPage/mainPage.pages';
 export { ProfilePage } from './profilePage/profilePage.pages';
 export { HomePage } from './homePage/homePage.pages';
 export { CollectionsPage } from './collectionsPage/collectionsPage.pages'
+export { CreateCollection } from './createCollection/createCollection.pages';

@@ -1,0 +1,39 @@
+@import "../../config.scss";
+
+.createCollectionButtons {
+  display: flex;
+  gap: 1.5vw;
+  margin-top: 30px;
+
+  .createCollectionButtons__button {
+    height: 35px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .createCollectionButtons__save {
+    color: #FFFFFF;
+    background-color: $Main_Blue;
+    max-width: 180px;
+    width: 100%;
+
+    &:hover {
+      background-color: $Main_Blue--focus;
+    }
+  }
+
+  .createCollectionButtons__cancel {
+    color: $Placeholder_silver;
+    background-color: #FFFFFF;
+    border: 1px solid $Placeholder_silver;
+    max-width: 100px;
+    width: 100%;
+
+    &:hover {
+      border-color: $icon_Silver--hover;
+      color: $icon_Silver--hover;
+    }
+  }
+}
