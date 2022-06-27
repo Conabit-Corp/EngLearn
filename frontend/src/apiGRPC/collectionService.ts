@@ -5,8 +5,8 @@ import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
 import { WordObj } from "../pages/createCollection/createCollection.pages";
 
-interface CollectionOverviewsResponse {
-  overview: CollectionsOverwies
+export interface CollectionOverviewsResponse {
+  collections: CollectionsOverwies
 }
 
 interface CollectionsOverwies {
@@ -43,12 +43,12 @@ export const getWordsCollections = (setCollections: React.Dispatch<React.SetStat
   session.setJwt(localStorage.getItem('token') ?? '')
   req.setSession(session)
   grpc.unary(WordCollectionService.GetUserWordCollections,
-      {
-          request: req,
-          host: "http://10.3.21.205:4003",
-          onEnd: (r) => {
-              const response = r.message?.toObject() as CollectionOverviewsResponse
-              setCollections(response)
-          }
-      })
+    {
+      request: req,
+      host: "http://10.3.21.205:4003",
+      onEnd: (r) => {
+        const response = r.message?.toObject() as CollectionOverviewsResponse;
+        setCollections(response);
+      }
+    })
 }
