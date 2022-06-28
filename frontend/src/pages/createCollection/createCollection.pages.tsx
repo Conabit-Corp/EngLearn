@@ -3,6 +3,7 @@ import { AboutCollection, AddingNewWords, CreateCollectionButtons } from "../../
 import { useState } from "react";
 
 export type WordObj = {
+  id: number,
   eng: string,
   ru: string
 }

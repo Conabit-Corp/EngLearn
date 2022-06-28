@@ -9,12 +9,13 @@ interface Props {
 }
 
 export const FormNewWord = (props: Props): JSX.Element => {
-
   const [firstWord, setFirstWord] = useState('');
   const [secondWord, setSecondWord] = useState('');
+  const [idWord, setIdWord] = useState(0);
 
   function addWord(): void {
     let newWord: WordObj = {
+      id: idWord,
       ru: secondWord,
       eng: firstWord,
     };
@@ -23,7 +24,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
     newWordsArray.unshift(newWord);
 
     props.setWords(newWordsArray);
-
+    setIdWord(idWord + 1);
     setFirstWord('');
     setSecondWord('');
   }
