@@ -1,6 +1,6 @@
 import './menuItem.components.scss';
 import { ProfileIcon } from '../../../images/menu/profileIcon';
-// import { ReactComponent as HomeIcon } from '../../../images/menu/homeIcon.svg';
+import { HomeIcon } from '../../../images/menu/homeIcon';
 // import { ReactComponent as MyDictionaryIcon } from '../../../images/menu/dictionaryIcon.svg';
 // import { ReactComponent as CollectionsIcon } from '../../../images/menu/collectionsIcon.svg';
 
@@ -16,8 +16,7 @@ export const MenuItem = (props: Props) => {
           <ProfileIcon className='item_icon' />
           :
           props.name === 'Home' ?
-            // <HomeIcon className='item_icon' />
-            'H'
+            <HomeIcon className='item_icon' />
             :
             props.name === 'My Dictionary' ?
               // <MyDictionaryIcon className='item_icon' />
