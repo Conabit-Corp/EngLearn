@@ -1,5 +1,6 @@
 import "./wordRow.components.scss";
 import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
+import { BinSvg } from "../../../../images/bin";
 
 interface Props {
   word: WordObj,
@@ -42,7 +43,9 @@ export const WordRow = (props: Props): JSX.Element => {
           )
         }}
       />
-      <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>del</a>
+      <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>
+        <BinSvg />
+      </a>
     </div>
   )
 }
