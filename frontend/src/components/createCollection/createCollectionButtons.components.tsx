@@ -18,7 +18,7 @@ export const CreateCollectionButtons = (props: Props): JSX.Element => {
     <div className="createCollectionButtons">
       <button
         className="createCollectionButtons__button createCollectionButtons__save"
-        onClick={() => saveCollectionChecker(props.collectionTitle, props.collectionDescription, props.words)}
+        onClick={() => saveCollectionChecker(props.collectionTitle, props.collectionDescription, props.words, navigate)}
       >
         Save collection
       </button>
