@@ -34,7 +34,7 @@ export const WordRow = (props: Props): JSX.Element => {
         className="wordRow__input"
         defaultValue={props.word.ru}
         onChange={e => {
-          props.setWords((prevState: any[]) =>
+          props.setWords((prevState: Array<WordObj>) =>
             prevState.map((item, index) =>
               index === props.index
                 ? { ...item, ru: e.target.value }
