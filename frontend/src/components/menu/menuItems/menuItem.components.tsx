@@ -1,8 +1,8 @@
 import './menuItem.components.scss';
-// import ProfileIcon from '../../../images/menu/profileIcon.svg';
-// import { ReactComponent as HomeIcon } from '../../../images/menu/homeIcon.svg';
-// import { ReactComponent as MyDictionaryIcon } from '../../../images/menu/dictionaryIcon.svg';
-// import { ReactComponent as CollectionsIcon } from '../../../images/menu/collectionsIcon.svg';
+import { ProfileIcon } from '../../../images/menu/profileIcon';
+import { HomeIcon } from '../../../images/menu/homeIcon';
+import { MyDictionaryIcon } from '../../../images/menu/dictionaryIcon';
+import { CollectionsIcon } from '../../../images/menu/collectionsIcon';
 
 interface Props {
   name: string,
@@ -13,20 +13,16 @@ export const MenuItem = (props: Props) => {
     <div className='item'>
       <div className='item__iconContainer'>
         {props.name === 'Profile' ?
-          // <ProfileIcon className='item_icon' />
-          'P'
+          <ProfileIcon className='item__icon' />
           :
           props.name === 'Home' ?
-            // <HomeIcon className='item_icon' />
-            'H'
+            <HomeIcon className='item__icon' />
             :
             props.name === 'My Dictionary' ?
-              // <MyDictionaryIcon className='item_icon' />
-              'MD'
+              <MyDictionaryIcon className='item__icon' />
               :
               props.name === 'Collections' ?
-                // <CollectionsIcon className='item_icon' />
-                'C'
+                <CollectionsIcon className='item__icon item__icon_clllections' />
                 :
                 null
         }
