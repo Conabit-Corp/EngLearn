@@ -13,13 +13,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .item_icon path{
+
+    .item_icon path {
       fill: #ACACAC;
     }
-    
+
     //Это для иконки collections
     .item_icon line,
-    .item_icon rect{
+    .item_icon rect {
       stroke: #ACACAC;
     }
   }
@@ -33,19 +34,20 @@
   &:hover {
     background-color: #2469fd25;
 
-    .item__iconContainer .item_icon path{
+    .item__iconContainer .item_icon path {
       fill: #246AFD;
+      stroke: #246AFD;
       opacity: 0.7;
     }
 
     .item_icon line,
-    .item_icon rect{
+    .item_icon rect {
       stroke: #246AFD;
       opacity: 0.7;
     }
 
     .item__title {
-      color:#246AFD;
+      color: #246AFD;
       opacity: 0.7;
     }
   }
@@ -53,38 +55,37 @@
 
 .item_active {
   background-color: #bdd2fe;
-  
-  .item__iconContainer 
-  .item_icon path{
+
+  .item__iconContainer .item_icon path {
     fill: #246AFD;
   }
 
   .item_icon line,
-  .item_icon rect{
+  .item_icon rect {
     stroke: #246AFD;
   }
 
   .item__title {
-    color:#246AFD;
+    color: #246AFD;
   }
 
   //обнуление ховера для акстивного элемента
   &:hover {
     background-color: #bdd2fe;
 
-    .item__iconContainer .item_icon path{
+    .item__iconContainer .item_icon path {
       fill: #246AFD;
       opacity: 1;
     }
 
     .item_icon line,
-    .item_icon rect{
+    .item_icon rect {
       stroke: #246AFD;
       opacity: 1;
     }
 
     .item__title {
-      color:#246AFD;
+      color: #246AFD;
       opacity: 1;
     }
   }
