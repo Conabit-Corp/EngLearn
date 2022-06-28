@@ -44,7 +44,7 @@ export const WordRow = (props: Props): JSX.Element => {
         }}
       />
       <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>
-        <BinSvg />
+        <BinSvg className="wordRow__deleteButtonIcon" />
       </a>
     </div>
   )

@@ -17,11 +17,21 @@
   .wordRow__deleteButton {
     margin: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     height: 51px;
     max-width: 54px;
     width: 100%;
     border-bottom: 1px solid $Placeholder_silver;
     cursor: pointer;
+
+    &:hover .wordRow__deleteButtonIcon g {
+      fill: $Error_red;
+    }
+
+    &:active .wordRow__deleteButtonIcon g {
+      opacity: 0.5;
+    }
   }
 }
