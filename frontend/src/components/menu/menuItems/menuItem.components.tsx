@@ -13,16 +13,16 @@ export const MenuItem = (props: Props) => {
     <div className='item'>
       <div className='item__iconContainer'>
         {props.name === 'Profile' ?
-          <ProfileIcon className='item_icon' />
+          <ProfileIcon className='item__icon' />
           :
           props.name === 'Home' ?
-            <HomeIcon className='item_icon' />
+            <HomeIcon className='item__icon' />
             :
             props.name === 'My Dictionary' ?
-              <MyDictionaryIcon className='item_icon' />
+              <MyDictionaryIcon className='item__icon' />
               :
               props.name === 'Collections' ?
-                <CollectionsIcon className='item_icon' />
+                <CollectionsIcon className='item__icon item__icon_clllections' />
                 :
                 null
         }

@@ -14,13 +14,13 @@
     align-items: center;
     justify-content: center;
 
-    .item_icon path {
+    .item__icon path {
       fill: #ACACAC;
     }
 
     //Это для иконки collections
-    .item_icon line,
-    .item_icon rect {
+    .item__icon line,
+    .item__icon rect {
       stroke: #ACACAC;
     }
   }
@@ -34,14 +34,17 @@
   &:hover {
     background-color: #2469fd25;
 
-    .item__iconContainer .item_icon path {
+    .item__iconContainer .item__icon path {
       fill: #246AFD;
-      stroke: #246AFD;
       opacity: 0.7;
     }
 
-    .item_icon line,
-    .item_icon rect {
+    .item__iconContainer .item__icon_clllections path {
+      stroke: #246AFD;
+    }
+
+    .item__icon line,
+    .item__icon rect {
       stroke: #246AFD;
       opacity: 0.7;
     }
@@ -56,12 +59,12 @@
 .item_active {
   background-color: #bdd2fe;
 
-  .item__iconContainer .item_icon path {
+  .item__iconContainer .item__icon path {
     fill: #246AFD;
   }
 
-  .item_icon line,
-  .item_icon rect {
+  .item__icon line,
+  .item__icon rect {
     stroke: #246AFD;
   }
 
@@ -73,13 +76,13 @@
   &:hover {
     background-color: #bdd2fe;
 
-    .item__iconContainer .item_icon path {
+    .item__iconContainer .item__icon path {
       fill: #246AFD;
       opacity: 1;
     }
 
-    .item_icon line,
-    .item_icon rect {
+    .item__icon line,
+    .item__icon rect {
       stroke: #246AFD;
       opacity: 1;
     }
