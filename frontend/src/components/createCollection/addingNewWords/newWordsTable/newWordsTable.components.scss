@@ -1,0 +1,66 @@
+@import "../../../../config.scss";
+
+.newWordsTable_noWords {
+  height: 50vh;
+  max-height: 498px;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .newWordsTable__warning {
+    color: $Placeholder_silver;
+    font-size: 20px;
+  }
+}
+
+.newWordsTable {
+  height: 50vh;
+  max-height: 498px;
+  max-width: 554px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 43px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #A7C3FE;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $Main_Blue;
+    border-radius: 100px;
+  }
+
+  .newWordsTable__row {
+    max-height: 51px;
+    display: flex;
+
+    .newWordsTable__input {
+      outline: none;
+      border: none;
+      height: 51px;
+      width: 250px;
+      border-bottom: 1px solid $Placeholder_silver;
+      color: $icon_Silver--click;
+      font-size: 18px;
+    }
+
+    .newWordsTable__deleteButton {
+      margin: 0;
+      display: flex;
+      border: none;
+      height: 51px;
+      max-width: 54px;
+      width: 100%;
+      border-bottom: 1px solid $Placeholder_silver;
+      cursor: pointer;
+    }
+  }
+}

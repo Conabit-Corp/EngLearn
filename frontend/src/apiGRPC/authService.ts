@@ -1,6 +1,4 @@
 import { grpc } from "@improbable-eng/grpc-web";
-import { ProtobufMessage } from "@improbable-eng/grpc-web/dist/typings/message";
-import { UnaryOutput } from "@improbable-eng/grpc-web/dist/typings/unary";
 import { AuthResponse, LogoutRequest, SignInRequest, SignUpRequest } from "../../proto/conabit/englearn/auth/auth_service_pb";
 import { AuthService } from "../../proto/conabit/englearn/auth/auth_service_pb_service";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";

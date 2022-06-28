@@ -1,0 +1,32 @@
+@import "../../config.scss";
+
+.aboutCollectiion {
+  display: flex;
+  flex-direction: column;
+
+  .aboutCollectiion__input {
+    border: none;
+    background-color: #ffffff;
+    outline: none;
+    color: $Text_Black;
+    width: 100%;
+
+    &::-moz-placeholder {
+      color: $input_Silver;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $input_Silver;
+    }
+  }
+
+  .aboutCollectiion__titleInput {
+    font-weight: bold;
+    font-size: 62px;
+    margin-bottom: 15px;
+  }
+
+  .aboutCollectiion__descriptionInput {
+    font-size: 20px;
+  }
+}
