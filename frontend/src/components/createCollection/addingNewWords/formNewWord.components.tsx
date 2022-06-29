@@ -35,14 +35,22 @@ export const FormNewWord = (props: Props): JSX.Element => {
         type="text"
         placeholder="English word"
         className="formNewWord__input"
-        onChange={e => setFirstWord(e.target.value)}
+        onChange={e => {
+          let value = e.target.value;
+          value = value.replace(/[^A-Za-z]/ig, '');
+          setFirstWord(value);
+        }}
         value={firstWord}
       />
       <input
         type="text"
         placeholder="Russian word"
         className="formNewWord__input"
-        onChange={e => setSecondWord(e.target.value)}
+        onChange={e => {
+          let value = e.target.value;
+          value = value.replace(/[^А-Яа-я]/ig, '');
+          setSecondWord(value);
+        }}
         value={secondWord}
       />
       <button
