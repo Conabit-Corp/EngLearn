@@ -1,7 +1,10 @@
-import { ColletionItem } from '../../components/collections/collectionItem.components';
-import { getWordsCollections, CollectionOverviewsResponse } from '../../apiGRPC/collectionService';
-import { useState, useEffect } from 'react';
-import './collectionsPage.pages.scss';
+import { CollectionItem } from "../../components/collections/collectionItem.components";
+import {
+  getWordsCollections,
+  CollectionOverviewsResponse,
+} from "../../apiGRPC/collectionService";
+import { useState, useEffect } from "react";
+import "./collectionsPage.pages.scss";
 
 export const CollectionsPage = (): JSX.Element => {
   const [collections, setCollections] = useState<CollectionOverviewsResponse>();
@@ -10,21 +13,21 @@ export const CollectionsPage = (): JSX.Element => {
     getWordsCollections(setCollections);
   }, []);
 
-
   //Вот как из collections нужно теперь доставать массив с коллециями:
-  console.log(collections?.collections.collectionsList)
+  let collectionsArr = collections?.collections.collectionsList;
+  console.log(collectionsArr);
 
   return (
     <div className="collectionsContainer">
-      <div className='collectionsList'>
-        <ColletionItem />
-        <ColletionItem />
-        <ColletionItem />
-        <ColletionItem />
-        <ColletionItem />
-        <ColletionItem />
-        <ColletionItem />
+      <div className="collectionsList">
+        {collectionsArr
+          ? collectionsArr.map((collection) => {
+              return (
+                <CollectionItem collectionName={collection.collectionName} />
+              );
+            })
+          : null}
       </div>
     </div>
-  )
-}
+  );
+};
