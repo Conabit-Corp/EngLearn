@@ -13,22 +13,30 @@ export const CollectionsPage = (): JSX.Element => {
   useEffect(() => {
     getWordsCollections(setCollections);
   }, []);
-  console.log(collections);
+  console.log(collections?.collections.collectionsList);
 
-  let collectionsArr: any = [];
-  // let collectionsArr = collections?.collections.collectionsList;
+  // let collectionsArr: any = [];
+
   // console.log(collectionsArr);
 
   return (
     // <div className="12"></div>
     <div className="collectionsContainer">
-      {collectionsArr.length !== 0 ? (
+      {collections?.collections.collectionsList.length !== 0 ? (
         <div className="collectionsList">
-          {collectionsArr.map((collection: { collectionName: string }) => {
-            return (
-              <CollectionItem collectionName={collection.collectionName} />
-            );
-          })}
+          {collections?.collections.collectionsList.map(
+            (collection: {
+              collectionName: string;
+              collectionDescription: string;
+            }) => {
+              return (
+                <CollectionItem
+                  collectionName={collection.collectionName}
+                  collectionDescription={collection.collectionDescription}
+                />
+              );
+            }
+          )}
         </div>
       ) : (
         <WithoutCollections />
