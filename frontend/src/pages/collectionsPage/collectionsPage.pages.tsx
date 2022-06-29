@@ -15,24 +15,24 @@ export const CollectionsPage = (): JSX.Element => {
   }, []);
   console.log(collections);
 
-  // let collectionsArr: any = [];
+  let collectionsArr: any = [];
   // let collectionsArr = collections?.collections.collectionsList;
   // console.log(collectionsArr);
 
   return (
-    <div className="12"></div>
-    // <div className="collectionsContainer">
-    //   {collectionsArr.length !== 0 ? (
-    //     <div className="collectionsList">
-    //       {collectionsArr.map((collection: { collectionName: string }) => {
-    //         return (
-    //           <CollectionItem collectionName={collection.collectionName} />
-    //         );
-    //       })}
-    //     </div>
-    //   ) : (
-    //     <WithoutCollections />
-    //   )}
-    // </div>
+    // <div className="12"></div>
+    <div className="collectionsContainer">
+      {collectionsArr.length !== 0 ? (
+        <div className="collectionsList">
+          {collectionsArr.map((collection: { collectionName: string }) => {
+            return (
+              <CollectionItem collectionName={collection.collectionName} />
+            );
+          })}
+        </div>
+      ) : (
+        <WithoutCollections />
+      )}
+    </div>
   );
 };

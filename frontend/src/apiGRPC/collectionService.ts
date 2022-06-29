@@ -16,6 +16,7 @@ interface CollectionsOverwies {
 interface CollectionOverview {
   collectionId: string
   collectionName: string
+  collectionDescription: string
 }
 
 export const createCollectionRequest = (collectionTitle: string, collectionDescription: string, words: Array<WordObj>) => {
