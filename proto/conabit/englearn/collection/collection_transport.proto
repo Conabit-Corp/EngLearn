@@ -26,7 +26,7 @@ message CreateWordCollectionResponse{
 message GetWordCollectionRequest{
     conabit.englearn.common.Session session = 1;
     string collection_id = 2;
-    string collection_name = 3;//remove?
+    // string collection_name = 3;//remove?
 }
 
 message GetWordCollectionResponse{

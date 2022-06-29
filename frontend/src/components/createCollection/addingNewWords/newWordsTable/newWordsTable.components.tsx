@@ -32,8 +32,7 @@ export const NewWordsTable = (props: Props): JSX.Element => {
               setWords={props.setWords}
               index={index}
               removeWord={removeWord}
-              //key должен быть уникальным, использование index нестабильно
-              key={word.eng + word.ru + index}
+              key={word.id}
             />
           )
         })

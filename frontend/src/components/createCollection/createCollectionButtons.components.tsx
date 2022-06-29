@@ -2,6 +2,7 @@ import "./createCollectionButtons.components.scss";
 import { useNavigate } from "react-router-dom";
 import { WordObj } from "../../pages/createCollection/createCollection.pages";
 import { createCollectionRequest } from "../../apiGRPC/collectionService";
+import { saveCollectionChecker } from "../../utils/export.utils";
 
 interface Props {
   collectionTitle: string,
@@ -17,7 +18,7 @@ export const CreateCollectionButtons = (props: Props): JSX.Element => {
     <div className="createCollectionButtons">
       <button
         className="createCollectionButtons__button createCollectionButtons__save"
-        onClick={() => createCollectionRequest(props.collectionTitle, props.collectionDescription, props.words)}
+        onClick={() => saveCollectionChecker(props.collectionTitle, props.collectionDescription, props.words, navigate)}
       >
         Save collection
       </button>

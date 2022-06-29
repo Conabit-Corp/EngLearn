@@ -1,5 +1,6 @@
 import "./wordRow.components.scss";
 import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
+import { BinSvg } from "../../../../images/bin";
 
 interface Props {
   word: WordObj,
@@ -33,7 +34,7 @@ export const WordRow = (props: Props): JSX.Element => {
         className="wordRow__input"
         defaultValue={props.word.ru}
         onChange={e => {
-          props.setWords((prevState: any[]) =>
+          props.setWords((prevState: Array<WordObj>) =>
             prevState.map((item, index) =>
               index === props.index
                 ? { ...item, ru: e.target.value }
@@ -42,7 +43,9 @@ export const WordRow = (props: Props): JSX.Element => {
           )
         }}
       />
-      <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>del</a>
+      <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>
+        <BinSvg className="wordRow__deleteButtonIcon" />
+      </a>
     </div>
   )
 }

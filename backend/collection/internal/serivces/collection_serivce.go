@@ -2,7 +2,6 @@ package serivces
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/Conabit-Corp/EngLearn/backend/collection/internal/repos"
 	"github.com/Conabit-Corp/EngLearn/backend/collection/pkg/models"
@@ -40,7 +39,7 @@ func (service *WordCollectionSerivce) GetGroupWordCollections(
 func (service *WordCollectionSerivce) CreateWordCollection(
 	ctx context.Context,
 	req *collectionGen.CreateWordCollectionRequest) (*collectionGen.CreateWordCollectionResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -51,6 +50,9 @@ func (service *WordCollectionSerivce) CreateWordCollection(
 	collection := models.WordCollectionFromProto(req.WordCollection)
 	collection.OwnerId = userId
 	collectionId, err := service.collectionRepo.SaveCollection(ctx, collection)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, err.Error())
+	}
 	return &collectionGen.CreateWordCollectionResponse{
 		CollectionId: collectionId.Hex(),
 	}, nil
@@ -59,19 +61,20 @@ func (service *WordCollectionSerivce) CreateWordCollection(
 func (service *WordCollectionSerivce) GetUserWordCollections(
 	ctx context.Context,
 	req *collectionGen.GetUserCollectionsRequest) (*collectionGen.GetUserCollectionsResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
-	collections, err := service.collectionRepo.GetCollectionNamesAndIdsByUserId(ctx, userId)
+	collections, err := service.collectionRepo.GetCollectionOverviewsByUserId(ctx, userId)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
 	overviews := []*collectionGen.CollectionsOverview_Overview{}
 	for _, collection := range *collections {
 		overviews = append(overviews, &collectionGen.CollectionsOverview_Overview{
-			CollectionName: collection.Name,
-			CollectionId:   collection.ID.Hex(),
+			CollectionName:        collection.Name,
+			CollectionId:          collection.ID.Hex(),
+			CollectionDescription: collection.Description,
 		})
 	}
 	return &collectionGen.GetUserCollectionsResponse{
@@ -87,7 +90,7 @@ func (service *WordCollectionSerivce) GetWordCollection(
 	if req.CollectionId == "" {
 		return nil, status.Errorf(codes.InvalidArgument, "Collection id empty")
 	}
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -107,7 +110,7 @@ func (service *WordCollectionSerivce) GetWordCollection(
 func (service *WordCollectionSerivce) DeleteWordCollection(
 	ctx context.Context,
 	req *collectionGen.DeleteWordCollectionRequest) (*collectionGen.DeleteWordCollectionResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -127,7 +130,7 @@ func (service *WordCollectionSerivce) DeleteWordCollection(
 func (service *WordCollectionSerivce) AddWordToCollection(
 	ctx context.Context,
 	req *collectionGen.AddWordToCollectionRequest) (*collectionGen.AddWordToCollectionResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -152,7 +155,7 @@ func (service *WordCollectionSerivce) AddWordToCollection(
 func (service *WordCollectionSerivce) RemoveWordFromCollection(
 	ctx context.Context,
 	req *collectionGen.RemoveWordFromCollectionRequest) (*collectionGen.RemoveWordFromCollectionResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -177,7 +180,7 @@ func (service *WordCollectionSerivce) RemoveWordFromCollection(
 func (service *WordCollectionSerivce) EditWordFromCollection(
 	ctx context.Context,
 	req *collectionGen.EditWordFromCollectionRequest) (*collectionGen.EditWordFromCollectionResponse, error) {
-	userId, err := userIdFromCtx(ctx)
+	userId, err := commonServices.UserIdFromCtx(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
@@ -245,16 +248,4 @@ func (service *WordCollectionSerivce) validateRequestWordPair(
 			"one of word pairs contains invalid value, must have single word")
 	}
 	return nil
-}
-
-func userIdFromCtx(ctx context.Context) (primitive.ObjectID, error) {
-	id, ok := ctx.Value("user_id").(string)
-	if !ok {
-		return primitive.NilObjectID, fmt.Errorf("can't get user session")
-	}
-	usrId, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return primitive.NilObjectID, fmt.Errorf("user session invalid")
-	}
-	return usrId, nil
 }

@@ -11,6 +11,5 @@ export const newWordCollection = (collectionTitle: string, collectionDescription
   for (let i = 0; i < words.length; i++) {
     collection.addWords(newWordPair(words[i]))
   }
-  console.log(collection.toObject());
   return collection;
 }

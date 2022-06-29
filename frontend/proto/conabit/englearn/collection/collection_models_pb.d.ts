@@ -129,6 +129,9 @@ export namespace CollectionsOverview {
     getCollectionName(): string;
     setCollectionName(value: string): void;
 
+    getCollectionDescription(): string;
+    setCollectionDescription(value: string): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Overview.AsObject;
     static toObject(includeInstance: boolean, msg: Overview): Overview.AsObject;
@@ -143,6 +146,7 @@ export namespace CollectionsOverview {
     export type AsObject = {
       collectionId: string,
       collectionName: string,
+      collectionDescription: string,
     }
   }
 }
