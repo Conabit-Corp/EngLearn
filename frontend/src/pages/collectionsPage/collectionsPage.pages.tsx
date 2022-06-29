@@ -1,4 +1,5 @@
 import { CollectionItem } from "../../components/collections/collectionItem.components";
+import { WithoutCollections } from "../../components/collections/withoutCollections.components";
 import {
   getWordsCollections,
   CollectionOverviewsResponse,
@@ -12,22 +13,26 @@ export const CollectionsPage = (): JSX.Element => {
   useEffect(() => {
     getWordsCollections(setCollections);
   }, []);
+  console.log(collections);
 
-  //Вот как из collections нужно теперь доставать массив с коллециями:
-  let collectionsArr = collections?.collections.collectionsList;
-  console.log(collectionsArr);
+  // let collectionsArr: any = [];
+  // let collectionsArr = collections?.collections.collectionsList;
+  // console.log(collectionsArr);
 
   return (
-    <div className="collectionsContainer">
-      <div className="collectionsList">
-        {collectionsArr
-          ? collectionsArr.map((collection) => {
-              return (
-                <CollectionItem collectionName={collection.collectionName} />
-              );
-            })
-          : null}
-      </div>
-    </div>
+    <div className="12"></div>
+    // <div className="collectionsContainer">
+    //   {collectionsArr.length !== 0 ? (
+    //     <div className="collectionsList">
+    //       {collectionsArr.map((collection: { collectionName: string }) => {
+    //         return (
+    //           <CollectionItem collectionName={collection.collectionName} />
+    //         );
+    //       })}
+    //     </div>
+    //   ) : (
+    //     <WithoutCollections />
+    //   )}
+    // </div>
   );
 };
