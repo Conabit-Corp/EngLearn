@@ -40,7 +40,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
         className="formNewWord__input"
         onChange={e => {
           let value = e.target.value;
-          value = value.replace(/[^A-Za-z]/ig, '');
+          value = value.replace(/[^A-Za-z\-\s]/ig, '');
           setFirstWord(value);
         }}
         value={firstWord}
@@ -51,7 +51,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
         className="formNewWord__input"
         onChange={e => {
           let value = e.target.value;
-          value = value.replace(/[^А-Яа-я]/ig, '');
+          value = value.replace(/[^А-ЯЁа-яё\-\s]*/ig, '');
           setSecondWord(value);
         }}
         value={secondWord}
@@ -62,7 +62,6 @@ export const FormNewWord = (props: Props): JSX.Element => {
       >
         Add word
       </button>
-      {/* <button onClick={() => { dispatch({ type: "OPEN_SNACKBAR", text: "BLYAAAT NEUZHELI?", severity: "error" }) }}>REDUX</button> */}
     </div>
   )
 }
