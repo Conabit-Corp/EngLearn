@@ -17,7 +17,7 @@ export const CollectionsPage = (): JSX.Element => {
 
   return (
     <div className="collectionsContainer">
-      {collections?.collections.collectionsList.length !== 0 ? (
+      {/* {collections?.collections.collectionsList.length !== 0 ? (
         <div className="collectionsList">
           {collections?.collections.collectionsList.map(
             (collection: {
@@ -36,9 +36,9 @@ export const CollectionsPage = (): JSX.Element => {
             }
           )}
         </div>
-      ) : (
-        <WithoutCollections />
-      )}
+      ) : ( */}
+      <WithoutCollections />
+      {/* )} */}
     </div>
   );
 };

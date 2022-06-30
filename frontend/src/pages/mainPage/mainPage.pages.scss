@@ -21,7 +21,9 @@
 @media screen and (max-width: 1200px) {
   .mainContainer {
     padding: 0;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .mainContainer__content {
       min-height: 0;
       margin: 0;
