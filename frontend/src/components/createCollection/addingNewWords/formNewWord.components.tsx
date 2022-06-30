@@ -2,6 +2,7 @@ import "./formNewWord.components.scss";
 import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
+import { useDispatch } from "react-redux";
 
 interface Props {
   words: Array<WordObj>,
@@ -12,6 +13,8 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const [firstWord, setFirstWord] = useState('');
   const [secondWord, setSecondWord] = useState('');
   const [idWord, setIdWord] = useState(0);
+
+  const dispatch = useDispatch();
 
   function addWord(): void {
     let newWord: WordObj = {
@@ -55,10 +58,11 @@ export const FormNewWord = (props: Props): JSX.Element => {
       />
       <button
         className="formNewWord__button"
-        onClick={() => addNewWordChecker(firstWord, secondWord, addWord)}
+        onClick={() => addNewWordChecker(firstWord, secondWord, addWord, dispatch)}
       >
         Add word
       </button>
+      {/* <button onClick={() => { dispatch({ type: "OPEN_SNACKBAR", text: "BLYAAAT NEUZHELI?", severity: "error" }) }}>REDUX</button> */}
     </div>
   )
 }
