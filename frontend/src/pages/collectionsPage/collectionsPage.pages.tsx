@@ -15,12 +15,7 @@ export const CollectionsPage = (): JSX.Element => {
   }, []);
   console.log(collections?.collections.collectionsList);
 
-  // let collectionsArr: any = [];
-
-  // console.log(collectionsArr);
-
   return (
-    // <div className="12"></div>
     <div className="collectionsContainer">
       {collections?.collections.collectionsList.length !== 0 ? (
         <div className="collectionsList">
@@ -28,9 +23,12 @@ export const CollectionsPage = (): JSX.Element => {
             (collection: {
               collectionName: string;
               collectionDescription: string;
+              collectionId: string;
             }) => {
               return (
                 <CollectionItem
+                  key={collection.collectionId}
+                  collectionId={collection.collectionId}
                   collectionName={collection.collectionName}
                   collectionDescription={collection.collectionDescription}
                 />

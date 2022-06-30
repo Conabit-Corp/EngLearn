@@ -1,6 +1,8 @@
 import "./collectionItem.components.scss";
 
 interface Props {
+  key: string;
+  collectionId: string;
   collectionName: string;
   collectionDescription: string;
 }
