@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { WordObj } from "../../pages/createCollection/createCollection.pages";
 import { createCollectionRequest } from "../../apiGRPC/collectionService";
 import { saveCollectionChecker } from "../../utils/export.utils";
+import { useDispatch } from "react-redux";
 
 interface Props {
   collectionTitle: string,
@@ -13,12 +14,13 @@ interface Props {
 export const CreateCollectionButtons = (props: Props): JSX.Element => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="createCollectionButtons">
       <button
         className="createCollectionButtons__button createCollectionButtons__save"
-        onClick={() => saveCollectionChecker(props.collectionTitle, props.collectionDescription, props.words, navigate)}
+        onClick={() => saveCollectionChecker(props.collectionTitle, props.collectionDescription, props.words, navigate, dispatch)}
       >
         Save collection
       </button>

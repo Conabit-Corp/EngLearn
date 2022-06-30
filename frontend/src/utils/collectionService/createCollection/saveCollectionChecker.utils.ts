@@ -1,4 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
+import { AnyAction, Dispatch } from "redux";
 import { createCollectionRequest } from "../../../apiGRPC/collectionService";
 import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 
@@ -9,9 +10,10 @@ export const saveCollectionChecker = (
   collectionDescription: string,
   words: Array<WordObj>,
   navigate: NavigateFunction,
+  dispatch: Dispatch<AnyAction>,
 ) => {
   if (collectionTitle.length < 1) {
-    alert('Название введи');
+    dispatch({ type: "OPEN_SNACKBAR", text: "Enter a collection name", severity: "error" })
   } else {
     createCollectionRequest(collectionTitle, collectionDescription, words);
     navigate(-1);
