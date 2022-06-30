@@ -2,7 +2,6 @@
 
 .collection {
   display: inline-block;
-  // margin-left: 25px;
   margin-bottom: 35px;
   width: 580px;
   height: 78px;
@@ -29,4 +28,22 @@
   font-size: 16px;
   line-height: 20px;
   color: #8E8E8E;
+}
+
+
+@media screen and (max-width: 700px) {
+  .collection{
+    width: 290px;
+    height: 55px;
+    padding: 10px;
+    padding-left: 15px;
+  }
+  .collection__title{
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .collection__description{
+    font-size: 12px;
+    line-height: 15px;  
+  }
 }

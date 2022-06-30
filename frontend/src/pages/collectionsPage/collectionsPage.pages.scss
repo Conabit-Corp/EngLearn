@@ -20,12 +20,19 @@
   background-color: $Main_Blue;
   border-radius: 100px;
 }
-
 }
 
 .collectionsList{
   height: 100%;
   padding-bottom: 25px;
   max-height:676px ;
-
 }
+
+@media screen and (max-width: 1200px) {
+.collectionsList{
+  display: flex;
+  justify-content: center;
+}
+}
+
+
