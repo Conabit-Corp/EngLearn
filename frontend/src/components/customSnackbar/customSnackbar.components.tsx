@@ -11,19 +11,9 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-interface Props {
-  severity: string,
-  text: string,
-  open: boolean,
-}
-
 export const CustomSnackbar = (): JSX.Element => {
   const dispatch = useDispatch();
   const { severity, text, open } = useTypedSelector(state => state.snackbar)
-  console.log(severity);
-
-  // const [open, setOpen] = useState(false);
-
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
