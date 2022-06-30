@@ -12,7 +12,7 @@ export const snackbarReducer = (state = initalState, action: SnackbarAction): Sn
     case OPEN_SNACKBAR:
       return { open: true, text: action.text, severity: action.severity }
     case CLOSE_SNACKBAR:
-      return { open: false, text: '', severity: undefined }
+      return { open: false, text: state.text, severity: state.severity }
     default:
       return state
   }
