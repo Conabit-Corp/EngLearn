@@ -6,6 +6,7 @@ import {
 } from "../../apiGRPC/collectionService";
 import { useState, useEffect } from "react";
 import "./collectionsPage.pages.scss";
+import { AddCollectionIcon } from "../../images/collections/addCollectionIcon";
 
 export const CollectionsPage = (): JSX.Element => {
   const [collections, setCollections] = useState<CollectionOverviewsResponse>();
@@ -35,6 +36,12 @@ export const CollectionsPage = (): JSX.Element => {
               );
             }
           )}
+          <div className="addCollectionBlock">
+            <div className="addCollectionsIcon__circle">
+              <AddCollectionIcon />
+            </div>
+            <div className="addCollection__text">Add new collection</div>
+          </div>
         </div>
       ) : (
         <WithoutCollections />

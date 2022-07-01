@@ -26,13 +26,62 @@
   height: 100%;
   padding-bottom: 25px;
   max-height:676px ;
+  // display: flex;
+  // // justify-content: flex-start;
+  // flex-direction: column;
 }
 
-@media screen and (max-width: 1200px) {
-.collectionsList{
+.addCollectionBlock{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.addCollection__text{
+  margin-left: 15px;
+  font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+color: $Text_Black
+}
+
+.addCollectionsIcon__circle{
+  width: 50px;
+  height: 50px;
+  border-radius: 47%;
   display: flex;
   justify-content: center;
-}
+  align-items: center;
+  background-color: $Main_Blue;
 }
 
 
+
+@media screen and (max-width: 1200px) {
+  .addCollectionsIcon__circle{
+    align-self: flex-end;
+  }
+.collectionsList{
+  width: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+}
+
+@media screen and (max-width: 700px) {
+  .collectionsContainer{
+    display: block;
+  }
+
+  .collectionsList{
+    width: 100%;
+    align-items: center;
+  }
+  .addCollectionsIcon__circle{
+    // position:relative;
+    // left: 120px;
+  }
+}
