@@ -1,11 +1,12 @@
 import { createContext } from "react";
 import { signInRequest, logOutRequest } from "../apiGRPC/authService";
 import { TODO_ANY } from "../TODO_ANY";
+import { CustomSnackbar } from "../components/customSnackbar/customSnackbar.components";
 
 export const AuthContext = createContext(null);
 
 interface Props {
-  children: React.ReactElement | null,
+  children: React.ReactElement | JSX.Element | null,
 }
 
 export const AuthProvider = (props: Props): JSX.Element => {
@@ -23,6 +24,7 @@ export const AuthProvider = (props: Props): JSX.Element => {
   return (
     <AuthContext.Provider value={value}>
       {props.children}
+      <CustomSnackbar />
     </AuthContext.Provider>
   )
 }

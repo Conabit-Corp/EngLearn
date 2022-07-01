@@ -18,15 +18,17 @@ export const WordRow = (props: Props): JSX.Element => {
         placeholder={props.word.eng}
         defaultValue={props.word.eng}
         onChange={e => {
-          //Для обновления объекта внутри состояния мы копируем всё состояние на каждом изменении инпута и перезаписываем с новым оъектом.
+          let value = e.target.value;
+          value = value.replace(/[^A-Za-z\-\s]/ig, '');
           props.setWords((prevState: Array<WordObj>) =>
             prevState.map((item, index) =>
               index === props.index
-                ? { ...item, eng: e.target.value }
+                ? { ...item, eng: value }
                 : item
             )
           )
         }}
+        value={props.word.eng}
       />
       <input
         type="text"
@@ -34,14 +36,17 @@ export const WordRow = (props: Props): JSX.Element => {
         className="wordRow__input"
         defaultValue={props.word.ru}
         onChange={e => {
+          let value = e.target.value;
+          value = value.replace(/[^А-ЯЁа-яё\-\s]*/ig, '');
           props.setWords((prevState: Array<WordObj>) =>
             prevState.map((item, index) =>
               index === props.index
-                ? { ...item, ru: e.target.value }
+                ? { ...item, ru: value }
                 : item
             )
           )
         }}
+        value={props.word.ru}
       />
       <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>
         <BinSvg className="wordRow__deleteButtonIcon" />

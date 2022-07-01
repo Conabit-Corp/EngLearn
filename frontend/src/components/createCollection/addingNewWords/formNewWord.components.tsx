@@ -2,6 +2,7 @@ import "./formNewWord.components.scss";
 import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
+import { useDispatch } from "react-redux";
 
 interface Props {
   words: Array<WordObj>,
@@ -12,6 +13,8 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const [firstWord, setFirstWord] = useState('');
   const [secondWord, setSecondWord] = useState('');
   const [idWord, setIdWord] = useState(0);
+
+  const dispatch = useDispatch();
 
   function addWord(): void {
     let newWord: WordObj = {
@@ -35,19 +38,27 @@ export const FormNewWord = (props: Props): JSX.Element => {
         type="text"
         placeholder="English word"
         className="formNewWord__input"
-        onChange={e => setFirstWord(e.target.value)}
+        onChange={e => {
+          let value = e.target.value;
+          value = value.replace(/[^A-Za-z\-\s]/ig, '');
+          setFirstWord(value);
+        }}
         value={firstWord}
       />
       <input
         type="text"
         placeholder="Russian word"
         className="formNewWord__input"
-        onChange={e => setSecondWord(e.target.value)}
+        onChange={e => {
+          let value = e.target.value;
+          value = value.replace(/[^А-ЯЁа-яё\-\s]*/ig, '');
+          setSecondWord(value);
+        }}
         value={secondWord}
       />
       <button
         className="formNewWord__button"
-        onClick={() => addNewWordChecker(firstWord, secondWord, addWord)}
+        onClick={() => addNewWordChecker(firstWord, secondWord, addWord, dispatch)}
       >
         Add word
       </button>
