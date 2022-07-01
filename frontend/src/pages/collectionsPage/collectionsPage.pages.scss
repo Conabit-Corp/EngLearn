@@ -1,5 +1,13 @@
 @import "../../config.scss";
 
+.plusIcon_little{
+  display: none;
+}
+
+.addCollection__text_hide{
+  display: none;
+}
+
 .collectionsContainer{
   padding-top: 25px;
   padding-bottom: 25px;
@@ -26,9 +34,6 @@
   height: 100%;
   padding-bottom: 25px;
   max-height:676px ;
-  // display: flex;
-  // // justify-content: flex-start;
-  // flex-direction: column;
 }
 
 .addCollectionBlock{
@@ -56,12 +61,27 @@ color: $Text_Black
   background-color: $Main_Blue;
 }
 
-
-
 @media screen and (max-width: 1200px) {
+  .addCollection__text{
+    display: none;
+  }
+  .addCollection__text_hide{
+    display: inline;
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+  color: $Text_Black
+  }
+
   .addCollectionsIcon__circle{
     align-self: flex-end;
   }
+.collectionsContainer{
+  display: flex;
+  justify-content: center;
+}
+
 .collectionsList{
   width: 580px;
   display: flex;
@@ -72,16 +92,36 @@ color: $Text_Black
 }
 
 @media screen and (max-width: 700px) {
+  .addCollection__text_hide{
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .plusIcon_large{
+    display: none;
+  }
+  .plusIcon_little{
+    display: flex;
+  }
+
+  .addCollectionsIcon__circle{
+    width: 35px;
+    height: 35px;
+  }
+
   .collectionsContainer{
-    display: block;
+    display: flex;
+    justify-content: center;
+  }
+
+  .addCollectionBlock{
+    align-self: flex-end;
   }
 
   .collectionsList{
-    width: 100%;
+    align-self: center;
+    width: 290px;
     align-items: center;
   }
-  .addCollectionsIcon__circle{
-    // position:relative;
-    // left: 120px;
-  }
+
 }

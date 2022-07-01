@@ -37,8 +37,14 @@ export const CollectionsPage = (): JSX.Element => {
             }
           )}
           <div className="addCollectionBlock">
+            <div className="addCollection__text_hide">Add new collection</div>
             <div className="addCollectionsIcon__circle">
-              <AddCollectionIcon />
+              <AddCollectionIcon className="plusIcon_large" />
+              <AddCollectionIcon
+                className="plusIcon_little"
+                height={14}
+                width={14}
+              />
             </div>
             <div className="addCollection__text">Add new collection</div>
           </div>
