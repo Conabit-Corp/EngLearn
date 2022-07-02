@@ -1,9 +1,10 @@
 @import "../../config.scss";
 
+//иконка поменьше для маленьких экранов
 .plusIcon_little{
   display: none;
 }
-
+//текст "добавить коллекцию", находящийся слева (для адаптива)
 .addCollection__text_hide{
   display: none;
 }
@@ -40,18 +41,50 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
 }
 
 .addCollection__text{
+  position: relative;
+  left: 0;
   margin-left: 15px;
   font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 24px;
-color: $Text_Black
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: $Text_Black
 }
 
 .addCollectionsIcon__circle{
+  cursor: pointer;
+  &:hover{
+    .plusIcon_large{
+      -webkit-animation:spin 0.5s;
+      -moz-animation:spin 0.5s;
+      animation:spin 0.5s;
+    }
+    &::after{
+      
+      content: 'Add new collection';
+      padding-left: 10px;
+      position:relative;
+      animation-name: addCollection__textOut;
+      animation-duration: 0.5s;
+      animation-iteration-count: 1;
+        animation-direction:normal;
+        animation-fill-mode: both;
+      animation-play-state: running;
+        z-index: -1;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: $Text_Black;
+      white-space: nowrap;
+      
+    }
+    
+  }
   width: 50px;
   height: 50px;
   border-radius: 47%;
@@ -59,6 +92,34 @@ color: $Text_Black
   justify-content: center;
   align-items: center;
   background-color: $Main_Blue;
+}
+
+.plusIcon_large{
+  position: absolute;
+  z-index: 1;   
+}
+
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(180deg); }
+}
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(180deg); }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(180deg);
+        transform:rotate(180deg);
+    }
+} 
+
+
+@keyframes addCollection__textOut {
+	0% {
+		left: 0
+	}
+	100% {
+		left: 120px
+	}
 }
 
 @media screen and (max-width: 1200px) {
@@ -74,9 +135,9 @@ color: $Text_Black
   color: $Text_Black
   }
 
-  .addCollectionsIcon__circle{
-    align-self: flex-end;
-  }
+.addCollectionsIcon__circle{
+  align-self: flex-end;
+}
 .collectionsContainer{
   display: flex;
   justify-content: center;
@@ -96,14 +157,15 @@ color: $Text_Black
     font-size: 14px;
     line-height: 17px;
   }
-
+  //Прячем большую иконку плюса
   .plusIcon_large{
     display: none;
   }
+  //Показываем иконку плюса поменьше
   .plusIcon_little{
     display: flex;
   }
-
+  //Изменяем размер круга
   .addCollectionsIcon__circle{
     width: 35px;
     height: 35px;

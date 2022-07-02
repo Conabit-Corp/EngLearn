@@ -37,7 +37,7 @@ export const CollectionsPage = (): JSX.Element => {
             }
           )}
           <div className="addCollectionBlock">
-            <div className="addCollection__text_hide">Add new collection</div>
+            {/* <div className="addCollection__text_hide">Add new collection</div> */}
             <div className="addCollectionsIcon__circle">
               <AddCollectionIcon className="plusIcon_large" />
               <AddCollectionIcon
@@ -46,7 +46,7 @@ export const CollectionsPage = (): JSX.Element => {
                 width={14}
               />
             </div>
-            <div className="addCollection__text">Add new collection</div>
+            {/* <div className="addCollection__text">Add new collection</div> */}
           </div>
         </div>
       ) : (
