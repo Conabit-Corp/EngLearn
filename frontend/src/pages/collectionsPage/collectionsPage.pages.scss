@@ -1,5 +1,7 @@
 @import "../../config.scss";
 
+//addCollection__text(hide) - свойства удалённого дива
+
 //иконка поменьше для маленьких экранов
 .plusIcon_little{
   display: none;
@@ -64,7 +66,6 @@
       animation:spin 0.5s;
     }
     &::after{
-      
       content: 'Add new collection';
       padding-left: 10px;
       position:relative;
@@ -123,25 +124,46 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .addCollection__text{
-    display: none;
+  .collectionsContainer{
+    display: flex;
+    justify-content: center;
+    width: 580px;
   }
-  .addCollection__text_hide{
-    display: inline;
-    margin-right: 15px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
-  color: $Text_Black
+  .addCollectionsIcon__circle{
+    align-self: flex-end;
+    &:hover{
+      &::after{
+        display: none
+      }
+      &::before{
+        content: 'Add new collection';
+        position:relative;
+        animation-name: addCollection__textOut;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction:normal;
+        animation-fill-mode: both;
+        animation-play-state: running;
+        z-index: -1;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        color: $Text_Black;
+        white-space: nowrap;
+      }
+    }
+  }
+  @keyframes addCollection__textOut {
+    0% {
+      right: 0
+    }
+    100% {
+      right:120px
+    }
   }
 
-.addCollectionsIcon__circle{
-  align-self: flex-end;
-}
-.collectionsContainer{
-  display: flex;
-  justify-content: center;
-}
+
 
 .collectionsList{
   width: 580px;
@@ -153,37 +175,70 @@
 }
 
 @media screen and (max-width: 700px) {
-  .addCollection__text_hide{
-    font-size: 14px;
-    line-height: 17px;
-  }
-  //Прячем большую иконку плюса
   .plusIcon_large{
+    -webkit-animation:none;
+    -moz-animation:none;
+    animation:none;
     display: none;
   }
-  //Показываем иконку плюса поменьше
   .plusIcon_little{
-    display: flex;
-  }
-  //Изменяем размер круга
-  .addCollectionsIcon__circle{
-    width: 35px;
-    height: 35px;
+    width: 15px;
+    height: 15px;
+    display:block;
+    position: absolute;
+    z-index: 2;
   }
 
   .collectionsContainer{
     display: flex;
+    align-self: center;
     justify-content: center;
+    // align-items: center;
+    width: 300px;
+  }
+  .addCollectionsIcon__circle{
+    width: 35px;
+    height: 35px;
+    align-self: flex-end;
+    &:hover{
+      &::after{
+        display: none
+      }
+      .plusIcon_little{
+        -webkit-animation:spin 0.5s;
+        -moz-animation:spin 0.5s;
+        animation:spin 0.5s; 
+      }
+      &::before{
+        content: 'Add new collection';
+        position:relative;
+        animation-name: addCollection__textOut;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction:normal;
+        animation-fill-mode: both;
+        animation-play-state: running;
+        z-index: -1;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+  }
+
+  @keyframes addCollection__textOut {
+    0% {
+      right: 0
+    }
+    100% {
+      right:90px
+    }
   }
 
   .addCollectionBlock{
     align-self: flex-end;
   }
-
   .collectionsList{
-    align-self: center;
-    width: 290px;
-    align-items: center;
+    width: 100%;
   }
-
 }
