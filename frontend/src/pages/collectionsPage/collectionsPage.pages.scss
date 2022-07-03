@@ -1,13 +1,6 @@
 @import "../../config.scss";
 
-//addCollection__text(hide) - свойства удалённого дива
-
-//иконка поменьше для маленьких экранов
 .plusIcon_little{
-  display: none;
-}
-//текст "добавить коллекцию", находящийся слева (для адаптива)
-.addCollection__text_hide{
   display: none;
 }
 
@@ -46,16 +39,6 @@
 
 }
 
-.addCollection__text{
-  position: relative;
-  left: 0;
-  margin-left: 15px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: $Text_Black
-}
 
 .addCollectionsIcon__circle{
   cursor: pointer;
@@ -71,18 +54,14 @@
       position:relative;
       animation-name: addCollection__textOut;
       animation-duration: 0.5s;
-      animation-iteration-count: 1;
-        animation-direction:normal;
-        animation-fill-mode: both;
-      animation-play-state: running;
-        z-index: -1;
+      animation-fill-mode: both;
+      z-index: -1;
       font-style: normal;
       font-weight: 500;
       font-size: 20px;
       line-height: 24px;
       color: $Text_Black;
       white-space: nowrap;
-      
     }
     
   }
@@ -113,7 +92,6 @@
     }
 } 
 
-
 @keyframes addCollection__textOut {
 	0% {
 		left: 0
@@ -130,20 +108,16 @@
     width: 580px;
   }
   .addCollectionsIcon__circle{
+    animation: none;
     align-self: flex-end;
-    &:hover{
       &::after{
         display: none
       }
       &::before{
         content: 'Add new collection';
+        animation: none;
         position:relative;
-        animation-name: addCollection__textOut;
-        animation-duration: 0.5s;
-        animation-iteration-count: 1;
-        animation-direction:normal;
-        animation-fill-mode: both;
-        animation-play-state: running;
+        right: 120px;
         z-index: -1;
         font-style: normal;
         font-weight: 500;
@@ -152,15 +126,11 @@
         color: $Text_Black;
         white-space: nowrap;
       }
-    }
-  }
-  @keyframes addCollection__textOut {
-    0% {
-      right: 0
-    }
-    100% {
-      right:120px
-    }
+      &:hover{
+        .plusIcon_large{
+          animation: none;
+        }
+      }
   }
 
 
@@ -176,9 +146,6 @@
 
 @media screen and (max-width: 700px) {
   .plusIcon_large{
-    -webkit-animation:none;
-    -moz-animation:none;
-    animation:none;
     display: none;
   }
   .plusIcon_little{
@@ -200,39 +167,24 @@
     width: 35px;
     height: 35px;
     align-self: flex-end;
-    &:hover{
+    
       &::after{
         display: none
       }
       .plusIcon_little{
-        -webkit-animation:spin 0.5s;
-        -moz-animation:spin 0.5s;
-        animation:spin 0.5s; 
+        animation: none;
       }
       &::before{
         content: 'Add new collection';
+        animation: none;
         position:relative;
-        animation-name: addCollection__textOut;
-        animation-duration: 0.5s;
-        animation-iteration-count: 1;
-        animation-direction:normal;
-        animation-fill-mode: both;
-        animation-play-state: running;
+        right: 90px;
         z-index: -1;
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
       }
-    }
-  }
-
-  @keyframes addCollection__textOut {
-    0% {
-      right: 0
-    }
-    100% {
-      right:90px
-    }
+    
   }
 
   .addCollectionBlock{
