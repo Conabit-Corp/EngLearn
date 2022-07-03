@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import "./collection.pages.scss";
 import { WordCollection } from "../../../proto/conabit/englearn/collection/collection_models_pb";
 import { getCollectionByIdRequest } from "../../apiGRPC/collectionService";
-import { GoBackButton, WordList } from "../../components/collection/export.collection.components";
+import { GoBackButton, WordList, LearnButton } from "../../components/collection/export.collection.components";
 
-export const Collection = () => {
+export const Collection = (): JSX.Element => {
   const [collection, setCollection] = useState<WordCollection.AsObject>();
 
   const { id } = useParams();
@@ -22,6 +22,7 @@ export const Collection = () => {
     <div className="collectionContainer">
       <GoBackButton />
       <WordList collection={collection} />
+      <LearnButton />
     </div>
   )
 }

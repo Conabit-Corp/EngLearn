@@ -1,10 +1,8 @@
 import "./goBackButton.components.scss";
 import { ArrowLeftIcon } from "../../images/collections/arrowLeftIcon";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const GoBackButton = () => {
-  const navigate = useNavigate();
-
+export const GoBackButton = (): JSX.Element => {
   return (
     <div className="goBackButton">
       <Link to={"/collections"}>
