@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from "react";
 import "./collections.components.scss";
 import { AddCollectionIcon } from "../../images/collections/addCollectionIcon";
+import { Link } from "react-router-dom";
 
 export const Collections = (): JSX.Element => {
   const [collections, setCollections] = useState<CollectionOverviewsResponse>();
@@ -35,20 +36,23 @@ export const Collections = (): JSX.Element => {
               );
             }
           )}
-          <div className="addCollection">
-            <div className="addCollection__circle">
-              <AddCollectionIcon className="addCollection__plusIcon_large" />
-              <AddCollectionIcon
-                className="addCollection__plusIcon_little"
-                height={14}
-                width={14}
-              />
+          <Link to="createCollection">
+            <div className="addCollection">
+              <div className="addCollection__circle">
+                <AddCollectionIcon className="addCollection__plusIcon_large" />
+                <AddCollectionIcon
+                  className="addCollection__plusIcon_little"
+                  height={14}
+                  width={14}
+                />
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       ) : (
         <WithoutCollections />
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };

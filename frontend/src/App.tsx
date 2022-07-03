@@ -30,7 +30,7 @@ function App() {
               </RequireAuth>
             }
           />
-          <Route path="/collections"
+          <Route path="/collections/*"
             element={
               <RequireAuth>
                 <CollectionsPage />
