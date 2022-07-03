@@ -6,4 +6,11 @@
   width: 100%;
   height: 100%;
   padding-top: 19px;
+
+  .collectionContainer__buttons {
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
 }

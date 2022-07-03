@@ -1,4 +1,4 @@
-import "./lernRepButtons.components.scss";
+import "./lernButtons.components.scss";
 
 export const LearnButton = (): JSX.Element => {
   return (
