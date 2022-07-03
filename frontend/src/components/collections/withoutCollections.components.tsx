@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./withoutCollections.components.scss";
 
 export const WithoutCollections = () => {
@@ -6,7 +7,9 @@ export const WithoutCollections = () => {
       <div className="noCollectionsMessage__text">
         You have no collections...
       </div>
-      <div className="noCollectionsMessage__link">Add new collection</div>
+      <Link to="createCollection">
+        <div className="noCollectionsMessage__link">Add new collection</div>
+      </Link>
     </div>
   );
 };
