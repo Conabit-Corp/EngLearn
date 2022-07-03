@@ -1,0 +1,24 @@
+@import "../../config.scss";
+
+.wordItem {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $input_Silver;
+  cursor: pointer;
+
+  .wordItem__wordProgress {
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    border: 4px solid $Main_Blue;
+    opacity: 0.3;
+    margin-left: 37px;
+  }
+
+  .wordItem__word {
+    color: $Text_Black;
+    font-size: 20px;
+    margin-left: 15px;
+  }
+}
