@@ -14,7 +14,6 @@ export const CollectionsPage = (): JSX.Element => {
   useEffect(() => {
     getWordsCollections(setCollections);
   }, []);
-  console.log(collections?.collections.collectionsList);
 
   return (
     <div className="collectionsContainer">

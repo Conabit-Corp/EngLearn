@@ -36,9 +36,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
+.plusIcon_large{
+  position: absolute;
+  z-index: 1;   
+}
 
 .addCollectionsIcon__circle{
   cursor: pointer;
@@ -74,10 +77,6 @@
   background-color: $Main_Blue;
 }
 
-.plusIcon_large{
-  position: absolute;
-  z-index: 1;   
-}
 
 @-moz-keyframes spin {
   100% { -moz-transform: rotate(180deg); }
@@ -108,32 +107,22 @@
     width: 580px;
   }
   .addCollectionsIcon__circle{
-    animation: none;
-    align-self: flex-end;
-      &::after{
-        display: none
+
+    &:hover{
+      .plusIcon_large{
+        animation: none;
       }
+    }
       &::before{
         content: 'Add new collection';
-        animation: none;
         position:relative;
         right: 120px;
-        z-index: -1;
-        font-style: normal;
         font-weight: 500;
         font-size: 18px;
-        line-height: 20px;
         color: $Text_Black;
         white-space: nowrap;
       }
-      &:hover{
-        .plusIcon_large{
-          animation: none;
-        }
-      }
   }
-
-
 
 .collectionsList{
   width: 580px;
@@ -149,48 +138,21 @@
     display: none;
   }
   .plusIcon_little{
-    width: 15px;
-    height: 15px;
     display:block;
     position: absolute;
-    z-index: 2;
   }
 
   .collectionsContainer{
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    // align-items: center;
     width: 300px;
   }
   .addCollectionsIcon__circle{
     width: 35px;
     height: 35px;
-    align-self: flex-end;
-    
-      &::after{
-        display: none
-      }
-      .plusIcon_little{
-        animation: none;
-      }
+
       &::before{
-        content: 'Add new collection';
-        animation: none;
-        position:relative;
         right: 90px;
-        z-index: -1;
-        font-style: normal;
-        font-weight: 500;
         font-size: 14px;
       }
     
-  }
-
-  .addCollectionBlock{
-    align-self: flex-end;
-  }
-  .collectionsList{
-    width: 100%;
   }
 }
