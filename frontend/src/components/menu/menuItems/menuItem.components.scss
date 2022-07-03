@@ -18,12 +18,6 @@
     .item__icon path {
       fill: #ACACAC;
     }
-
-    //Это для иконки collections
-    .item__icon line,
-    .item__icon rect {
-      stroke: #ACACAC;
-    }
   }
 
   .item__title {
@@ -62,6 +56,10 @@
 
   .item__iconContainer .item__icon path {
     fill: #246AFD;
+  }
+
+  .item__iconContainer .item__icon_clllections path {
+    stroke: #246AFD;
   }
 
   .item__icon line,
