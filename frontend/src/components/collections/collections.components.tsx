@@ -27,12 +27,16 @@ export const Collections = (): JSX.Element => {
               collectionId: string;
             }) => {
               return (
-                <CollectionItem
+                <Link
                   key={collection.collectionId}
-                  collectionId={collection.collectionId}
-                  collectionName={collection.collectionName}
-                  collectionDescription={collection.collectionDescription}
-                />
+                  to={`/collections/${collection.collectionId}`}
+                >
+                  <CollectionItem
+                    collectionId={collection.collectionId}
+                    collectionName={collection.collectionName}
+                    collectionDescription={collection.collectionDescription}
+                  />
+                </Link>
               );
             }
           )}
