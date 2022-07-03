@@ -1,9 +1,11 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { WordCollectionService } from "../../proto/conabit/englearn/collection/collection_service_pb_service";
+import { WordCollection } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
 import { CreateWordCollectionRequest, GetUserCollectionsRequest } from "../../proto/conabit/englearn/collection/collection_transport_pb";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
 import { WordObj } from "../pages/createCollection/createCollection.pages";
+import { NavigateFunction } from "react-router-dom";
 
 export interface CollectionOverviewsResponse {
   collections: CollectionsOverwies
@@ -19,7 +21,12 @@ interface CollectionOverview {
   collectionDescription: string
 }
 
-export const createCollectionRequest = (collectionTitle: string, collectionDescription: string, words: Array<WordObj>) => {
+export const createCollectionRequest = (
+  collectionTitle: string,
+  collectionDescription: string,
+  words: Array<WordObj>,
+  navigate: NavigateFunction,
+) => {
   const session = new Session()
   const req = new CreateWordCollectionRequest()
   session.setJwt(localStorage.getItem('token') ?? '')
@@ -29,8 +36,13 @@ export const createCollectionRequest = (collectionTitle: string, collectionDescr
     {
       request: req,
       host: "http://10.3.21.205:4003",
-      onEnd: (r) => {
-        console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+      onEnd: res => {
+        const { status, statusMessage, message } = res;
+
+        let resMessage = message as CreateWordCollectionRequest;
+        let result = resMessage.toObject().collectionId;
+
+        navigate(`/collections/${result}`)
       }
     }
   )

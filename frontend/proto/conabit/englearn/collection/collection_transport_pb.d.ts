@@ -19,8 +19,8 @@ export class CreateWordCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateWordCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateWordCollectionRequest): CreateWordCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: CreateWordCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): CreateWordCollectionRequest;
   static deserializeBinaryFromReader(message: CreateWordCollectionRequest, reader: jspb.BinaryReader): CreateWordCollectionRequest;
@@ -28,6 +28,7 @@ export class CreateWordCollectionRequest extends jspb.Message {
 
 export namespace CreateWordCollectionRequest {
   export type AsObject = {
+    collectionId(collectionId: any);
     session?: proto_conabit_englearn_common_session_pb.Session.AsObject,
     wordCollection?: proto_conabit_englearn_collection_collection_models_pb.WordCollection.AsObject,
   }
@@ -50,8 +51,8 @@ export class CreateGroupCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateGroupCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateGroupCollectionRequest): CreateGroupCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: CreateGroupCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): CreateGroupCollectionRequest;
   static deserializeBinaryFromReader(message: CreateGroupCollectionRequest, reader: jspb.BinaryReader): CreateGroupCollectionRequest;
@@ -72,8 +73,8 @@ export class CreateWordCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateWordCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreateWordCollectionResponse): CreateWordCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: CreateWordCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): CreateWordCollectionResponse;
   static deserializeBinaryFromReader(message: CreateWordCollectionResponse, reader: jspb.BinaryReader): CreateWordCollectionResponse;
@@ -97,8 +98,8 @@ export class GetWordCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetWordCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetWordCollectionRequest): GetWordCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetWordCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetWordCollectionRequest;
   static deserializeBinaryFromReader(message: GetWordCollectionRequest, reader: jspb.BinaryReader): GetWordCollectionRequest;
@@ -120,8 +121,8 @@ export class GetWordCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetWordCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetWordCollectionResponse): GetWordCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetWordCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetWordCollectionResponse;
   static deserializeBinaryFromReader(message: GetWordCollectionResponse, reader: jspb.BinaryReader): GetWordCollectionResponse;
@@ -142,8 +143,8 @@ export class GetUserCollectionsRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetUserCollectionsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetUserCollectionsRequest): GetUserCollectionsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetUserCollectionsRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetUserCollectionsRequest;
   static deserializeBinaryFromReader(message: GetUserCollectionsRequest, reader: jspb.BinaryReader): GetUserCollectionsRequest;
@@ -164,8 +165,8 @@ export class GetUserCollectionsResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetUserCollectionsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetUserCollectionsResponse): GetUserCollectionsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetUserCollectionsResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetUserCollectionsResponse;
   static deserializeBinaryFromReader(message: GetUserCollectionsResponse, reader: jspb.BinaryReader): GetUserCollectionsResponse;
@@ -189,8 +190,8 @@ export class GetGroupCollectionsRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetGroupCollectionsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetGroupCollectionsRequest): GetGroupCollectionsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetGroupCollectionsRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetGroupCollectionsRequest;
   static deserializeBinaryFromReader(message: GetGroupCollectionsRequest, reader: jspb.BinaryReader): GetGroupCollectionsRequest;
@@ -212,8 +213,8 @@ export class GetGroupCollectionsResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetGroupCollectionsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetGroupCollectionsResponse): GetGroupCollectionsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: GetGroupCollectionsResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): GetGroupCollectionsResponse;
   static deserializeBinaryFromReader(message: GetGroupCollectionsResponse, reader: jspb.BinaryReader): GetGroupCollectionsResponse;
@@ -237,8 +238,8 @@ export class DeleteWordCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteWordCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteWordCollectionRequest): DeleteWordCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: DeleteWordCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): DeleteWordCollectionRequest;
   static deserializeBinaryFromReader(message: DeleteWordCollectionRequest, reader: jspb.BinaryReader): DeleteWordCollectionRequest;
@@ -260,8 +261,8 @@ export class DeleteWordCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteWordCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteWordCollectionResponse): DeleteWordCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: DeleteWordCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): DeleteWordCollectionResponse;
   static deserializeBinaryFromReader(message: DeleteWordCollectionResponse, reader: jspb.BinaryReader): DeleteWordCollectionResponse;
@@ -290,8 +291,8 @@ export class AddWordToCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddWordToCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddWordToCollectionRequest): AddWordToCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: AddWordToCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): AddWordToCollectionRequest;
   static deserializeBinaryFromReader(message: AddWordToCollectionRequest, reader: jspb.BinaryReader): AddWordToCollectionRequest;
@@ -312,8 +313,8 @@ export class AddWordToCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddWordToCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: AddWordToCollectionResponse): AddWordToCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: AddWordToCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): AddWordToCollectionResponse;
   static deserializeBinaryFromReader(message: AddWordToCollectionResponse, reader: jspb.BinaryReader): AddWordToCollectionResponse;
@@ -340,8 +341,8 @@ export class RemoveWordFromCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveWordFromCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveWordFromCollectionRequest): RemoveWordFromCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: RemoveWordFromCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): RemoveWordFromCollectionRequest;
   static deserializeBinaryFromReader(message: RemoveWordFromCollectionRequest, reader: jspb.BinaryReader): RemoveWordFromCollectionRequest;
@@ -364,8 +365,8 @@ export class RemoveWordFromCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveWordFromCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveWordFromCollectionResponse): RemoveWordFromCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: RemoveWordFromCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): RemoveWordFromCollectionResponse;
   static deserializeBinaryFromReader(message: RemoveWordFromCollectionResponse, reader: jspb.BinaryReader): RemoveWordFromCollectionResponse;
@@ -394,8 +395,8 @@ export class EditWordFromCollectionRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EditWordFromCollectionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: EditWordFromCollectionRequest): EditWordFromCollectionRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: EditWordFromCollectionRequest, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): EditWordFromCollectionRequest;
   static deserializeBinaryFromReader(message: EditWordFromCollectionRequest, reader: jspb.BinaryReader): EditWordFromCollectionRequest;
@@ -416,8 +417,8 @@ export class EditWordFromCollectionResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EditWordFromCollectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: EditWordFromCollectionResponse): EditWordFromCollectionResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: { [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message> };
   static serializeBinaryToWriter(message: EditWordFromCollectionResponse, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): EditWordFromCollectionResponse;
   static deserializeBinaryFromReader(message: EditWordFromCollectionResponse, reader: jspb.BinaryReader): EditWordFromCollectionResponse;

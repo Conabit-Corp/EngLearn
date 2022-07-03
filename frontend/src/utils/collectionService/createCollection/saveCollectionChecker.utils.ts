@@ -15,7 +15,7 @@ export const saveCollectionChecker = (
   if (collectionTitle.length < 1) {
     dispatch({ type: "OPEN_SNACKBAR", text: "Enter a collection name", severity: "error" })
   } else {
-    createCollectionRequest(collectionTitle, collectionDescription, words);
-    navigate(-1);
+    createCollectionRequest(collectionTitle, collectionDescription, words, navigate);
+    // navigate(-1);
   }
 }
