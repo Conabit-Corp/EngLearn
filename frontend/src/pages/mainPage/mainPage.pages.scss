@@ -10,20 +10,24 @@
   margin: 0 auto;
 
   .mainContainer__content {
-    width: 100%;
+    width: 650px;
     min-height: 700px;
     max-height: 860px;
     height: 100%;
     margin-left: 50px;
-    // background-color: aqua;
   }
 }
 
 @media screen and (max-width: 1200px) {
   .mainContainer {
     padding: 0;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .mainContainer__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-height: 0;
       margin: 0;
     }
