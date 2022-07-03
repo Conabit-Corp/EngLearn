@@ -1,6 +1,6 @@
 @import "../../config.scss";
 
-.plusIcon_little{
+.addCollection__plusIcon_little{
   display: none;
 }
 
@@ -26,27 +26,27 @@
 }
 }
 
-.collectionsList{
+.collectionsContainer__list{
   height: 100%;
   padding-bottom: 25px;
   max-height:676px ;
 }
 
-.addCollectionBlock{
+.addCollection{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.plusIcon_large{
+.addCollection__plusIcon_large{
   position: absolute;
   z-index: 1;   
 }
 
-.addCollectionsIcon__circle{
+.addCollection__circle{
   cursor: pointer;
   &:hover{
-    .plusIcon_large{
+    .addCollection__plusIcon_large{
       -webkit-animation:spin 0.5s;
       -moz-animation:spin 0.5s;
       animation:spin 0.5s;
@@ -106,10 +106,10 @@
     justify-content: center;
     width: 580px;
   }
-  .addCollectionsIcon__circle{
+  .addCollection__circle{
 
     &:hover{
-      .plusIcon_large{
+      .addCollection__plusIcon_large{
         animation: none;
       }
     }
@@ -124,7 +124,7 @@
       }
   }
 
-.collectionsList{
+.collectionsContainer__list{
   width: 580px;
   display: flex;
   flex-direction: column;
@@ -134,10 +134,10 @@
 }
 
 @media screen and (max-width: 700px) {
-  .plusIcon_large{
+  .addCollection__plusIcon_large{
     display: none;
   }
-  .plusIcon_little{
+  .addCollection__plusIcon_little{
     display:block;
     position: absolute;
   }
@@ -145,7 +145,7 @@
   .collectionsContainer{
     width: 300px;
   }
-  .addCollectionsIcon__circle{
+  .addCollection__circle{
     width: 35px;
     height: 35px;
 

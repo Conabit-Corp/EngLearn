@@ -18,7 +18,7 @@ export const CollectionsPage = (): JSX.Element => {
   return (
     <div className="collectionsContainer">
       {collections?.collections.collectionsList.length !== 0 ? (
-        <div className="collectionsList">
+        <div className="collectionsContainer__list">
           {collections?.collections.collectionsList.map(
             (collection: {
               collectionName: string;
@@ -35,11 +35,11 @@ export const CollectionsPage = (): JSX.Element => {
               );
             }
           )}
-          <div className="addCollectionBlock">
-            <div className="addCollectionsIcon__circle">
-              <AddCollectionIcon className="plusIcon_large" />
+          <div className="addCollection">
+            <div className="addCollection__circle">
+              <AddCollectionIcon className="addCollection__plusIcon_large" />
               <AddCollectionIcon
-                className="plusIcon_little"
+                className="addCollection__plusIcon_little"
                 height={14}
                 width={14}
               />

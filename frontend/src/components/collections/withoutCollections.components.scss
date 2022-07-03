@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.noCollectionsText{
+.noCollectionsMessage__text{
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -15,7 +15,7 @@
   color: $Placeholder_silver;
 }
 
-.addCollectionLink{
+.noCollectionsMessage__link{
 font-style: normal;
 font-weight: 500;
 font-size: 20px;
@@ -24,12 +24,12 @@ color: $Main_Blue;
 }
 
 @media screen and (max-width: 700px) {
-  .noCollectionsText{
+  .noCollectionsMessage__text{
     font-size: 15px;
     line-height: 18px;  
   }
   
-  .addCollectionLink{
+  .noCollectionsMessage__link{
   font-size: 13px;
   line-height: 16px;
   }
