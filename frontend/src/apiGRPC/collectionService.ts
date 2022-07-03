@@ -1,7 +1,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { WordCollectionService } from "../../proto/conabit/englearn/collection/collection_service_pb_service";
 import { WordCollection } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
-import { CreateWordCollectionRequest, GetUserCollectionsRequest } from "../../proto/conabit/englearn/collection/collection_transport_pb";
+import { CreateWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
 import { WordObj } from "../pages/createCollection/createCollection.pages";
@@ -65,3 +65,22 @@ export const getWordsCollections = (setCollections: React.Dispatch<React.SetStat
       }
     })
 }
+
+export const getCollectionByIdRequest = (id: string, setCollection: React.Dispatch<React.SetStateAction<WordCollection.AsObject | undefined>>) => {
+  const req = new GetWordCollectionRequest()
+  const session = new Session()
+  session.setJwt(localStorage.getItem('token') ?? '')
+  req.setSession(session)
+  req.setCollectionId(id)
+  grpc.unary(WordCollectionService.GetWordCollection,
+    {
+      request: req,
+      host: "http://10.3.21.205:4003",
+      onEnd: res => {
+        const { status, statusMessage, message } = res;
+        let resMessage = message as GetWordCollectionResponse;
+        setCollection(resMessage.toObject().collection);
+      }
+    })
+}
+
