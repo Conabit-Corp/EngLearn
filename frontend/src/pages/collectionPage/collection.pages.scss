@@ -1,0 +1,34 @@
+@import "../../config.scss";
+
+.collectionContainer {
+
+  .collectionContainer__goBack {
+    cursor: pointer;
+    margin-top: 19px;
+    width: fit-content;
+
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .collectionContainer__goBackText {
+      margin-left: 10px;
+      font-size: 18px;
+      color: $input_Silver;
+      line-height: 22px;
+    }
+
+    &:hover {
+      .collectionContainer__goBackIcon path {
+        fill: $Main_Blue;
+      }
+
+      .collectionContainer__goBackText {
+        color: $Main_Blue;
+      }
+    }
+  }
+
+}
