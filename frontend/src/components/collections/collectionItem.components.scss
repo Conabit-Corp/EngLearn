@@ -37,6 +37,7 @@
 .collection__popupButton{
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   align-self: center;
@@ -46,7 +47,7 @@
 }
 
 .collection__popupIcon_active{
-  position: absolute;
+  position: static;
 }
 
 .collection__popupIcon{

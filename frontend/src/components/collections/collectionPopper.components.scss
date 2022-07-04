@@ -1,12 +1,17 @@
 @import "../../config.scss";
 
 .popper{
+  position: relative;
+  // top: 15px;
   border: 1px solid black;
   border-radius: 8px;
   background-color:bisque;
   width: 120px;
   height: 121px;
-  position:relative;
-  left: 16px;
-  top: 85px
+  // margin-left: 360px;
+  margin-top: 25px;
+  display:flex;
+  align-self: flex-start;
+  z-index: 5;
 }
+

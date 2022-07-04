@@ -9,24 +9,33 @@ interface Props {
   collectionId: string;
   collectionName: string;
   collectionDescription: string;
+  setBlockScroll: any;
 }
 
 export const CollectionItem = (props: Props): JSX.Element => {
   const [isPoperOpen, setIsPoperOpen] = useState(false);
 
+  props.setBlockScroll(isPoperOpen);
+
   const handleClickAway = () => {
     setIsPoperOpen(false);
   };
 
+  // if (isPoperOpen) {
+  //   window.addEventListener("scroll", (e) => {
+  //     window.scrollTo(0, 0);
+  //   });
+  // }
+
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <div className="collection">
-        <div className="collection__info">
-          <div className="collection__title">{props.collectionName}</div>
-          <div className="collection__description">
-            {props.collectionDescription}
-          </div>
+    <div className="collection">
+      <div className="collection__info">
+        <div className="collection__title">{props.collectionName}</div>
+        <div className="collection__description">
+          {props.collectionDescription}
         </div>
+      </div>
+      <ClickAwayListener onClickAway={handleClickAway}>
         <div
           onClick={() =>
             isPoperOpen ? setIsPoperOpen(false) : setIsPoperOpen(true)
@@ -38,9 +47,9 @@ export const CollectionItem = (props: Props): JSX.Element => {
           ) : (
             <CollectionPopupMenuIcon className="collection__popupIcon" />
           )}
-          {isPoperOpen ? <CollectionPopper /> : null}
         </div>
-      </div>
-    </ClickAwayListener>
+      </ClickAwayListener>
+      {isPoperOpen ? <CollectionPopper /> : null}
+    </div>
   );
 };
