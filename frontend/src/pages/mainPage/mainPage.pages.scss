@@ -10,7 +10,7 @@
   margin: 0 auto;
 
   .mainContainer__content {
-    width: 650px;
+    width: 100%;
     min-height: 700px;
     max-height: 860px;
     height: 100%;
@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .mainContainer__content {
       display: flex;
       align-items: center;

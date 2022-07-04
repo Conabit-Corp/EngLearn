@@ -1,0 +1,26 @@
+@import "../../config.scss";
+
+.nameCollection {
+  max-height: 107px;
+  max-width: 330px;
+  margin-top: 55px;
+  cursor: pointer;
+
+  .nameCollection__title {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: $Text_Black;
+  }
+
+  .nameCollection__description {
+    margin: 0;
+    font-size: 20px;
+    color: $Text_Black;
+  }
+
+  .nameCollection__hideText {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

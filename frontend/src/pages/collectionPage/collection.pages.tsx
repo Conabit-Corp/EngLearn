@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./collection.pages.scss";
 import { WordCollection } from "../../../proto/conabit/englearn/collection/collection_models_pb";
 import { getCollectionByIdRequest } from "../../apiGRPC/collectionService";
-import { GoBackButton, WordList, LearnButton, RepeatButton } from "../../components/collection/export.collection.components";
+import { GoBackButton, WordList, LearnButton, RepeatButton, NameCollection } from "../../components/collection/export.collection.components";
 
 export const Collection = (): JSX.Element => {
   const [collection, setCollection] = useState<WordCollection.AsObject>();
@@ -20,11 +20,16 @@ export const Collection = (): JSX.Element => {
 
   return (
     <div className="collectionContainer">
-      <GoBackButton />
-      <WordList collection={collection} />
-      <div className="collectionContainer__buttons">
-        <LearnButton />
-        <RepeatButton />
+      <div className="collectionContainer__main">
+        <GoBackButton />
+        <WordList collection={collection} />
+        <div className="collectionContainer__buttons">
+          <LearnButton />
+          <RepeatButton />
+        </div>
+      </div>
+      <div className="collectionContainer__controller">
+        <NameCollection title={collection?.name} description={collection?.description} />
       </div>
     </div>
   )
