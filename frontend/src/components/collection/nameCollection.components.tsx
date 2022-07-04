@@ -14,10 +14,14 @@ export const NameCollection = (props: Props) => {
       className="nameCollection"
       onClick={() => setOpen(prevState => prevState === false ? true : false)}
     >
-      <h1 className={`nameCollection__title ${open === false ? "nameCollection__hideText" : ""}`}>
+      <h1 className={`nameCollection__title ${open === false ? "nameCollection__title_hide" : ""}`}>
         {props.title}
       </h1>
-      <p className={`nameCollection__description ${open === false ? "nameCollection__hideText" : ""}`}>
+      <p
+        className={
+          `nameCollection__description ${open === false ? "nameCollection__description_hide" : ""}`
+        }
+      >
         {props.description}
       </p>
     </div>
