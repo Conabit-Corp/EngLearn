@@ -13,38 +13,46 @@
   border: 1px solid $Icon_silver;
 }
 
-.collection__title{
+.collection__title {
   margin-bottom: 4px;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   color: #283139;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.collection__description{
+.collection__description {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   color: #8E8E8E;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
 @media screen and (max-width: 700px) {
-  .collection{
+  .collection {
     width: 290px;
     height: 55px;
     padding: 10px;
     padding-left: 15px;
     margin-bottom: 25px;
   }
-  .collection__title{
+
+  .collection__title {
     font-size: 15px;
     line-height: 18px;
   }
-  .collection__description{
+
+  .collection__description {
     font-size: 12px;
-    line-height: 15px;  
+    line-height: 15px;
   }
 }
