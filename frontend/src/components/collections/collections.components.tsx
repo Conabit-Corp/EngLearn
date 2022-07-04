@@ -51,8 +51,7 @@ export const Collections = (): JSX.Element => {
         </div>
       ) : (
         <WithoutCollections />
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
