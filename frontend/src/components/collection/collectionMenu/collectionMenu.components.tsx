@@ -1,5 +1,5 @@
 import "./collectionMenu.components.scss";
-import { AngleDownIcon } from "../../images/collections/angleDownIcon";
+import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
 
 export const CollectionMenu = () => {
