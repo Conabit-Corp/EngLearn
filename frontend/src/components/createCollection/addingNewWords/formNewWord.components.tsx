@@ -3,11 +3,12 @@ import { WordObj } from "../../../pages/createCollection/createCollection.pages"
 import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
 import { useDispatch } from "react-redux";
+import { WordCollection, WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 
 interface Props {
   column: boolean,
-  words: Array<WordObj>,
-  setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
+  words: WordPair.AsObject[],
+  setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>,
 }
 
 export const FormNewWord = (props: Props): JSX.Element => {
@@ -18,16 +19,17 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   function addWord(): void {
-    let newWord: WordObj = {
-      id: idWord,
-      ru: secondWord,
-      eng: firstWord,
+    let newWord: WordPair.AsObject = {
+      id: idWord.toString(),
+      word1: { countryCode: "ru", value: secondWord },
+      word2: { countryCode: "en", value: firstWord },
     };
 
-    let newWordsArray: WordObj[] = JSON.parse(JSON.stringify(props.words));
+    let newWordsArray: WordPair.AsObject[] = JSON.parse(JSON.stringify(props.words));
     newWordsArray.unshift(newWord);
 
     props.setWords(newWordsArray);
+    // props.setWords(prevState => console.log(typeof prevState))
     setIdWord(idWord + 1);
     setFirstWord('');
     setSecondWord('');

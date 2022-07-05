@@ -2,8 +2,14 @@ import "./collectionMenu.components.scss";
 import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
 import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
+import { WordCollection, WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 
-export const CollectionMenu = () => {
+interface Props {
+  words: WordPair.AsObject[],
+  setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>,
+}
+
+export const CollectionMenu = (props: Props): JSX.Element => {
   const [moreInfoOpened, setMoreInfoOpened] = useState(false);
   const [addWordOpened, setAddWordOpened] = useState(false);
   const [statisticsOpened, setStatisticsOpened] = useState(false);
@@ -35,7 +41,11 @@ export const CollectionMenu = () => {
         <div
           className={`collectionMenu__itemContent ${addWordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
-          <FormNewWord column={true} />
+          <FormNewWord
+            column={true}
+            words={props.words}
+            setWords={props.setWords}
+          />
         </div>
       </div>
       <div className="collectionMenu__item">

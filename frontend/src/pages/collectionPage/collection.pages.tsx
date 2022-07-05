@@ -14,22 +14,24 @@ import {
 
 export const Collection = (): JSX.Element => {
   const [collection, setCollection] = useState<WordCollection.AsObject>();
+  const [words, setWords] = useState(collection?.wordsList!);
 
   const { id } = useParams();
 
   useEffect(() => {
     if (id !== undefined) {
-      getCollectionByIdRequest(id, setCollection);
+      getCollectionByIdRequest(id, setCollection, setWords);
+      setWords(collection?.wordsList!)
     }
   }, [])
 
-  console.log(collection);
+  console.log(words);
 
   return (
     <div className="collectionContainer">
       <div className="collectionContainer__main">
         <GoBackButton />
-        <WordList collection={collection} />
+        <WordList words={words} />
         <div className="collectionContainer__buttons">
           <LearnButton />
           <RepeatButton />
@@ -37,7 +39,7 @@ export const Collection = (): JSX.Element => {
       </div>
       <div className="collectionContainer__controller">
         <NameCollection title={collection?.name} description={collection?.description} />
-        <CollectionMenu />
+        <CollectionMenu words={words} setWords={setWords} />
       </div>
     </div>
   )

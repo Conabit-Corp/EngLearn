@@ -1,6 +1,6 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { WordCollectionService } from "../../proto/conabit/englearn/collection/collection_service_pb_service";
-import { WordCollection } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
+import { WordCollection, WordPair } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
 import { CreateWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
@@ -24,7 +24,7 @@ interface CollectionOverview {
 export const createCollectionRequest = (
   collectionTitle: string,
   collectionDescription: string,
-  words: Array<WordObj>,
+  words: Array<WordPair.AsObject>,
   navigate: NavigateFunction,
 ) => {
   const session = new Session()
@@ -40,6 +40,8 @@ export const createCollectionRequest = (
         const { status, statusMessage, message } = res;
 
         let resMessage = message as CreateWordCollectionRequest;
+        console.log(resMessage);
+
         let result = resMessage.toObject().collectionId;
 
         navigate(`/collections/${result}`)
@@ -66,7 +68,11 @@ export const getWordsCollections = (setCollections: React.Dispatch<React.SetStat
     })
 }
 
-export const getCollectionByIdRequest = (id: string, setCollection: React.Dispatch<React.SetStateAction<WordCollection.AsObject | undefined>>) => {
+export const getCollectionByIdRequest = (
+  id: string,
+  setCollection: React.Dispatch<React.SetStateAction<WordCollection.AsObject | undefined>>,
+  setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>
+) => {
   const req = new GetWordCollectionRequest()
   const session = new Session()
   session.setJwt(localStorage.getItem('token') ?? '')
@@ -80,6 +86,7 @@ export const getCollectionByIdRequest = (id: string, setCollection: React.Dispat
         const { status, statusMessage, message } = res;
         let resMessage = message as GetWordCollectionResponse;
         setCollection(resMessage.toObject().collection);
+        setWords(resMessage.toObject().collection?.wordsList!)
       }
     })
 }

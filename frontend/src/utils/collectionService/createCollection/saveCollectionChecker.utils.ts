@@ -1,5 +1,6 @@
 import { NavigateFunction } from "react-router-dom";
 import { AnyAction, Dispatch } from "redux";
+import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 import { createCollectionRequest } from "../../../apiGRPC/collectionService";
 import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 
@@ -8,7 +9,7 @@ import { WordObj } from "../../../pages/createCollection/createCollection.pages"
 export const saveCollectionChecker = (
   collectionTitle: string,
   collectionDescription: string,
-  words: Array<WordObj>,
+  words: Array<WordPair.AsObject>,
   navigate: NavigateFunction,
   dispatch: Dispatch<AnyAction>,
 ) => {
