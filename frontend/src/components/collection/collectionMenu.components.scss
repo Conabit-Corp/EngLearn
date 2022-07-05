@@ -2,6 +2,21 @@
 
 .collectionMenu {
   margin-top: 20px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #A7C3FE;
+    border-radius: 100px;
+  }
 
   .collectionMenu__item {
     border-bottom: 1px solid $input_Silver;

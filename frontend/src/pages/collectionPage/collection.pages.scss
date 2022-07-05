@@ -25,9 +25,12 @@
   }
 
   .collectionContainer__controller {
-    max-height: 760px;
+    // max-height: 760px;
     max-width: 330px;
     height: 100%;
     width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 }
