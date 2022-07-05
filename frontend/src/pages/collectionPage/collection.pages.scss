@@ -5,7 +5,6 @@
   justify-content: space-between;
   gap: 45px;
   width: 100%;
-  max-height: 745px;
   height: 100%;
   padding-top: 19px;
   overflow: hidden;
@@ -22,6 +21,7 @@
     flex-direction: column;
     height: 100%;
     width: inherit;
+    margin-left: 25px;
   }
 
   .collectionContainer__controller {
