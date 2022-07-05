@@ -10,11 +10,11 @@ export const CollectionMenu = () => {
 
   return (
     <div className="collectionMenu">
-      <div
-        className="collectionMenu__item"
-        onClick={() => setMoreInfoOpened(prevState => prevState === false ? true : false)}
-      >
-        <div className="collectionMenu__itemHead">
+      <div className="collectionMenu__item">
+        <div
+          className="collectionMenu__itemHead"
+          onClick={() => setMoreInfoOpened(prevState => prevState === false ? true : false)}
+        >
           <AngleDownIcon className={moreInfoOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
           <span className="collectionMenu__itemTitle">More info</span>
         </div>
@@ -24,25 +24,25 @@ export const CollectionMenu = () => {
           More info
         </div>
       </div>
-      <div
-        className="collectionMenu__item"
-        onClick={() => setAddWordOpened(prevState => prevState === false ? true : false)}
-      >
-        <div className="collectionMenu__itemHead">
+      <div className="collectionMenu__item">
+        <div
+          className="collectionMenu__itemHead"
+          onClick={() => setAddWordOpened(prevState => prevState === false ? true : false)}
+        >
           <AngleDownIcon className={addWordOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
           <span className="collectionMenu__itemTitle">Add word</span>
         </div>
         <div
           className={`collectionMenu__itemContent ${addWordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
-          <FormNewWord />
+          <FormNewWord column={true} />
         </div>
       </div>
-      <div
-        className="collectionMenu__item"
-        onClick={() => setStatisticsOpened(prevState => prevState === false ? true : false)}
-      >
-        <div className="collectionMenu__itemHead">
+      <div className="collectionMenu__item">
+        <div
+          className="collectionMenu__itemHead"
+          onClick={() => setStatisticsOpened(prevState => prevState === false ? true : false)}
+        >
           <AngleDownIcon className={statisticsOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
           <span className="collectionMenu__itemTitle">Statistics</span>
         </div>

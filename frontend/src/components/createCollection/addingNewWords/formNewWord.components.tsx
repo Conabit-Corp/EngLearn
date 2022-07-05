@@ -5,6 +5,7 @@ import { addNewWordChecker } from "../../../utils/collectionService/createCollec
 import { useDispatch } from "react-redux";
 
 interface Props {
+  column: boolean,
   words: Array<WordObj>,
   setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
 }
@@ -33,7 +34,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
   }
 
   return (
-    <div className="formNewWord">
+    <div className={props.column === true ? "formNewWord_column" : "formNewWord"}>
       <input
         type="text"
         placeholder="English word"

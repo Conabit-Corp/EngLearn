@@ -10,7 +10,7 @@ interface Props {
 export const AddingNewWords = (props: Props): JSX.Element => {
   return (
     <>
-      <FormNewWord words={props.words} setWords={props.setWords} />
+      <FormNewWord column={false} words={props.words} setWords={props.setWords} />
       <NewWordsTable words={props.words} setWords={props.setWords} />
     </>
   )
