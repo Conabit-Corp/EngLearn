@@ -1,6 +1,7 @@
 import "./collectionMenu.components.scss";
 import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
+import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
 
 export const CollectionMenu = () => {
   const [moreInfoOpened, setMoreInfoOpened] = useState(false);
@@ -34,7 +35,7 @@ export const CollectionMenu = () => {
         <div
           className={`collectionMenu__itemContent ${addWordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
-          Add word
+          <FormNewWord />
         </div>
       </div>
       <div
