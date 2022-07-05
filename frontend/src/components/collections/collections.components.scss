@@ -4,11 +4,19 @@
   display: none;
 }
 
+.collectionsContent{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .collectionsContainer {
   padding-top: 25px;
   padding-bottom: 25px;
   overflow-y: auto;
   height: 100%;
+  max-height: 676px;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -34,6 +42,7 @@
 }
 
 .addCollection {
+  margin-top: 35px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -110,10 +119,13 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .collectionsContent{
+    align-items: flex-end;
+  }
   .collectionsContainer {
     display: flex;
     justify-content: center;
-    width: 580px;
+    width: 630px;
   }
 
   .addCollection__circle {
@@ -136,10 +148,10 @@
 
   .collectionsContainer__list {
     width: 580px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-end;
   }
 }
 
@@ -153,10 +165,12 @@
     position: absolute;
   }
 
-  .collectionsContainer {
-    width: 300px;
+  .collectionsContainer__list {
+    align-items:flex-start;
   }
-
+  .collectionsContainer{
+    width: 320px;
+  }
   .addCollection__circle {
     width: 35px;
     height: 35px;

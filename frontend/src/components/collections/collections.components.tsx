@@ -17,42 +17,43 @@ export const Collections = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="collectionsContainer">
-      {collections?.collections.collectionsList.length !== 0 ? (
-        <div className="collectionsContainer__list">
-          {collections?.collections.collectionsList.map(
-            (collection: {
-              collectionName: string;
-              collectionDescription: string;
-              collectionId: string;
-            }) => {
-              return (
-                <CollectionItem
-                  key={collection.collectionId}
-                  collectionId={collection.collectionId}
-                  collectionName={collection.collectionName}
-                  collectionDescription={collection.collectionDescription}
-                />
-              );
-            }
-          )}
-          <Link to="createCollection">
-            <div className="addCollection">
-              <div className="addCollection__circle">
-                <AddCollectionIcon className="addCollection__plusIcon_large" />
-                <AddCollectionIcon
-                  className="addCollection__plusIcon_little"
-                  height={14}
-                  width={14}
-                />
-              </div>
-            </div>
-          </Link>
+    <div className="collectionsContent">
+      <div className="collectionsContainer">
+        {collections?.collections.collectionsList.length !== 0 ? (
+          <div className="collectionsContainer__list">
+            {collections?.collections.collectionsList.map(
+              (collection: {
+                collectionName: string;
+                collectionDescription: string;
+                collectionId: string;
+              }) => {
+                return (
+                  <CollectionItem
+                    key={collection.collectionId}
+                    collectionId={collection.collectionId}
+                    collectionName={collection.collectionName}
+                    collectionDescription={collection.collectionDescription}
+                  />
+                );
+              }
+            )}
+          </div>
+        ) : (
+          <WithoutCollections />
+        )}
+      </div>
+      <Link to="createCollection">
+        <div className="addCollection">
+          <div className="addCollection__circle">
+            <AddCollectionIcon className="addCollection__plusIcon_large" />
+            <AddCollectionIcon
+              className="addCollection__plusIcon_little"
+              height={14}
+              width={14}
+            />
+          </div>
         </div>
-      ) : (
-        <WithoutCollections />
-      )
-      }
-    </div >
+      </Link>
+    </div>
   );
 };
