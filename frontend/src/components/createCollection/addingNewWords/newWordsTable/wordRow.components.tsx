@@ -11,31 +11,33 @@ interface Props {
 }
 
 export const WordRow = (props: Props): JSX.Element => {
+  console.log(props.word);
+
   return (
     <div className="wordRow">
       <input
         type="text"
         className="wordRow__input"
-        placeholder={props.word.word1?.value}
-        defaultValue={props.word.word1?.value}
+        placeholder={props.word.word2?.value}
+        defaultValue={props.word.word2?.value}
         onChange={e => {
           let value = e.target.value;
           value = value.replace(/[^A-Za-z\-\s]/ig, '');
           props.setWords((prevState: Array<WordPair.AsObject>) =>
-            prevState.map((item, index) =>
+            prevState.map((item: WordPair.AsObject, index) =>
               index === props.index
-                ? { ...item, eng: value }
+                ? { ...item, value: value }
                 : item
             )
           )
         }}
-        value={props.word.word1?.value}
+      // value={props.word.word1?.value}
       />
       <input
         type="text"
-        placeholder={props.word.word2?.value}
+        placeholder={props.word.word1?.value}
         className="wordRow__input"
-        defaultValue={props.word.word2?.value}
+        defaultValue={props.word.word1?.value}
         onChange={e => {
           let value = e.target.value;
           value = value.replace(/[^А-ЯЁа-яё\-\s]*/ig, '');
@@ -47,7 +49,7 @@ export const WordRow = (props: Props): JSX.Element => {
             )
           )
         }}
-        value={props.word.word2?.value}
+      // value={props.word.word2?.value}
       />
       <a className="wordRow__deleteButton" onClick={() => props.removeWord(props.index)}>
         <BinSvg className="wordRow__deleteButtonIcon" />
