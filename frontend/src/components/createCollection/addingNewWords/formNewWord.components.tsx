@@ -1,9 +1,8 @@
 import "./formNewWord.components.scss";
-import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
 import { useDispatch } from "react-redux";
-import { WordCollection, WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 import { addWordPairRequest } from "../../../apiGRPC/collectionService";
 
 interface Props {
@@ -18,9 +17,6 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const [secondWord, setSecondWord] = useState('');
   const [idWord, setIdWord] = useState(0);
 
-  console.log(props.collectionId);
-
-
   const dispatch = useDispatch();
 
   function addWord(): void {
@@ -34,6 +30,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
     newWordsArray.unshift(newWord);
 
     if (props.collectionId !== undefined) {
+      //add word in existing collection 
       addWordPairRequest(props.collectionId, newWord);
     }
 

@@ -1,5 +1,5 @@
 import "./wordList.components.scss";
-import { WordCollection, WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
+import { WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
 import { WordItem } from "./wordItem.components";
 
 interface Props {
@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const WordList = (props: Props): JSX.Element => {
-  console.log(props.words);
   return (
     <div className={`wordList  ${props.words?.length === 0 ? "wordList_noWords" : ""}`}>
       {props.words?.length === 0 ?

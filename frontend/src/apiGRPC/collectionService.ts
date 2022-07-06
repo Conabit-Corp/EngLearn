@@ -40,7 +40,6 @@ export const createCollectionRequest = (
         const { status, statusMessage, message } = res;
 
         let resMessage = message as CreateWordCollectionRequest;
-        console.log(resMessage);
 
         let result = resMessage.toObject().collectionId;
 
@@ -52,8 +51,6 @@ export const createCollectionRequest = (
 
 export const getWordsCollections = (setCollections: React.Dispatch<React.SetStateAction<CollectionOverviewsResponse | undefined>>) => {
   const req = new GetUserCollectionsRequest()
-  console.log(req.toObject());
-
   const session = new Session()
   session.setJwt(localStorage.getItem('token') ?? '')
   req.setSession(session)

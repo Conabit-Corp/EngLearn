@@ -1,5 +1,4 @@
 import "./wordRow.components.scss";
-import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
 import { BinSvg } from "../../../../images/bin";
 import { WordPair } from "../../../../../proto/conabit/englearn/collection/collection_models_pb";
 
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export const WordRow = (props: Props): JSX.Element => {
-  console.log(props.word);
-
   return (
     <div className="wordRow">
       <input

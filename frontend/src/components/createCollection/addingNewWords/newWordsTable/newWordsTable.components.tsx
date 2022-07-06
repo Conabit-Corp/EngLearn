@@ -1,6 +1,5 @@
 import "./newWordsTable.components.scss";
 import { WordRow } from "./wordRow.components";
-import { WordObj } from "../../../../pages/createCollection/createCollection.pages";
 import { WordPair } from "../../../../../proto/conabit/englearn/collection/collection_models_pb";
 
 interface Props {
@@ -11,12 +10,9 @@ interface Props {
 export const NewWordsTable = (props: Props): JSX.Element => {
 
   function removeWord(index: number): void {
-    console.log(index);
-
     let newWordsArray: WordPair.AsObject[] = JSON.parse(JSON.stringify(props.words));
     newWordsArray.splice(index, 1);
-
-    props.setWords(newWordsArray)
+    props.setWords(newWordsArray);
   }
 
   return (
@@ -44,7 +40,6 @@ export const NewWordsTable = (props: Props): JSX.Element => {
         :
         null
       }
-
     </>
   )
 }
