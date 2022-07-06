@@ -1,0 +1,30 @@
+@import "../../config.scss";
+
+.goBackButton {
+  cursor: pointer;
+  width: fit-content;
+  margin-bottom: 19px;
+
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .goBackButton__text {
+    margin-left: 10px;
+    font-size: 18px;
+    color: $input_Silver;
+    line-height: 22px;
+  }
+
+  &:hover {
+    .goBackButton__icon path {
+      fill: $Main_Blue;
+    }
+
+    .goBackButton__text {
+      color: $Main_Blue;
+    }
+  }
+}

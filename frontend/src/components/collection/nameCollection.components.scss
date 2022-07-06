@@ -1,0 +1,40 @@
+@import "../../config.scss";
+
+.nameCollection {
+  max-width: 330px;
+  margin-top: 55px;
+  cursor: pointer;
+
+  .nameCollection__title {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: $Text_Black;
+  }
+
+  .nameCollection__title_hide {
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 2;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+  }
+
+  .nameCollection__description {
+    margin: 0;
+    font-size: 20px;
+    color: $Text_Black;
+  }
+
+  .nameCollection__description_hide {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

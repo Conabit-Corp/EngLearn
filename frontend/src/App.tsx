@@ -8,7 +8,8 @@ import {
   MainPage,
   ProfilePage,
   HomePage,
-  CollectionsPage
+  CollectionsPage,
+  Collection,
 } from './pages/export.pages';
 
 function App() {

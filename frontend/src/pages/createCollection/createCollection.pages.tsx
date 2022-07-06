@@ -1,6 +1,7 @@
 import "./createCollection.pages.scss";
 import { AboutCollection, AddingNewWords, CreateCollectionButtons } from "../../components/createCollection/export.createCollection.components";
 import { useState } from "react";
+import { WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
 
 export type WordObj = {
   id: number,
@@ -11,7 +12,7 @@ export type WordObj = {
 export const CreateCollection = (): JSX.Element => {
   const [collectionTitle, setCollectionTitle] = useState('');
   const [collectionDescription, setCollectionDescription] = useState('');
-  const [words, setWords] = useState<Array<WordObj>>([]);
+  const [words, setWords] = useState<Array<WordPair.AsObject>>([]);
 
   return (
     <div className="createCollectionContainer">
