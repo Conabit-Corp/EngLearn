@@ -1,14 +1,14 @@
 @import "../../config.scss";
 
-a{
-  width: 100%;
-}
+// a {
+//   width: 100%;
+// }
 
 .addCollection__plusIcon_little {
   display: none;
 }
 
-.collectionsContent{
+.collectionsContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -50,7 +50,7 @@ a{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  width: 300px;
   overflow: hidden;
 }
 
@@ -59,30 +59,36 @@ a{
   z-index: 1;
 }
 
+.addCollection__circle_block {
+  background-color: #fff;
+}
+
 .addCollection__circle {
   cursor: pointer;
-
+  &::after {
+    content: "Add new collection";
+    padding-left: 10px;
+    position: relative;
+    left: -100px;
+    transition: left 0.5s ease-in-out;
+    z-index: -1;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: $Text_Black;
+    white-space: nowrap;
+  }
+  .addCollection__plusIcon_large {
+    transition: transform 0.5s ease-in-out;
+  }
   &:hover {
     .addCollection__plusIcon_large {
-      -webkit-animation: spin 0.5s;
-      -moz-animation: spin 0.5s;
-      animation: spin 0.5s;
+      transform: rotate(180deg);
     }
 
     &::after {
-      content: "Add new collection";
-      padding-left: 10px;
-      position: relative;
-      animation-name: addCollection__textOut;
-      animation-duration: 0.5s;
-      animation-fill-mode: both;
-      z-index: -1;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
-      color: $Text_Black;
-      white-space: nowrap;
+      left: 120px;
     }
   }
 
@@ -95,37 +101,13 @@ a{
   background-color: $Main_Blue;
 }
 
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(180deg);
-  }
-}
-
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(180deg);
-  }
-}
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-}
-
-@keyframes addCollection__textOut {
-  0% {
-    left: 0;
-  }
-
-  100% {
-    left: 120px;
-  }
-}
-
 @media screen and (max-width: 1200px) {
-  .collectionsContent{
+  .addCollection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .collectionsContent {
     align-items: flex-end;
   }
   .collectionsContainer {
@@ -135,6 +117,9 @@ a{
   }
 
   .addCollection__circle {
+    &::after {
+      content: "";
+    }
     &:hover {
       .addCollection__plusIcon_large {
         animation: none;
@@ -162,6 +147,9 @@ a{
 }
 
 @media screen and (max-width: 700px) {
+  .addCollection {
+    margin-top: 15px;
+  }
   .addCollection__plusIcon_large {
     display: none;
   }
@@ -172,10 +160,17 @@ a{
   }
 
   .collectionsContainer__list {
-    align-items:flex-start;
+    align-items: flex-start;
   }
-  .collectionsContainer{
-    width: 320px;
+  .collectionsContent {
+    width: 290px;
+  }
+  .collectionsContainer {
+    width: 290px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
   }
   .addCollection__circle {
     width: 35px;

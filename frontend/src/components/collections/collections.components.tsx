@@ -42,15 +42,17 @@ export const Collections = (): JSX.Element => {
           <WithoutCollections />
         )}
       </div>
-      <Link to="createCollection">
-        <div className="addCollection">
-          <div className="addCollection__circle">
-            <AddCollectionIcon className="addCollection__plusIcon_large" />
-            <AddCollectionIcon
-              className="addCollection__plusIcon_little"
-              height={14}
-              width={14}
-            />
+      <Link className="addCollection" to="createCollection">
+        <div>
+          <div className="addCollection__circle_block">
+            <div className="addCollection__circle">
+              <AddCollectionIcon className="addCollection__plusIcon_large" />
+              <AddCollectionIcon
+                className="addCollection__plusIcon_little"
+                height={14}
+                width={14}
+              />
+            </div>
           </div>
         </div>
       </Link>
