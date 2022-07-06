@@ -4,17 +4,22 @@ import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
 import { useDispatch } from "react-redux";
 import { WordCollection, WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { addWordPairRequest } from "../../../apiGRPC/collectionService";
 
 interface Props {
   column: boolean,
   words: WordPair.AsObject[],
   setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>,
+  collectionId?: string,
 }
 
 export const FormNewWord = (props: Props): JSX.Element => {
   const [firstWord, setFirstWord] = useState('');
   const [secondWord, setSecondWord] = useState('');
   const [idWord, setIdWord] = useState(0);
+
+  console.log(props.collectionId);
+
 
   const dispatch = useDispatch();
 
@@ -28,8 +33,11 @@ export const FormNewWord = (props: Props): JSX.Element => {
     let newWordsArray: WordPair.AsObject[] = JSON.parse(JSON.stringify(props.words));
     newWordsArray.unshift(newWord);
 
+    if (props.collectionId !== undefined) {
+      addWordPairRequest(props.collectionId, newWord);
+    }
+
     props.setWords(newWordsArray);
-    // props.setWords(prevState => console.log(typeof prevState))
     setIdWord(idWord + 1);
     setFirstWord('');
     setSecondWord('');

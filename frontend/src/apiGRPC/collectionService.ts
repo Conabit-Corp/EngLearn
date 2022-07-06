@@ -1,11 +1,11 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { WordCollectionService } from "../../proto/conabit/englearn/collection/collection_service_pb_service";
 import { WordCollection, WordPair } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
-import { CreateWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
+import { AddWordToCollectionRequest, CreateWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
-import { WordObj } from "../pages/createCollection/createCollection.pages";
 import { NavigateFunction } from "react-router-dom";
+import { newWordPair } from "../utils/collectionService/newWordPair.utils";
 
 export interface CollectionOverviewsResponse {
   collections: CollectionsOverwies
@@ -91,3 +91,22 @@ export const getCollectionByIdRequest = (
     })
 }
 
+export const addWordPairRequest = (
+  collectionId: string,
+  newWord: WordPair.AsObject,
+) => {
+  const req = new AddWordToCollectionRequest()
+  const session = new Session()
+  session.setJwt(localStorage.getItem('token') ?? '')
+  req.setSession(session)
+  req.setCollectionId(collectionId)
+  req.setWordPair(newWordPair(newWord))
+  grpc.unary(WordCollectionService.AddWordToCollection,
+    {
+      request: req,
+      host: "http://10.3.21.205:4003",
+      onEnd: (r) => {
+        console.log(`response = ${r.message}, errors = ${r.statusMessage}`)
+      }
+    })
+}

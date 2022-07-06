@@ -25,8 +25,6 @@ export const Collection = (): JSX.Element => {
     }
   }, [])
 
-  console.log(words);
-
   return (
     <div className="collectionContainer">
       <div className="collectionContainer__main">
@@ -39,7 +37,7 @@ export const Collection = (): JSX.Element => {
       </div>
       <div className="collectionContainer__controller">
         <NameCollection title={collection?.name} description={collection?.description} />
-        <CollectionMenu words={words} setWords={setWords} />
+        <CollectionMenu words={words} setWords={setWords} collectionId={collection?.id!} />
       </div>
     </div>
   )

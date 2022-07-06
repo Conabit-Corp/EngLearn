@@ -2,11 +2,12 @@ import "./collectionMenu.components.scss";
 import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
 import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
-import { WordCollection, WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 
 interface Props {
   words: WordPair.AsObject[],
   setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>,
+  collectionId: string,
 }
 
 export const CollectionMenu = (props: Props): JSX.Element => {
@@ -45,6 +46,7 @@ export const CollectionMenu = (props: Props): JSX.Element => {
             column={true}
             words={props.words}
             setWords={props.setWords}
+            collectionId={props.collectionId}
           />
         </div>
       </div>
