@@ -17,55 +17,53 @@ export const Collections = (): JSX.Element => {
   }, []);
 
   return (
-    <div
-      className={
-        collections?.collections.collectionsList.length !== 0
-          ? "collectionsContent"
-          : "noCollectionsContent"
-      }
-    >
-      <div className="collectionsContainer">
-        {collections?.collections.collectionsList.length !== 0 ? (
-          <div className="collectionsContainer__list">
-            {collections?.collections.collectionsList.map(
-              (collection: {
-                collectionName: string;
-                collectionDescription: string;
-                collectionId: string;
-              }) => {
-                return (
-                  <Link
-                    key={collection.collectionId}
-                    to={`/collections/${collection.collectionId}`}
-                  >
-                    <CollectionItem
-                      collectionId={collection.collectionId}
-                      collectionName={collection.collectionName}
-                      collectionDescription={collection.collectionDescription}
-                    />
-                  </Link>
-                );
-              }
-            )}
-          </div>
-        ) : (
-          <WithoutCollections />
-        )}
-      </div>
+    <div style={{ width: "100%", height: "100%" }}>
       {collections?.collections.collectionsList.length !== 0 ? (
-        <Link to="createCollection" className="addCollection">
-          <div className="addCollection__circle_block">
-            <div className="addCollection__circle">
-              <AddCollectionIcon className="addCollection__plusIcon_large" />
-              <AddCollectionIcon
-                className="addCollection__plusIcon_little"
-                height={14}
-                width={14}
-              />
+        <div className="collectionsContent">
+          <div className="collectionsContainer">
+            <div>
+              <div className="collectionsContainer__list">
+                {collections?.collections.collectionsList.map(
+                  (collection: {
+                    collectionName: string;
+                    collectionDescription: string;
+                    collectionId: string;
+                  }) => {
+                    return (
+                      <Link
+                        key={collection.collectionId}
+                        to={`/collections/${collection.collectionId}`}
+                      >
+                        <CollectionItem
+                          collectionId={collection.collectionId}
+                          collectionName={collection.collectionName}
+                          collectionDescription={
+                            collection.collectionDescription
+                          }
+                        />
+                      </Link>
+                    );
+                  }
+                )}
+              </div>
+              <Link to="createCollection" className="addCollection">
+                <div className="addCollection__circle_block">
+                  <div className="addCollection__circle">
+                    <AddCollectionIcon className="addCollection__plusIcon_large" />
+                    <AddCollectionIcon
+                      className="addCollection__plusIcon_little"
+                      height={14}
+                      width={14}
+                    />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
-        </Link>
-      ) : null}
+        </div>
+      ) : (
+        <WithoutCollections />
+      )}
     </div>
   );
 };
