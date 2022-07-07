@@ -103,21 +103,21 @@ function getWordCollections() {
         })
 }
 
-function getCollectionById() {
-    const req = new GetWordCollectionRequest()
-    const session = new Session()
-    session.setJwt(localStorage.getItem('token') ?? '')
-    req.setSession(session)
-    req.setCollectionId(collectionIdInput.value)
-    grpc.unary(WordCollectionService.GetWordCollection,
-        {
-            request: req,
-            host: "http://localhost:4003",
-            onEnd: (r) => {
-                console.log(r.message?.toObject())
-            }
-        })
-}
+// function getCollectionById() {
+//     const req = new GetWordCollectionRequest()
+//     const session = new Session()
+//     session.setJwt(localStorage.getItem('token') ?? '')
+//     req.setSession(session)
+//     req.setCollectionId(collectionIdInput.value)
+//     grpc.unary(WordCollectionService.GetWordCollection,
+//         {
+//             request: req,
+//             host: "http://localhost:4003",
+//             onEnd: (r) => {
+//                 console.log(r.message?.toObject())
+//             }
+//         })
+// }
 
 function addWordPair() {
     const req = new AddWordToCollectionRequest()

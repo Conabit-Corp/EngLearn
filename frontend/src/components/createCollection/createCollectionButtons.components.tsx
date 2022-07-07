@@ -4,11 +4,12 @@ import { WordObj } from "../../pages/createCollection/createCollection.pages";
 import { createCollectionRequest } from "../../apiGRPC/collectionService";
 import { saveCollectionChecker } from "../../utils/export.utils";
 import { useDispatch } from "react-redux";
+import { WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
 
 interface Props {
   collectionTitle: string,
   collectionDescription: string,
-  words: Array<WordObj>;
+  words: Array<WordPair.AsObject>;
 }
 
 export const CreateCollectionButtons = (props: Props): JSX.Element => {

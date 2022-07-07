@@ -1,12 +1,15 @@
 import "./formNewWord.components.scss";
-import { WordObj } from "../../../pages/createCollection/createCollection.pages";
 import { useState } from "react";
 import { addNewWordChecker } from "../../../utils/collectionService/createCollection/addNewWordChecker.utils";
 import { useDispatch } from "react-redux";
+import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { addWordPairRequest } from "../../../apiGRPC/collectionService";
 
 interface Props {
-  words: Array<WordObj>,
-  setWords: React.Dispatch<React.SetStateAction<Array<WordObj>>>,
+  column: boolean,
+  words: WordPair.AsObject[],
+  setWords: React.Dispatch<React.SetStateAction<WordPair.AsObject[]>>,
+  collectionId?: string,
 }
 
 export const FormNewWord = (props: Props): JSX.Element => {
@@ -17,14 +20,19 @@ export const FormNewWord = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   function addWord(): void {
-    let newWord: WordObj = {
-      id: idWord,
-      ru: secondWord,
-      eng: firstWord,
+    let newWord: WordPair.AsObject = {
+      id: idWord.toString(),
+      word1: { countryCode: "ru", value: secondWord },
+      word2: { countryCode: "en", value: firstWord },
     };
 
-    let newWordsArray: WordObj[] = JSON.parse(JSON.stringify(props.words));
+    let newWordsArray: WordPair.AsObject[] = JSON.parse(JSON.stringify(props.words));
     newWordsArray.unshift(newWord);
+
+    if (props.collectionId !== undefined) {
+      //add word in existing collection 
+      addWordPairRequest(props.collectionId, newWord);
+    }
 
     props.setWords(newWordsArray);
     setIdWord(idWord + 1);
@@ -33,7 +41,7 @@ export const FormNewWord = (props: Props): JSX.Element => {
   }
 
   return (
-    <div className="formNewWord">
+    <div className={props.column === true ? "formNewWord_column" : "formNewWord"}>
       <input
         type="text"
         placeholder="English word"

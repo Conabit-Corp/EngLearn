@@ -28,12 +28,16 @@ export const Collections = (): JSX.Element => {
                 collectionId: string;
               }) => {
                 return (
-                  <CollectionItem
+                  <Link
                     key={collection.collectionId}
-                    collectionId={collection.collectionId}
-                    collectionName={collection.collectionName}
-                    collectionDescription={collection.collectionDescription}
-                  />
+                    to={`/collections/${collection.collectionId}`}
+                  >
+                    <CollectionItem
+                      collectionId={collection.collectionId}
+                      collectionName={collection.collectionName}
+                      collectionDescription={collection.collectionDescription}
+                    />
+                  </Link>
                 );
               }
             )}
@@ -42,7 +46,7 @@ export const Collections = (): JSX.Element => {
           <WithoutCollections />
         )}
       </div>
-      <Link className="addCollection" to="createCollection">
+      <Link to="createCollection" className="addCollection">
         <div className="addCollection__circle_block">
           <div className="addCollection__circle">
             <AddCollectionIcon className="addCollection__plusIcon_large" />

@@ -20,6 +20,9 @@
   font-size: 20px;
   line-height: 24px;
   color: #283139;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .collection__description {
@@ -28,6 +31,9 @@
   font-size: 16px;
   line-height: 20px;
   color: #8e8e8e;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 700px) {
