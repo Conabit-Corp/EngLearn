@@ -1,0 +1,24 @@
+@import "../../config.scss";
+
+.deleteCollectionButton {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $Error_red;
+  border-radius: 8px;
+  font-size: 16px;
+  color: $Error_red;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.05);
+  }
+
+  &:active {
+    background-color: rgba(255, 0, 0, 0.10);
+  }
+}

@@ -2,6 +2,8 @@ import "./deleteCollectionButton.components.scss";
 
 export const DeleteCollectionButton = (): JSX.Element => {
   return (
-    <div>DeleteCollectionButton</div>
+    <div className="deleteCollectionButton">
+      delete this colletion
+    </div>
   )
 }
