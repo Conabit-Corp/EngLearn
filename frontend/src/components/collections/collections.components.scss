@@ -118,18 +118,8 @@
     }
     &:hover {
       .addCollection__plusIcon_large {
-        animation: none;
+        transform: none;
       }
-    }
-
-    &::before {
-      content: "Add new collection";
-      position: relative;
-      right: 120px;
-      font-weight: 500;
-      font-size: 18px;
-      color: $Text_Black;
-      white-space: nowrap;
     }
   }
 
@@ -140,7 +130,9 @@
 
 @media screen and (max-width: 700px) {
   .addCollection {
-    margin-top: 15px;
+    height: 35px;
+    margin-top: 25px;
+    overflow: visible;
   }
   .addCollection__plusIcon_large {
     display: none;
@@ -156,6 +148,7 @@
   }
   .collectionsContent {
     width: 290px;
+    height: 405px;
   }
   .collectionsContainer {
     width: 290px;
