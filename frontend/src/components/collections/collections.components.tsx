@@ -17,7 +17,13 @@ export const Collections = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="collectionsContent">
+    <div
+      className={
+        collections?.collections.collectionsList.length !== 0
+          ? "collectionsContent"
+          : "noCollectionsContent"
+      }
+    >
       <div className="collectionsContainer">
         {collections?.collections.collectionsList.length !== 0 ? (
           <div className="collectionsContainer__list">
@@ -46,18 +52,20 @@ export const Collections = (): JSX.Element => {
           <WithoutCollections />
         )}
       </div>
-      <Link to="createCollection" className="addCollection">
-        <div className="addCollection__circle_block">
-          <div className="addCollection__circle">
-            <AddCollectionIcon className="addCollection__plusIcon_large" />
-            <AddCollectionIcon
-              className="addCollection__plusIcon_little"
-              height={14}
-              width={14}
-            />
+      {collections?.collections.collectionsList.length !== 0 ? (
+        <Link to="createCollection" className="addCollection">
+          <div className="addCollection__circle_block">
+            <div className="addCollection__circle">
+              <AddCollectionIcon className="addCollection__plusIcon_large" />
+              <AddCollectionIcon
+                className="addCollection__plusIcon_little"
+                height={14}
+                width={14}
+              />
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      ) : null}
     </div>
   );
 };

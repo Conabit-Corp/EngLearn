@@ -1,5 +1,6 @@
 @import "../../config.scss";
-.noCollectionsMessage{
+
+.noCollectionsMessage {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -7,30 +8,30 @@
   align-items: center;
 }
 
-.noCollectionsMessage__text{
+.noCollectionsMessage__text {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
-  line-height: 29px;  
+  line-height: 29px;
   color: $Placeholder_silver;
 }
 
-.noCollectionsMessage__link{
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 24px;
-color: $Main_Blue;
+.noCollectionsMessage__link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: $Main_Blue;
 }
 
 @media screen and (max-width: 700px) {
-  .noCollectionsMessage__text{
+  .noCollectionsMessage__text {
     font-size: 15px;
-    line-height: 18px;  
+    line-height: 18px;
   }
-  
-  .noCollectionsMessage__link{
-  font-size: 13px;
-  line-height: 16px;
+
+  .noCollectionsMessage__link {
+    font-size: 13px;
+    line-height: 16px;
   }
 }
