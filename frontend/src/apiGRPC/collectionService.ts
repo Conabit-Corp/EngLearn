@@ -1,7 +1,7 @@
 import { grpc } from "@improbable-eng/grpc-web";
 import { WordCollectionService } from "../../proto/conabit/englearn/collection/collection_service_pb_service";
 import { WordCollection, WordPair } from "../../proto/conabit/englearn/collection/collection_models_pb.d";
-import { AddWordToCollectionRequest, CreateWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
+import { AddWordToCollectionRequest, CreateWordCollectionRequest, DeleteWordCollectionRequest, GetUserCollectionsRequest, GetWordCollectionRequest, GetWordCollectionResponse } from "../../proto/conabit/englearn/collection/collection_transport_pb";
 import { Session } from "../../proto/conabit/englearn/common/session_pb";
 import { newWordCollection } from "../utils/export.utils";
 import { NavigateFunction } from "react-router-dom";
@@ -107,3 +107,21 @@ export const addWordPairRequest = (
       }
     })
 }
+
+export const deleteCollectionRequest = (
+  collectionId: string,
+) => {
+  const req = new DeleteWordCollectionRequest()
+  const session = new Session()
+  session.setJwt(localStorage.getItem('token') ?? '')
+  req.setSession(session)
+  req.setCollectionId(collectionId)
+  grpc.unary(WordCollectionService.DeleteWordCollection, {
+    request: req,
+    host: "http://10.3.21.205:4003",
+    onEnd: (r) => {
+      console.log(`response = ${r.message}, errors = ${r.statusMessage}`);
+    }
+  })
+}
+

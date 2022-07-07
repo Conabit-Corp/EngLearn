@@ -29,7 +29,7 @@ export const CollectionMenu = (props: Props): JSX.Element => {
         <div
           className={`collectionMenu__itemContent ${moreInfoOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
-          <DeleteCollectionButton />
+          <DeleteCollectionButton collectionId={props.collectionId} />
         </div>
       </div>
       <div className="collectionMenu__item">
