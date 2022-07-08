@@ -154,9 +154,11 @@
   }
   .collectionsContent {
     width: 290px;
-    height: 405px;
+    max-height: 405px;
   }
   .collectionsContainer {
+    min-height: 405px;
+    // max-height: 560px;
     width: 290px;
     overflow-y: auto;
     &::-webkit-scrollbar {

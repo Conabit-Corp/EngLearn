@@ -3,6 +3,7 @@ import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
 import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
 import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { DeleteCollectionButton } from "../deleteCollectionButton.components";
 
 interface Props {
   words: WordPair.AsObject[],
@@ -28,7 +29,7 @@ export const CollectionMenu = (props: Props): JSX.Element => {
         <div
           className={`collectionMenu__itemContent ${moreInfoOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
-          More info
+          <DeleteCollectionButton collectionId={props.collectionId} />
         </div>
       </div>
       <div className="collectionMenu__item">
