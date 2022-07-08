@@ -7,5 +7,4 @@ export const deleteCollection = (
 ): void => {
   navigate(-1);
   deleteCollectionRequest(collectionId);
-  console.log(collectionId);
 }
