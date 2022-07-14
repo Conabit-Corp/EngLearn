@@ -1,4 +1,4 @@
 /*.bin
 /docker/*.bin
 /node_modules
-.vscode
+/vscode

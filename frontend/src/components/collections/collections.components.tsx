@@ -48,7 +48,6 @@ export const Collections = (): JSX.Element => {
               }
             )}
           </div>
-
           <Link
             to="createCollection"
             className={
