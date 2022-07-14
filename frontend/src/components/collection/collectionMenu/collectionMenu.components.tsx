@@ -13,6 +13,7 @@ interface Props {
 
 export const CollectionMenu = (props: Props): JSX.Element => {
   const [moreInfoOpened, setMoreInfoOpened] = useState(false);
+  const [wordOpened, setWordOpened] = useState(false);
   const [addWordOpened, setAddWordOpened] = useState(false);
   const [statisticsOpened, setStatisticsOpened] = useState(false);
 
@@ -30,6 +31,20 @@ export const CollectionMenu = (props: Props): JSX.Element => {
           className={`collectionMenu__itemContent ${moreInfoOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
         >
           <DeleteCollectionButton collectionId={props.collectionId} />
+        </div>
+      </div>
+      <div className="collectionMenu__item">
+        <div
+          className="collectionMenu__itemHead"
+          onClick={() => setWordOpened(prevState => prevState === false ? true : false)}
+        >
+          <AngleDownIcon className={wordOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
+          <span className="collectionMenu__itemTitle">Word</span>
+        </div>
+        <div
+          className={`collectionMenu__itemContent ${wordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
+        >
+          Word
         </div>
       </div>
       <div className="collectionMenu__item">
