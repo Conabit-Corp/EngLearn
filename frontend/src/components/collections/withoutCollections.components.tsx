@@ -7,8 +7,8 @@ export const WithoutCollections = () => {
       <div className="noCollectionsMessage__text">
         You have no collections...
       </div>
-      <Link to="createCollection">
-        <div className="noCollectionsMessage__link">Add new collection</div>
+      <Link className="noCollectionsMessage__link" to="createCollection">
+        Add new collection
       </Link>
     </div>
   );

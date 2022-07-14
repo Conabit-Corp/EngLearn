@@ -14,10 +14,16 @@ export const Collections = (): JSX.Element => {
 
   useEffect(() => {
     getWordsCollections(setCollections);
-  }, []);
+  });
 
   return (
-    <div className="collectionsComponent">
+    <div
+      className={
+        collections?.collections.collectionsList.length !== 0
+          ? "collectionsComponent"
+          : "collectionsComponent_empty"
+      }
+    >
       {collections?.collections.collectionsList.length !== 0 ? (
         <div className="collectionsContainer">
           <div className="collectionsList">
