@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
 import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 import { DeleteCollectionButton } from "../deleteCollectionButton.components";
+import { CollectionMenuItem } from "./collectionMenuItem/collectionMenuItem.components";
 
 interface Props {
   words: WordPair.AsObject[],
@@ -19,67 +20,42 @@ export const CollectionMenu = (props: Props): JSX.Element => {
 
   return (
     <div className="collectionMenu">
-      <div className="collectionMenu__item">
-        <div
-          className="collectionMenu__itemHead"
-          onClick={() => setMoreInfoOpened(prevState => prevState === false ? true : false)}
-        >
-          <AngleDownIcon className={moreInfoOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
-          <span className="collectionMenu__itemTitle">More info</span>
-        </div>
-        <div
-          className={`collectionMenu__itemContent ${moreInfoOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
-        >
-          <DeleteCollectionButton collectionId={props.collectionId} />
-        </div>
-      </div>
-      <div className="collectionMenu__item">
-        <div
-          className="collectionMenu__itemHead"
-          onClick={() => setWordOpened(prevState => prevState === false ? true : false)}
-        >
-          <AngleDownIcon className={wordOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
-          <span className="collectionMenu__itemTitle">Word</span>
-        </div>
-        <div
-          className={`collectionMenu__itemContent ${wordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
-        >
-          Word
-        </div>
-      </div>
-      <div className="collectionMenu__item">
-        <div
-          className="collectionMenu__itemHead"
-          onClick={() => setAddWordOpened(prevState => prevState === false ? true : false)}
-        >
-          <AngleDownIcon className={addWordOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
-          <span className="collectionMenu__itemTitle">Add word</span>
-        </div>
-        <div
-          className={`collectionMenu__itemContent ${addWordOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
-        >
-          <FormNewWord
-            column={true}
-            words={props.words}
-            setWords={props.setWords}
-            collectionId={props.collectionId}
-          />
-        </div>
-      </div>
-      <div className="collectionMenu__item">
-        <div
-          className="collectionMenu__itemHead"
-          onClick={() => setStatisticsOpened(prevState => prevState === false ? true : false)}
-        >
-          <AngleDownIcon className={statisticsOpened === true ? "collectionMenu__itemIcon_inverted" : ''} />
-          <span className="collectionMenu__itemTitle">Statistics</span>
-        </div>
-        <div
-          className={`collectionMenu__itemContent ${statisticsOpened === false ? "collectionMenu__itemContent_hide" : ""}`}
-        >
-          Statistics
-        </div>
-      </div>
+      <CollectionMenuItem
+        title={"More info"}
+        opened={moreInfoOpened}
+        setOpened={setMoreInfoOpened}
+      >
+        <DeleteCollectionButton collectionId={props.collectionId} />
+      </CollectionMenuItem>
+
+      <CollectionMenuItem
+        title={"Word"}
+        opened={wordOpened}
+        setOpened={setWordOpened}
+      >
+        <div>Word</div>
+      </CollectionMenuItem>
+
+      <CollectionMenuItem
+        title={"Add word"}
+        opened={addWordOpened}
+        setOpened={setAddWordOpened}
+      >
+        <FormNewWord
+          column={true}
+          words={props.words}
+          setWords={props.setWords}
+          collectionId={props.collectionId}
+        />
+      </CollectionMenuItem>
+
+      <CollectionMenuItem
+        title={"Statistics"}
+        opened={statisticsOpened}
+        setOpened={setStatisticsOpened}
+      >
+        <div>Statistics</div>
+      </CollectionMenuItem>
     </div>
   )
 }

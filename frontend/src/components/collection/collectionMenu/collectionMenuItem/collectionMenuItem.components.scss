@@ -1,0 +1,31 @@
+@import "../../../../config.scss";
+
+.collectionMenuItem {
+  border-bottom: 1px solid $input_Silver;
+
+  &:first-child {
+    border-top: 1px solid $input_Silver;
+  }
+
+  .collectionMenuItem__head {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+
+    .collectionMenuItem__icon_inverted {
+      transform: rotate(180deg);
+    }
+
+    .collectionMenuItem__title {
+      display: block;
+      font-size: 24px;
+      color: $Icon_silver;
+      margin-left: 29px;
+    }
+  }
+
+  .collectionMenuItem__content_hide {
+    display: none;
+  }
+}

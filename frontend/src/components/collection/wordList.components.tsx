@@ -8,7 +8,7 @@ interface Props {
 
 export const WordList = (props: Props): JSX.Element => {
   return (
-    <div className={`wordList  ${props.words?.length === 0 ? "wordList_noWords" : ""}`}>
+    <div className={`wordList${props.words?.length === 0 ? " wordList_noWords" : ""}`}>
       {props.words?.length === 0 ?
         <p className="wordList__noWordsWarning">
           You haven’t added the words yet.<br />

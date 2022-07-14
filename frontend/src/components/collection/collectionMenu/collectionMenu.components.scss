@@ -17,34 +17,4 @@
     background-color: #A7C3FE;
     border-radius: 100px;
   }
-
-  .collectionMenu__item {
-    border-bottom: 1px solid $input_Silver;
-
-    &:first-child {
-      border-top: 1px solid $input_Silver;
-    }
-  }
-
-  .collectionMenu__itemHead {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    cursor: pointer;
-
-    .collectionMenu__itemIcon_inverted {
-      transform: rotate(180deg);
-    }
-
-    .collectionMenu__itemTitle {
-      display: block;
-      font-size: 24px;
-      color: $Icon_silver;
-      margin-left: 29px;
-    }
-  }
-
-  .collectionMenu__itemContent_hide {
-    display: none;
-  }
 }
