@@ -4,11 +4,24 @@
   display: none;
 }
 
+.collectionsComponent {
+  width: "100%";
+  height: "100%";
+}
+
+.collectionsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .collectionsContainer {
   padding-top: 25px;
-  padding-bottom: 25px;
+  margin-bottom: 35px;
   overflow-y: auto;
   height: 100%;
+  max-height: 676px;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -29,14 +42,18 @@
 
 .collectionsContainer__list {
   height: 100%;
-  padding-bottom: 25px;
+  // padding-bottom: 25px;
   max-height: 676px;
 }
 
 .addCollection {
+  // margin-top: 35px;
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 300px;
+  overflow: hidden;
 }
 
 .addCollection__plusIcon_large {
@@ -44,30 +61,36 @@
   z-index: 1;
 }
 
+.addCollection__circle_block {
+  background-color: #fff;
+}
+
 .addCollection__circle {
   cursor: pointer;
-
+  &::after {
+    content: "Add new collection";
+    padding-left: 10px;
+    position: relative;
+    left: -100px;
+    transition: left 0.5s ease-in-out;
+    z-index: -1;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: $Text_Black;
+    white-space: nowrap;
+  }
+  .addCollection__plusIcon_large {
+    transition: transform 0.5s ease-in-out;
+  }
   &:hover {
     .addCollection__plusIcon_large {
-      -webkit-animation: spin 0.5s;
-      -moz-animation: spin 0.5s;
-      animation: spin 0.5s;
+      transform: rotate(180deg);
     }
 
     &::after {
-      content: "Add new collection";
-      padding-left: 10px;
-      position: relative;
-      animation-name: addCollection__textOut;
-      animation-duration: 0.5s;
-      animation-fill-mode: both;
-      z-index: -1;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
-      color: $Text_Black;
-      white-space: nowrap;
+      left: 120px;
     }
   }
 
@@ -80,70 +103,43 @@
   background-color: $Main_Blue;
 }
 
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(180deg);
-  }
-}
-
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(180deg);
-  }
-}
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-}
-
-@keyframes addCollection__textOut {
-  0% {
-    left: 0;
-  }
-
-  100% {
-    left: 120px;
-  }
-}
-
 @media screen and (max-width: 1200px) {
+  .addCollection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .collectionsContent {
+    align-items: flex-end;
+  }
   .collectionsContainer {
     display: flex;
     justify-content: center;
-    width: 580px;
+    width: 630px;
   }
 
   .addCollection__circle {
+    &::after {
+      content: "";
+    }
     &:hover {
       .addCollection__plusIcon_large {
-        animation: none;
+        transform: none;
       }
-    }
-
-    &::before {
-      content: "Add new collection";
-      position: relative;
-      right: 120px;
-      font-weight: 500;
-      font-size: 18px;
-      color: $Text_Black;
-      white-space: nowrap;
     }
   }
 
   .collectionsContainer__list {
     width: 580px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
   }
 }
 
 @media screen and (max-width: 700px) {
+  .addCollection {
+    height: 35px;
+    margin-top: 25px;
+    overflow: visible;
+  }
   .addCollection__plusIcon_large {
     display: none;
   }
@@ -153,10 +149,22 @@
     position: absolute;
   }
 
-  .collectionsContainer {
-    width: 300px;
+  .collectionsContainer__list {
+    align-items: flex-start;
   }
-
+  .collectionsContent {
+    width: 290px;
+    max-height: 405px;
+  }
+  .collectionsContainer {
+    min-height: 405px;
+    // max-height: 560px;
+    width: 290px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
   .addCollection__circle {
     width: 35px;
     height: 35px;

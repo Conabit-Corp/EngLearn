@@ -17,31 +17,35 @@ export const Collections = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="collectionsContainer">
+    <div className="collectionsComponent">
       {collections?.collections.collectionsList.length !== 0 ? (
-        <div className="collectionsContainer__list">
-          {collections?.collections.collectionsList.map(
-            (collection: {
-              collectionName: string;
-              collectionDescription: string;
-              collectionId: string;
-            }) => {
-              return (
-                <Link
-                  key={collection.collectionId}
-                  to={`/collections/${collection.collectionId}`}
-                >
-                  <CollectionItem
-                    collectionId={collection.collectionId}
-                    collectionName={collection.collectionName}
-                    collectionDescription={collection.collectionDescription}
-                  />
-                </Link>
-              );
-            }
-          )}
-          <Link to="createCollection">
-            <div className="addCollection">
+        <div className="collectionsContent">
+          <div className="collectionsContainer">
+            <div className="collectionsContainer__list">
+              {collections?.collections.collectionsList.map(
+                (collection: {
+                  collectionName: string;
+                  collectionDescription: string;
+                  collectionId: string;
+                }) => {
+                  return (
+                    <Link
+                      key={collection.collectionId}
+                      to={`/collections/${collection.collectionId}`}
+                    >
+                      <CollectionItem
+                        collectionId={collection.collectionId}
+                        collectionName={collection.collectionName}
+                        collectionDescription={collection.collectionDescription}
+                      />
+                    </Link>
+                  );
+                }
+              )}
+            </div>
+          </div>
+          <Link to="createCollection" className="addCollection">
+            <div className="addCollection__circle_block">
               <div className="addCollection__circle">
                 <AddCollectionIcon className="addCollection__plusIcon_large" />
                 <AddCollectionIcon
@@ -55,8 +59,7 @@ export const Collections = (): JSX.Element => {
         </div>
       ) : (
         <WithoutCollections />
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
