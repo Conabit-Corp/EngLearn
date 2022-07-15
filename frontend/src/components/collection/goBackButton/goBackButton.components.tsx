@@ -1,5 +1,5 @@
 import "./goBackButton.components.scss";
-import { ArrowLeftIcon } from "../../images/collections/arrowLeftIcon";
+import { ArrowLeftIcon } from "../../../images/collections/arrowLeftIcon";
 import { Link } from "react-router-dom";
 
 export const GoBackButton = (): JSX.Element => {

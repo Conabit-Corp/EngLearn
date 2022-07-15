@@ -1,6 +1,6 @@
 import "./wordList.components.scss";
-import { WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
-import { WordItem } from "./wordItem.components";
+import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
+import { WordItem } from "./wordItem/wordItem.components";
 
 interface Props {
   words: WordPair.AsObject[] | undefined,

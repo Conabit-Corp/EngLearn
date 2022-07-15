@@ -1,4 +1,4 @@
-import { WordPair } from "../../../proto/conabit/englearn/collection/collection_models_pb";
+import { WordPair } from "../../../../../proto/conabit/englearn/collection/collection_models_pb";
 import "./wordItem.components.scss";
 
 interface Props {

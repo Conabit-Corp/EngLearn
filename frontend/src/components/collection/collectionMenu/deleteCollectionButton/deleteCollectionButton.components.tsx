@@ -1,5 +1,6 @@
+import React from "react";
 import "./deleteCollectionButton.components.scss";
-import { deleteCollection } from "../../utils/collectionService/deleteCollection.utils";
+import { deleteCollection } from "../../../../utils/collectionService/deleteCollection.utils";
 import { useDispatch } from "react-redux";
 
 interface Props {

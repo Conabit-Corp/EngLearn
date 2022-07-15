@@ -3,7 +3,7 @@ import "./collectionMenu.components.scss";
 import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
 import { CollectionMenuItem } from "./collectionMenuItem/collectionMenuItem.components";
 import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
-import { DeleteCollectionButton } from "../deleteCollectionButton.components";
+import { DeleteCollectionButton } from "./deleteCollectionButton/deleteCollectionButton.components";
 import { Word } from "./word/word.components";
 
 interface Props {
