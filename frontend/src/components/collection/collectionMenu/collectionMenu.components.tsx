@@ -1,10 +1,10 @@
-import "./collectionMenu.components.scss";
-import { AngleDownIcon } from "../../../images/collections/angleDownIcon";
 import { useState } from "react";
-import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
+import "./collectionMenu.components.scss";
 import { WordPair } from "../../../../proto/conabit/englearn/collection/collection_models_pb";
-import { DeleteCollectionButton } from "../deleteCollectionButton.components";
 import { CollectionMenuItem } from "./collectionMenuItem/collectionMenuItem.components";
+import { FormNewWord } from "../../createCollection/addingNewWords/formNewWord.components";
+import { DeleteCollectionButton } from "../deleteCollectionButton.components";
+import { Word } from "./word/word.components";
 
 interface Props {
   words: WordPair.AsObject[],
@@ -33,7 +33,7 @@ export const CollectionMenu = (props: Props): JSX.Element => {
         opened={wordOpened}
         setOpened={setWordOpened}
       >
-        <div>Word</div>
+        <Word />
       </CollectionMenuItem>
 
       <CollectionMenuItem
